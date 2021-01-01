@@ -4,7 +4,18 @@ import { SEO } from '../components/seo'
 import { Typography } from '../components/typography'
 
 const IndexPage: FC = () => (
-  <Layout>
+  <Layout
+    headerContent={
+      <>
+        <Typography variant="title" color="white">
+          Welcome to the best digital creative studio in the world
+        </Typography>
+        <Typography variant="body" color="white">
+          Based on no real scientific studies, but we have high hopes.
+        </Typography>
+      </>
+    }
+  >
     <SEO title="Home" />
 
     <Typography variant="title" color="red" as="h1">

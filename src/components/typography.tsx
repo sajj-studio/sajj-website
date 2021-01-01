@@ -10,6 +10,10 @@ export const Typography = styled.p<TypographyProps>`
     color: ${theme.colors[color]};
     font-family: ${theme.typography.sansSerif};
 
+    & + & {
+      margin-top: 1rem;
+    }
+
     ${(() => {
       switch (variant) {
         case 'title':

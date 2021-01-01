@@ -6,31 +6,29 @@ interface HamburgerProps {
   onClick: () => void
 }
 export const Hamburger: FC<HamburgerProps> = ({ isOpen, onClick }) => (
-  <_Hamburger onClick={onClick}>
-    <_HamburgerLine position="top" isOpen={isOpen} />
-    <_HamburgerLine position="middle" isOpen={isOpen} />
-    <_HamburgerLine position="bottom" isOpen={isOpen} />
-  </_Hamburger>
+  <Buns onClick={onClick}>
+    <Line position="top" isOpen={isOpen} />
+    <Line position="bottom" isOpen={isOpen} />
+  </Buns>
 )
 
-const _Hamburger = styled.div`
-  height: 1.875rem;
-  width: 2.375rem;
+const Buns = styled.div`
+  height: 1.25rem;
+  width: 2.625rem;
   position: relative;
   z-index: 105;
-  margin: 0.5rem 1rem 0 0;
 `
 
-interface HamburgerLineProps {
-  position: 'top' | 'middle' | 'bottom'
+interface LineProps {
+  position: 'top' | 'bottom'
   isOpen: boolean
 }
-const _HamburgerLine = styled.div<HamburgerLineProps>`
+const Line = styled.div<LineProps>`
   position: absolute;
   display: block;
   width: 100%;
-  height: 0.1875rem;
-  background: #c57d76;
+  height: 0.3125rem;
+  background: white;
   border-radius: 0.125rem;
   transition: 0.2s;
 
@@ -45,23 +43,21 @@ const _HamburgerLine = styled.div<HamburgerLineProps>`
           : css`
               top: 0;
             `
-      case 'middle':
-        return isOpen
-          ? css`
-              opacity: 0;
-            `
-          : css`
-              top: calc(50% - 0.1875rem);
-            `
       case 'bottom':
-        return isOpen
-          ? css`
-              transform: rotate(-45deg);
-              top: calc(50% - 0.1875rem);
-            `
-          : css`
-              top: calc(100% - (0.1875rem * 2));
-            `
+        return css`
+          width: 1.875rem;
+
+          ${isOpen
+            ? css`
+                transform: rotate(-45deg);
+                top: calc(50% - 0.2rem);
+                width: 100%;
+              `
+            : css`
+                bottom: 0;
+                right: 0;
+              `}
+        `
     }
   }}
 `

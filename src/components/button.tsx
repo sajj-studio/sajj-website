@@ -20,5 +20,18 @@ export const Button = styled(Link)<ButtonProps>`
     border: 2px solid ${theme.colors[color]};
     color: ${theme.colors[color]};
     background-color: ${theme.colors[fill]};
+
+    position: relative;
+
+    :hover {
+      top: -2px;
+      left: -3px;
+      filter: drop-shadow(6px 8px 0px ${theme.colors[color]});
+    }
+    :active {
+      filter: none;
+      top: 6px;
+      left: 7px;
+    }
   `}
 `

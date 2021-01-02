@@ -19,6 +19,7 @@ export const theme: DefaultTheme = {
     blue: '#641aff',
     orange: '#ffc431',
     red: '#f25767',
+    darkBlue: '#182E74',
   },
   transitions: {
     default: '0.2s',

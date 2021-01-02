@@ -1,7 +1,9 @@
 import React, { FC } from 'react'
+import { HelloContactSection } from '../components/hello-contact'
 import { Layout } from '../components/layout'
 import { SEO } from '../components/seo'
 import { Typography } from '../components/typography'
+import { WhatWeDo } from '../components/what-we-do'
 
 const IndexPage: FC = () => (
   <Layout
@@ -18,9 +20,8 @@ const IndexPage: FC = () => (
   >
     <SEO title="Home" />
 
-    <Typography variant="title" color="red" as="h1">
-      Hallo
-    </Typography>
+    <HelloContactSection />
+    <WhatWeDo />
   </Layout>
 )
 

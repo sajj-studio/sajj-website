@@ -1,3 +1,4 @@
+import { Link } from 'gatsby'
 import React, { FC, useCallback, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { SajjLogo } from '../assets/images/sajj-logo'
@@ -12,7 +13,7 @@ export const Header: FC = () => {
 
   return (
     <HeaderContainer>
-      <LogoContainer>
+      <LogoContainer to="/">
         <SajjLogo />
       </LogoContainer>
       <Hamburger isOpen={isOpen} onClick={toggle} />
@@ -28,7 +29,7 @@ const HeaderContainer = styled(Container)`
   padding-bottom: 1.875rem;
 `
 
-const LogoContainer = styled.div`
+const LogoContainer = styled(Link)`
   ${({ theme }) => css`
     width: 4.625rem;
     ${theme.media.desktop} {

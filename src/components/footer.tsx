@@ -7,6 +7,7 @@ import { TwitterLogo } from '../assets/images/twitter-logo'
 import { LinkedinLogo } from '../assets/images/linkedin-logo'
 
 import { Typography } from './typography'
+import { theme } from './sc-theme'
 
 export const Footer: FC = () => {
   return (
@@ -53,7 +54,7 @@ const _FooterWrapper = styled.footer`
     height: max-content;
     background: ${theme.colors.darkBlue};
     color: ${theme.colors.orange};
-    padding: 1rem 3rem;
+    padding: 1.5rem 3rem;
   `}
 `
 
@@ -64,6 +65,11 @@ const _MainContaineer = styled.div`
   margin-top: 1rem;
   margin-bottom: 1rem;
   padding: 0;
+
+  ${theme.media.desktop} {
+    flex-direction: row;
+    justify-content: center;
+  }
 `
 
 const _SectionWrapper = styled.div`
@@ -79,10 +85,19 @@ const _SectionWrapper = styled.div`
   a {
     z-index: 50;
   }
+
+  :nth-child(1) {
+    justify-content: space-between;
+    padding: 0 2rem;
+  }
 `
 const _VerticalAlign = styled.div`
   display: flex;
   flex-direction: column;
+
+  ${theme.media.desktop} {
+    margin-left: 1.3125rem;
+  }
 `
 
 const _Line = styled.div`
@@ -90,11 +105,17 @@ const _Line = styled.div`
     height: 0;
     border-bottom: 1px solid ${theme.colors.orange};
     margin: 1rem 0;
+
+    ${theme.media.desktop} {
+      height: 2.6875rem;
+      margin: 0 1rem 0 0.6875rem;
+      border-left: 1px solid ${theme.colors.orange};
+    }
   `}
 `
 
 const _ImageWrapper = styled.div`
   width: 1.823rem;
   height: 1.811rem;
-  margin: 0 0.5rem 0;
+  margin: 0 1.4rem;
 `

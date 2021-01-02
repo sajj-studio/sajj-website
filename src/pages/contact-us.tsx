@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Button } from '../components/button'
 import { Checkbox } from '../components/checkbox'
 import { Container } from '../components/container'
@@ -17,16 +17,16 @@ const ContactUsPage: FC = () => {
       <SEO title="Contact us" />
       <SectionContainer>
         <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(() => {})}>
-            <Typography variant="title" color="red">
-              Contact us
-            </Typography>
-            <Typography variant="body" color="red">
-              Please take a few seconds to tell us more about you and your
-              project!
-            </Typography>
-
+          <Form onSubmit={methods.handleSubmit(() => {})}>
             <FormSection>
+              <Typography variant="title" color="red">
+                Contact us
+              </Typography>
+              <Typography variant="body" color="red">
+                Please take a few seconds to tell us more about you and your
+                project!
+              </Typography>
+
               <TextInput label="Name" name="name" color="red" />
               <TextInput label="Email" name="email" color="red" />
               <TextInput
@@ -83,7 +83,7 @@ const ContactUsPage: FC = () => {
                 </Button>
               </AlignCenter>
             </FormSection>
-          </form>
+          </Form>
         </FormProvider>
       </SectionContainer>
     </Layout>
@@ -95,8 +95,29 @@ const SectionContainer = styled(Container)`
   margin-bottom: 2rem;
 `
 
-const FormSection = styled.fieldset`
+const Form = styled.form`
   margin: 1.25rem 0;
+  display: grid;
+  grid-gap: 2rem 8rem;
+`
+
+const FormSection = styled.fieldset`
+  ${({ theme }) => css`
+    ${theme.media.desktop} {
+      :nth-child(1) {
+        grid-column-start: 1;
+        grid-column-end: 2;
+      }
+      :nth-child(2) {
+        grid-column-start: 2;
+        grid-column-end: 3;
+      }
+      :nth-child(3) {
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
+    }
+  `}
 `
 
 const AlignCenter = styled.div`

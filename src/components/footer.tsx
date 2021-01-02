@@ -12,9 +12,11 @@ import { theme } from './sc-theme'
 export const Footer: FC = () => {
   return (
     <_FooterWrapper>
-      <_MainContaineer>
+      <_MainContainer>
         <_SectionWrapper>
-          <SajjLogo color="orange" />
+          <LogoContainer>
+            <SajjLogo color="orange" />
+          </LogoContainer>
           <_VerticalAlign>
             <Typography color="orange" variant="body">
               Contact us
@@ -43,7 +45,7 @@ export const Footer: FC = () => {
             <LinkedinLogo color="orange" />
           </_ImageWrapper>
         </_SectionWrapper>
-      </_MainContaineer>
+      </_MainContainer>
     </_FooterWrapper>
   )
 }
@@ -58,7 +60,12 @@ const _FooterWrapper = styled.footer`
   `}
 `
 
-const _MainContaineer = styled.div`
+const LogoContainer = styled.div`
+  width: 3.4375rem;
+  margin-right: 1.25rem;
+`
+
+const _MainContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -76,6 +83,7 @@ const _SectionWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
 
   img {
     height: 3rem;
@@ -87,13 +95,16 @@ const _SectionWrapper = styled.div`
   }
 
   :nth-child(1) {
-    justify-content: space-between;
     padding: 0 2rem;
   }
 `
 const _VerticalAlign = styled.div`
   display: flex;
   flex-direction: column;
+
+  ${Typography} {
+    margin: 0;
+  }
 
   ${theme.media.desktop} {
     margin-left: 1.3125rem;

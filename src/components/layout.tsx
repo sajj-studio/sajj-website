@@ -18,7 +18,9 @@ export const Layout: FC<LayoutProps> = ({ headerContent, children }) => {
       <TopSection>
         <Header />
         {headerContent && (
-          <HeaderContentContainer>{headerContent}</HeaderContentContainer>
+          <HeaderContentContainer>
+            <div>{headerContent}</div>
+          </HeaderContentContainer>
         )}
       </TopSection>
       <main>{children}</main>
@@ -41,4 +43,8 @@ const TopSection = styled.section`
 
 const HeaderContentContainer = styled(Container)`
   margin-top: 1rem;
+
+  & > div {
+    max-width: 37.5rem;
+  }
 `

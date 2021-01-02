@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import { RegisterOptions, useFormContext } from 'react-hook-form'
 import styled, { css, DefaultTheme } from 'styled-components'
 import { CheckIcon } from '../assets/images/check-icon'
 import { Typography } from './typography'
@@ -9,29 +8,25 @@ interface CheckboxProps
   label: string
   name: string
   color: keyof DefaultTheme['colors']
-  register?: RegisterOptions
 }
 
 export const Checkbox: FC<CheckboxProps> = ({
   label,
+  id,
   name,
   color,
-  register: registerParams,
   ...props
 }) => {
-  const { register } = useFormContext()
-
   return (
     <InputContainer>
       <Input
-        id={name}
+        id={id ?? name}
         name={name}
         type="checkbox"
         color={color}
-        ref={registerParams ? register(registerParams) : register}
         {...props}
       />
-      <Label htmlFor={name} color={color}>
+      <Label htmlFor={id ?? name} color={color}>
         <div>
           <CheckIcon color={color} />
         </div>

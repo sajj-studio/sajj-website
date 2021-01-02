@@ -1,5 +1,4 @@
-import React, { FC } from 'react'
-import { FormProvider, useForm } from 'react-hook-form'
+import React, { FC, useCallback } from 'react'
 import styled, { css } from 'styled-components'
 import { Button } from '../components/button'
 import { Checkbox } from '../components/checkbox'
@@ -10,81 +9,97 @@ import { TextInput } from '../components/text-input'
 import { Typography } from '../components/typography'
 
 const ContactUsPage: FC = () => {
-  const methods = useForm()
+  const sendResponses = useCallback(
+    async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault()
+
+      const formData = new FormData(event.target as HTMLFormElement)
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        //@ts-ignore
+        body: new URLSearchParams(formData).toString(),
+      })
+    },
+    []
+  )
 
   return (
     <Layout>
       <SEO title="Contact us" />
       <SectionContainer>
-        <FormProvider {...methods}>
-          <Form onSubmit={methods.handleSubmit(() => {})}>
-            <FormSection>
-              <Typography variant="title" color="red">
-                Contact us
-              </Typography>
-              <Typography variant="body" color="red">
-                Please take a few seconds to tell us more about you and your
-                project!
-              </Typography>
+        <Form name="Contact Form" onSubmit={sendResponses} data-netlify="true">
+          <FormSection>
+            <input type="hidden" name="form-name" value="Contact Form" />
 
-              <TextInput label="Name" name="name" color="red" />
-              <TextInput label="Email" name="email" color="red" />
-              <TextInput
-                label="Company or project name"
-                name="company"
-                color="red"
-              />
-            </FormSection>
+            <Typography variant="title" color="blue">
+              Contact us
+            </Typography>
+            <Typography variant="body" color="blue">
+              Please take a few seconds to tell us more about you and your
+              project!
+            </Typography>
 
-            <FormSection>
-              <Typography variant="subtitle" color="blue">
-                What services are you interested in?
-              </Typography>
-              <Typography variant="body" color="blue">
-                Select as many as you want.
-              </Typography>
+            <TextInput label="Name" name="name" color="blue" />
+            <TextInput label="Email" name="email" color="blue" />
+            <TextInput
+              label="Company or project name"
+              name="company"
+              color="blue"
+            />
+          </FormSection>
 
-              <Checkbox
-                label="Logo & Branding"
-                name="services.0"
-                value="branding"
-                color="blue"
-              />
-              <Checkbox
-                label="Web design"
-                name="services.1"
-                value="design"
-                color="blue"
-              />
-              <Checkbox
-                label="Social media"
-                name="services.2"
-                value="media"
-                color="blue"
-              />
-            </FormSection>
+          <FormSection>
+            <Typography variant="subtitle" color="red">
+              What services are you interested in?
+            </Typography>
+            <Typography variant="body" color="red">
+              Select as many as you want.
+            </Typography>
 
-            <FormSection>
-              <Typography variant="subtitle" color="blue">
-                Additional information
-              </Typography>
-              <TextInput
-                render="textarea"
-                label="Type here"
-                name="additional"
-                color="blue"
-                //@ts-ignore
-                rows="7"
-              />
+            <Checkbox
+              label="Logo & Branding"
+              id="branding"
+              name="services[]"
+              value="branding"
+              color="red"
+            />
+            <Checkbox
+              label="Web design"
+              id="design"
+              name="services[]"
+              value="design"
+              color="red"
+            />
+            <Checkbox
+              label="Social media"
+              id="media"
+              name="services[]"
+              value="media"
+              color="red"
+            />
+          </FormSection>
 
-              <AlignCenter>
-                <Button as="button" type="submit">
-                  Send
-                </Button>
-              </AlignCenter>
-            </FormSection>
-          </Form>
-        </FormProvider>
+          <FormSection>
+            <Typography variant="subtitle" color="blue">
+              Additional information
+            </Typography>
+            <TextInput
+              render="textarea"
+              label="Type here"
+              name="additional"
+              color="blue"
+              //@ts-ignore
+              rows="7"
+            />
+
+            <AlignCenter>
+              <Button as="button" type="submit">
+                Send
+              </Button>
+            </AlignCenter>
+          </FormSection>
+        </Form>
       </SectionContainer>
     </Layout>
   )

@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import { RegisterOptions, useFormContext } from 'react-hook-form'
 import styled, { css, DefaultTheme } from 'styled-components'
 import { Typography } from './typography'
 
@@ -9,7 +8,6 @@ interface TextInputProps
   label: string
   name: string
   color: keyof DefaultTheme['colors']
-  register?: RegisterOptions
 }
 
 export const TextInput: FC<TextInputProps> = ({
@@ -17,21 +15,11 @@ export const TextInput: FC<TextInputProps> = ({
   label,
   name,
   color,
-  register: registerParams,
   ...props
 }) => {
-  const { register } = useFormContext()
-
   return (
     <InputContainer>
-      <Input
-        as={render}
-        color={color}
-        id={name}
-        name={name}
-        ref={registerParams ? register(registerParams) : register}
-        {...props}
-      />
+      <Input as={render} color={color} id={name} name={name} {...props} />
       <Label htmlFor={name}>
         <Typography variant="body" color={color}>
           {label}

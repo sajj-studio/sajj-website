@@ -20,7 +20,7 @@ export const Button = styled(Link)<ButtonProps>`
     border: 2px solid ${theme.colors[color]};
     color: ${theme.colors[color]};
     background-color: ${theme.colors[fill]};
-
+    outline: none;
     position: relative;
 
     :hover {

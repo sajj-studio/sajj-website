@@ -1,6 +1,9 @@
 require('dotenv').config()
 
 module.exports = {
+  siteMetadata: {
+    title: `SAJJ Studio`,
+  },
   plugins: [
     `gatsby-plugin-react-helmet`,
     // {

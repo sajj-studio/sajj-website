@@ -5,6 +5,7 @@ import { SocialMediaIcon } from '../assets/images/social-media-icon'
 import { WebDesignIcon } from '../assets/images/web-design-icon'
 import { Container } from './container'
 import { Typography } from './typography'
+import { theme } from './sc-theme'
 
 /**
  * I'm trying out a new notation in this file - mixed PascalCase and underscores for nesting
@@ -48,12 +49,19 @@ const Background = styled.section`
 `
 
 const SectionContainer = styled(Container)`
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  ${({ theme }) => css`
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 
-  & > ${Typography} {
-    text-align: center;
-  }
+    & > ${Typography} {
+      text-align: center;
+
+      ${theme.media.desktop} {
+        text-align: left;
+        padding-left: 2rem;
+      }
+    }
+  `}
 `
 
 const ItemsContainer = styled.div`
@@ -61,6 +69,10 @@ const ItemsContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+
+  ${theme.media.desktop} {
+    justify-content: space-between;
+  }
 `
 
 interface WhatWeDoItemProps {
@@ -86,19 +98,33 @@ const WhatWeDo_Item_Container = styled.div`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
-    margin: 3rem 2rem;
+    margin: 3rem 1.5rem;
 
     & > div:first-child {
-      margin-right: 2.5rem;
       /* 
      * Gave this fixed width, yet one of them ends up being larger
      * Jordan pls rescue us from this nightmare
      */
-      width: 7rem;
+      width: 40%;
+
+      ${theme.media.desktop} {
+        width: 40%;
+      }
+    }
+
+    & > div:nth-child(2) {
+      width: 60%;
+      padding-left: 2.2rem;
+
+      ${theme.media.desktop} {
+        width: 65%;
+        padding-left: 1rem;
+      }
     }
 
     ${theme.media.desktop} {
-      max-width: 14rem;
+      max-width: 16rem;
+      margin: 3rem 2rem;
     }
   `}
 `

@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { Button } from '../components/button'
 import { Checkbox } from '../components/checkbox'
@@ -9,8 +9,11 @@ import { TextInput } from '../components/text-input'
 import { Typography } from '../components/typography'
 
 const ContactUsPage: FC = () => {
+  const [state, setState] = useState<'sending' | 'success' | 'error'>()
+
   const sendResponses = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
+      setState('sending')
       event.preventDefault()
 
       const formData = new FormData(event.target as HTMLFormElement)
@@ -20,6 +23,12 @@ const ContactUsPage: FC = () => {
         //@ts-ignore
         body: new URLSearchParams(formData).toString(),
       })
+        .then(() => {
+          setState('success')
+        })
+        .catch(() => {
+          setState('error')
+        })
     },
     []
   )
@@ -94,7 +103,7 @@ const ContactUsPage: FC = () => {
             />
 
             <AlignCenter>
-              <Button as="button" type="submit">
+              <Button as="button" type="submit" state={state}>
                 Send
               </Button>
             </AlignCenter>

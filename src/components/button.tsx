@@ -4,10 +4,11 @@ import styled, { css, DefaultTheme } from 'styled-components'
 interface ButtonProps {
   fill?: keyof DefaultTheme['colors']
   color?: keyof DefaultTheme['colors']
+  state?: 'progress' | 'success' | 'error'
 }
 
 export const Button = styled(Link)<ButtonProps>`
-  ${({ theme, fill = 'orange', color = 'blue' }) => css`
+  ${({ theme, fill = 'orange', color = 'blue', state }) => css`
     text-align: center;
     padding: 1rem 4rem;
     border-radius: 25px;
@@ -33,5 +34,22 @@ export const Button = styled(Link)<ButtonProps>`
       top: 6px;
       left: 7px;
     }
+
+    ${(() => {
+      switch (state) {
+        case 'progress':
+          return css``
+
+        case 'success':
+          return css`
+            background-color: ${theme.colors[fill]};
+            border: 2px solid ${theme.colors[fill]};
+            box-shadow: none;
+          `
+
+        case 'error':
+          return css``
+      }
+    })()}
   `}
 `

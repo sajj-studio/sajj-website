@@ -35,16 +35,41 @@ export const Button = styled(Link)<ButtonProps>`
       left: 7px;
     }
 
+    @keyframes gradient {
+      0% {
+        background-position: 0% 0;
+      }
+      100% {
+        background-position: 55% 0;
+      }
+    }
+
     ${(() => {
       switch (state) {
         case 'progress':
-          return css``
+          return css`
+            background: repeating-linear-gradient(
+              135deg,
+              ${theme.colors[fill]},
+              ${theme.colors[fill]} 5px,
+              ${theme.colors[color]} 5px,
+              ${theme.colors[color]} 12px
+            );
+            color: transparent;
+
+            animation-name: gradient;
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            background-size: 51px 100%;
+          `
 
         case 'success':
           return css`
-            background-color: ${theme.colors[fill]};
-            border: 2px solid ${theme.colors[fill]};
+            background-color: ${theme.colors[color]};
+            border: 2px solid ${theme.colors[color]};
             box-shadow: none;
+            color: ${theme.colors[fill]};
           `
 
         case 'error':

@@ -94,7 +94,7 @@ const ContactUsPage: FC = () => {
             />
 
             <AlignCenter>
-              <Button as="button" type="submit">
+              <Button as="button" type="submit" state="progress">
                 Send
               </Button>
             </AlignCenter>

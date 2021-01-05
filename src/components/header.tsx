@@ -4,6 +4,21 @@ import styled, { css } from 'styled-components'
 import { SajjLogo } from '../assets/images/sajj-logo'
 import { Container } from './container'
 import { Hamburger } from './hamburger'
+import { MobileMenu } from './menu-mobile'
+
+export interface MenuItem {
+  id: 'home' | 'about-us' | 'services' | 'our-work' | 'contact-us'
+  href: string
+  label: string
+}
+
+const menuItems: MenuItem[] = [
+  { id: 'home', href: '/', label: 'Home' },
+  { id: 'about-us', href: '/gallery', label: 'About us' },
+  { id: 'services', href: '/', label: 'Services' },
+  { id: 'our-work', href: '/', label: 'Our work' },
+  { id: 'contact-us', href: '/contact', label: 'Contact us' },
+]
 
 export const Header: FC = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -17,6 +32,7 @@ export const Header: FC = () => {
         <SajjLogo />
       </LogoContainer>
       <Hamburger isOpen={isOpen} onClick={toggle} />
+      <MobileMenu items={menuItems} isOpen={isOpen} />
     </HeaderContainer>
   )
 }

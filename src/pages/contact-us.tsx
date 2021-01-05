@@ -40,12 +40,19 @@ const ContactUsPage: FC = () => {
               project!
             </Typography>
 
-            <TextInput label="Name" name="name" color="blue" />
-            <TextInput label="Email" name="email" color="blue" />
+            <TextInput label="Name" name="name" color="blue" required />
+            <TextInput
+              label="Email"
+              name="email"
+              color="blue"
+              type="email"
+              required
+            />
             <TextInput
               label="Company or project name"
               name="company"
               color="blue"
+              required
             />
           </FormSection>
 

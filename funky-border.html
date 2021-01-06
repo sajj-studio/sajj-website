@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>I'm still learning all this .tsx stuff</title>
+  </head>
+  <style>
+    html {
+      background: rgb(255,200,240);
+    }
+
+    .this-is-the-existing-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.875rem;
+      padding-bottom: 1.875rem;
+      background:rgb(100,26,255);
+      background: linear-gradient( 49.79deg, rgb(100,26,255) -21.04%, rgb(242,87,103) 57.35%, rgb(255,196,49) 136.6% );
+    }
+
+    .this-is-the-one-that-would-be-funky-but-is-only-sandwiched-between-a-bottom-and-top-modifier {
+      background: #fff;
+    }
+
+    /* just for fun */
+    .hi-andrey,
+    .does-this-make-sense,
+    .its-tricky {
+      max-width: 800px;
+      padding: 1.5rem;
+      margin: 3rem auto;
+      background: #fff;
+    }
+
+    .obi-wan {
+      width: 50%;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* begin super special css */
+    .funky-section {
+      margin: 0 auto;
+    }
+
+    .header--funky-bottom {
+      position: relative;
+      padding-bottom: calc((6.25rem / 2) + 1.875rem);
+    }
+
+    .content-div--funky-top {
+      position: relative;
+      padding-top: calc((6.25rem / 2) + 1.875rem);
+    }
+
+    .funky-border--header,
+    .funky-border--content {
+      position: absolute;
+      height: 100px;
+      width: 100%;
+    }
+
+    .funky-border--header {
+      bottom: 0;
+    }
+
+    .funky-border--content {
+      top: 0;
+    }
+
+    .
+  </style>
+  <body>
+    <section class="this-is-the-existing-header header--funky-bottom">
+      <div class="hi-andrey">
+        <h1>Hello there</h1>
+        <p>My original idea for having a direct sibling selector wont work because the header is in a header so i guess we'll need some logic for if funky-section is the first section add a class for extra padding-bottom and include this svg.</p>
+        <h4>wait nevermind i broke the funkiness into two parts, we can add the bottom or top to whatever element is <i><b>before</b></i> or <i><b>after</b></i> a "funky" section</h4>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" class="funky-border--header">
+        <path d="M0,50 C40,190 66,-25 100,50 L100,100 L0,100 Z" stroke-width="0" fill="#fff" />
+      </svg>
+    </section>
+
+    <section class="this-is-the-one-that-would-be-funky-but-is-only-sandwiched-between-a-bottom-and-top-modifier">
+      <div class="its-tricky funky-section">
+        <img src="https://i.imgur.com/WJeboHu.gif" class="obi-wan">
+      </div>
+    </section>
+
+    <section class="this-is-the-existing-content-div content-div--funky-top">
+      <div class="does-this-make-sense">
+        <h1>It's a bit difficult to add padding to siblings when they might be indirect</h1>
+        <p>I've basically just added the svg to the surrounding elements so it can add the proper padding to the bottom or top.  i'll rename my classes to be consistent soon if it seems like a valid solution. i suppose the benefit of having it as two modifiers or props would be that we can add them wherever we want now?</p>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" class="funky-border--content">
+        <path d="M0,5 C60,-10 65,100 100,40 L100,0 L0,0 Z" stroke-width="0" fill="#fff" />
+      </svg>
+    </section>
+  </body>
+</html>

@@ -16,7 +16,7 @@ export const HelloContactSection: FC = () => {
       <Typography variant="body" color="blue">
         {t('letUsKnow')}
       </Typography>
-      <Button to="/contact-us">{t('completeTheForm')}</Button>
+      <Button to="/contact-us/">{t('completeTheForm')}</Button>
     </SectionContainer>
   )
 }

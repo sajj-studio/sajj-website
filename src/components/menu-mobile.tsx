@@ -15,10 +15,12 @@ export const MobileMenu: FC<MenuProps> = ({ items, isOpen }) => (
         <_MenuLink href={item.href}>{item.label}</_MenuLink>
       </_MenuItem>
     ))}
-    <LanguageItem>
-      <LanguageLink>Francais</LanguageLink>
-      <LanguageIndicator />
-    </LanguageItem>
+    <LanguageSection>
+      <LanguageItem>
+        <LanguageLink>Francais</LanguageLink>
+        <LanguageIndicator />
+      </LanguageItem>
+    </LanguageSection>
   </_Menu>
 )
 
@@ -31,13 +33,13 @@ const _Menu = styled.ul<{ isOpen: boolean }>`
     height: 100vh;
     padding-right: 2.25rem;
     padding-top: 9rem;
-    background: ${hexToRGBA(theme.colors.darkBlue, 0.98)};
-    backdrop-filter: blur(14px);
+    background: ${hexToRGBA(theme.colors.darkBlue, 0.5)};
+    backdrop-filter: blur(14px) brightness(0.18);
+    background-blend-mode: multiply;
     display: flex;
     flex-direction: column;
     transition: ${theme.transitions.default};
     z-index: 10;
-    position: fixed;
 
     ${isOpen &&
     css`
@@ -57,16 +59,23 @@ const _MenuLink = styled.a`
     display: block;
     font-family: ${theme.typography.sansSerif};
     font-size: 2.5rem;
+    font-weight: 700;
     color: white;
     text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
     text-align: right;
   `}
 `
 
+const LanguageSection = styled.div`
+  display: flex;
+  margin-top: 3rem;
+  justify-content: flex-end;
+`
+
 const LanguageItem = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 3rem;
+  width: min-content;
 `
 
 const LanguageLink = styled.div`
@@ -74,7 +83,7 @@ const LanguageLink = styled.div`
     font-family: ${theme.typography.sansSerif};
     font-weight: 400;
     line-height: 1.125rem;
-    font-size: 0.925rem;
+    font-size: 1.5rem;
     color: ${theme.colors.white};
     text-align: right;
   `}
@@ -87,7 +96,7 @@ const LanguageIndicator = styled.div`
     margin-top: 0.75rem;
     opacity: 0;
 
-    &:hover {
+    ${LanguageLink}:hover + & {
       opacity: 1;
       animation-duration: 0.5s;
       animation-name: slideIn;

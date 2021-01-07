@@ -7,6 +7,7 @@ import { Layout } from '../components/layout'
 import { SEO } from '../components/seo'
 import { TextInput } from '../components/text-input'
 import { Typography } from '../components/typography'
+import { useTranslation } from 'react-i18next'
 
 const ContactUsPage: FC = () => {
   const [state, setState] = useState<'sending' | 'success' | 'error'>()
@@ -33,6 +34,8 @@ const ContactUsPage: FC = () => {
     []
   )
 
+  const { t } = useTranslation('contact')
+
   return (
     <Layout>
       <SEO title="Contact us" />
@@ -42,46 +45,41 @@ const ContactUsPage: FC = () => {
             <input type="hidden" name="form-name" value="Contact Form" />
 
             <Typography variant="title" color="blue">
-              Contact us
+              {t('contact')}
             </Typography>
             <Typography variant="body" color="blue">
-              Please take a few seconds to tell us more about you and your
-              project!
+              {t('takeAFewSeconds')}
             </Typography>
 
-            <TextInput label="Name" name="name" color="blue" />
-            <TextInput label="Email" name="email" color="blue" />
-            <TextInput
-              label="Company or project name"
-              name="company"
-              color="blue"
-            />
+            <TextInput label={t('nameLabel')} name="name" color="blue" />
+            <TextInput label={t('emailLabel')} name="email" color="blue" />
+            <TextInput label={t('companyLabel')} name="company" color="blue" />
           </FormSection>
 
           <FormSection>
             <Typography variant="subtitle" color="red">
-              What services are you interested in?
+              {t('services')}
             </Typography>
             <Typography variant="body" color="red">
-              Select as many as you want.
+              {t('selectMany')}
             </Typography>
 
             <Checkbox
-              label="Logo & Branding"
+              label={t('branding')}
               id="branding"
               name="services[]"
               value="branding"
               color="red"
             />
             <Checkbox
-              label="Web design"
+              label={t('design')}
               id="design"
               name="services[]"
               value="design"
               color="red"
             />
             <Checkbox
-              label="Social media"
+              label={t('socialMedia')}
               id="media"
               name="services[]"
               value="media"
@@ -91,11 +89,11 @@ const ContactUsPage: FC = () => {
 
           <FormSection>
             <Typography variant="subtitle" color="blue">
-              Additional information
+              {t('additional')}
             </Typography>
             <TextInput
               render="textarea"
-              label="Type here"
+              label={t('typeHere')}
               name="additional"
               color="blue"
               //@ts-ignore
@@ -104,7 +102,7 @@ const ContactUsPage: FC = () => {
 
             <AlignCenter>
               <Button as="button" type="submit" state={state}>
-                Send
+                {t('send')}
               </Button>
             </AlignCenter>
           </FormSection>

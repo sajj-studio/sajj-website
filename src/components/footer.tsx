@@ -5,11 +5,13 @@ import { FacebookLogo } from '../assets/images/facebook-logo'
 import { InstagramLogo } from '../assets/images/instagram-logo'
 import { TwitterLogo } from '../assets/images/twitter-logo'
 import { LinkedinLogo } from '../assets/images/linkedin-logo'
-
+import { useTranslation } from 'react-i18next'
 import { Typography } from './typography'
 import { theme } from './sc-theme'
 
 export const Footer: FC = () => {
+  const { t } = useTranslation('footer')
+
   return (
     <_FooterWrapper>
       <_MainContainer>
@@ -19,7 +21,7 @@ export const Footer: FC = () => {
           </LogoContainer>
           <_VerticalAlign>
             <Typography color="orange" variant="body">
-              Contact us
+              {t('contactUs')}
             </Typography>
             <Typography color="orange" variant="body">
               info@sajj.studio

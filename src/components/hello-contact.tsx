@@ -3,18 +3,23 @@ import styled from 'styled-components'
 import { Button } from './button'
 import { Container } from './container'
 import { Typography } from './typography'
+import { useTranslation } from 'react-i18next'
 
-export const HelloContactSection: FC = () => (
-  <SectionContainer>
-    <Typography variant="title" color="blue">
-      Hello!
-    </Typography>
-    <Typography variant="body" color="blue">
-      Let us know what we can do for you!
-    </Typography>
-    <Button to="/contact-us">Complete the form</Button>
-  </SectionContainer>
-)
+export const HelloContactSection: FC = () => {
+  const { t } = useTranslation('home')
+
+  return (
+    <SectionContainer>
+      <Typography variant="title" color="blue">
+        {t('hello')}
+      </Typography>
+      <Typography variant="body" color="blue">
+        {t('letUsKnow')}
+      </Typography>
+      <Button to="/contact-us">{t('completeTheForm')}</Button>
+    </SectionContainer>
+  )
+}
 
 const SectionContainer = styled(Container)`
   text-align: center;

@@ -6,37 +6,42 @@ import { WebDesignIcon } from '../assets/images/web-design-icon'
 import { Container } from './container'
 import { Typography } from './typography'
 import { theme } from './sc-theme'
+import { useTranslation } from 'react-i18next'
 
 /**
  * I'm trying out a new notation in this file - mixed PascalCase and underscores for nesting
  */
 
-export const WhatWeDo: FC = () => (
-  <Background>
-    <SectionContainer>
-      <Typography variant="title" color="white">
-        What we do
-      </Typography>
-      <ItemsContainer>
-        <WhatWeDo_Item
-          icon={<BrandingIcon />}
-          title="Logo & Branding"
-          description="Creating a strategy adapted to you"
-        />
-        <WhatWeDo_Item
-          icon={<WebDesignIcon />}
-          title="Web design"
-          description="Building a website to suit your need"
-        />
-        <WhatWeDo_Item
-          icon={<SocialMediaIcon />}
-          title="Social media"
-          description="Helping you to grow your traffic"
-        />
-      </ItemsContainer>
-    </SectionContainer>
-  </Background>
-)
+export const WhatWeDo: FC = () => {
+  const { t } = useTranslation('home')
+
+  return (
+    <Background>
+      <SectionContainer>
+        <Typography variant="title" color="white">
+          {t('whatWeDo')}
+        </Typography>
+        <ItemsContainer>
+          <WhatWeDo_Item
+            icon={<BrandingIcon />}
+            title={t('branding')}
+            description={t('branding_desc')}
+          />
+          <WhatWeDo_Item
+            icon={<WebDesignIcon />}
+            title={t('design')}
+            description={t('design_desc')}
+          />
+          <WhatWeDo_Item
+            icon={<SocialMediaIcon />}
+            title={t('socialMedia')}
+            description={t('socialMedia_desc')}
+          />
+        </ItemsContainer>
+      </SectionContainer>
+    </Background>
+  )
+}
 
 const Background = styled.section`
   ${({ theme }) => css`

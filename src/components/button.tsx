@@ -1,4 +1,4 @@
-import { Link } from 'gatsby'
+import { Link } from './link'
 import styled, { css, DefaultTheme } from 'styled-components'
 
 interface ButtonProps {

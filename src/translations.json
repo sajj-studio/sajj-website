@@ -1,0 +1,66 @@
+{
+  "en": {
+    "home": {
+      "welcome": "Welcome to the best digital creative studio in the world",
+      "hopes": "Based on no real scientific studies, but we have high hopes.",
+      "hello": "Hello!",
+      "letUsKnow": "Let us know what we can do for you!",
+      "completeTheForm": "Complete the form",
+      "whatWeDo": "What we do",
+      "branding": "Logo & Branding",
+      "branding_desc": "Creating a strategy adapted to you",
+      "design": "Web design",
+      "design_desc": "Building a website to suit your need",
+      "socialMedia": "Social media",
+      "socialMedia_desc": "Helping you to grow your traffic"
+    },
+    "contact": {
+      "contact": "Contact Us",
+      "takeAFewSeconds": "Please take a few seconds to tell us more about you and your project!",
+      "nameLabel": "Name",
+      "emailLabel": "Email",
+      "companyLabel": "Company or project name",
+      "services": "What services are you interested in?",
+      "selectMany": "Select as many as you want.",
+      "branding": "Logo & Branding",
+      "design": "Web design",
+      "socialMedia": "Social media",
+      "additional": "Additional information",
+      "typeHere": "Type here",
+      "send": "Send"
+    },
+    "footer": { "contactUs": "Contact us" }
+  },
+  "fr": {
+    "home": {
+      "welcome": "Bienvenue dans le meilleur studio de création numérique au monde",
+      "hopes": "Basé sur aucune étude scientifique réelle, mais nous avons de grands espoirs.",
+      "hello": "Bonjour!",
+      "letUsKnow": "Faites-nous savoir ce que nous pouvons faire pour vous!",
+      "completeTheForm": "Complétez le formulaire",
+      "whatWeDo": "Ce que nous faisons",
+      "branding": "Logo et image de marque",
+      "branding_desc": "Créer une stratégie adaptée à vous",
+      "design": "Création de sites web",
+      "design_desc": "Créer un site Web adapté à vos besoins",
+      "socialMedia": "Des médias sociaux",
+      "socialMedia_desc": "Vous aider à développer votre trafic"
+    },
+    "contact": {
+      "contact": "Nous contacter",
+      "takeAFewSeconds": "Veuillez prendre quelques secondes pour nous en dire plus sur vous et votre projet!",
+      "nameLabel": "Nom",
+      "emailLabel": "Email",
+      "companyLabel": "Nom de l'entreprise ou du projet",
+      "services": "Quels services vous intéressent?",
+      "selectMany": "Sélectionnez-en autant que vous le souhaitez.",
+      "branding": "Logo et image de marque",
+      "design": "Création de sites web",
+      "socialMedia": "Des médias sociaux",
+      "additional": "Information additionnelle",
+      "typeHere": "Écrivez ici",
+      "send": "Envoyer"
+    },
+    "footer": { "contactUs": "Nous contacter" }
+  }
+}

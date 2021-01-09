@@ -1,4 +1,4 @@
-import React, { createContext, FC } from 'react'
+import React, { createContext, FC, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 export interface PageContextValue {
@@ -20,7 +20,10 @@ export const PageContextController: FC<PageContextControllerProps> = ({
   children,
 }) => {
   const { i18n } = useTranslation()
-  i18n.changeLanguage(value.lang)
+
+  useEffect(() => {
+    i18n.changeLanguage(value.lang)
+  }, [i18n, value.lang])
 
   return <PageContext.Provider value={value}>{children}</PageContext.Provider>
 }

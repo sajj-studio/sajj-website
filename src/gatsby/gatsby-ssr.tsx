@@ -16,8 +16,8 @@ export const wrapPageElement = ({
 }: WrapPageElementBrowserArgs<never, PageContextValue>): JSX.Element => (
   <ThemeProvider theme={theme}>
     <I18nextProvider i18n={i18n}>
-      <GlobalStyles />
       <PageContextController value={props.pageContext}>
+        <GlobalStyles />
         {element}
       </PageContextController>
     </I18nextProvider>

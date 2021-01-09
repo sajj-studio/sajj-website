@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next'
 
 export interface PageContextValue {
   originalPath: string
-  lang: 'en' | 'fr'
+  lang: 'en-US' | 'fr-CA'
 }
 
 export const PageContext = createContext<PageContextValue>({
   originalPath: '/',
-  lang: 'en',
+  lang: 'en-US',
 })
 
 interface PageContextControllerProps {

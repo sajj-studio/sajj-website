@@ -1,8 +1,6 @@
 {
-  "en": {
+  "en-US": {
     "home": {
-      "welcome": "Welcome to the best digital creative studio in the world",
-      "hopes": "Based on no real scientific studies, but we have high hopes.",
       "hello": "Hello!",
       "letUsKnow": "Let us know what we can do for you!",
       "completeTheForm": "Complete the form",
@@ -31,10 +29,8 @@
     },
     "footer": { "contactUs": "Contact us" }
   },
-  "fr": {
+  "fr-CA": {
     "home": {
-      "welcome": "Bienvenue dans le meilleur studio de création numérique au monde",
-      "hopes": "Basé sur aucune étude scientifique réelle, mais nous avons de grands espoirs.",
       "hello": "Bonjour!",
       "letUsKnow": "Faites-nous savoir ce que nous pouvons faire pour vous!",
       "completeTheForm": "Complétez le formulaire",

@@ -4,19 +4,19 @@ const config = {
   siteMetadata: {
     host: `https://sajj.studio`,
     title: `SAJJ Studio`,
-    locales: ['en', 'fr'],
-    defaultLocale: 'en',
+    locales: ['en-US', 'fr-CA'],
+    defaultLocale: 'en-US',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    // {
-    //   resolve: `gatsby-source-contentful`,
-    //   options: {
-    //     spaceId: `snc0fgizkag0`,
-    //     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-    //     downloadLocal: true,
-    //   },
-    // },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `v20z3qdbqmdq`,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        downloadLocal: true,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

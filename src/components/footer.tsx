@@ -9,9 +9,24 @@ import { useTranslation } from 'react-i18next'
 import { Typography } from './typography'
 import { theme } from './sc-theme'
 import { Link } from './link'
+import { graphql, useStaticQuery } from 'gatsby'
+import { FooterQuery } from '../graphqlTypes'
+
+export const query = graphql`
+  query Footer {
+    contentfulContactInfo {
+      email
+      facebookPage
+      instagramPage
+      twitterPage
+      linkedInPage
+    }
+  }
+`
 
 export const Footer: FC = () => {
   const { t } = useTranslation('footer')
+  const { contentfulContactInfo: data } = useStaticQuery<FooterQuery>(query)
 
   return (
     <_FooterWrapper>
@@ -31,32 +46,28 @@ export const Footer: FC = () => {
             </Typography>
             <Typography
               as="a"
-              href={`mailto:info@sajj.studio`}
+              href={`mailto:${data?.email}`}
               color="orange"
               variant="body"
             >
-              info@sajj.studio
+              {data?.email}
             </Typography>
           </_VerticalAlign>
         </_SectionWrapper>
         <_Line />
         <_SectionWrapper>
-          <a href="www.google.ca">
-            <_ImageWrapper>
-              <FacebookLogo color="orange" />
-            </_ImageWrapper>
-          </a>
-          <_ImageWrapper>
+          <ImageLink href={data?.facebookPage ?? ''}>
+            <FacebookLogo color="orange" />
+          </ImageLink>
+          <ImageLink href={data?.instagramPage ?? ''}>
             <InstagramLogo color="orange" />
-          </_ImageWrapper>
-
-          <_ImageWrapper>
+          </ImageLink>
+          <ImageLink href={data?.twitterPage ?? ''}>
             <TwitterLogo color="orange" />
-          </_ImageWrapper>
-
-          <_ImageWrapper>
+          </ImageLink>
+          <ImageLink href={data?.facebookPage ?? ''}>
             <LinkedinLogo color="orange" />
-          </_ImageWrapper>
+          </ImageLink>
         </_SectionWrapper>
       </_MainContainer>
     </_FooterWrapper>
@@ -138,7 +149,8 @@ const _Line = styled.div`
   `}
 `
 
-const _ImageWrapper = styled.div`
+const ImageLink = styled.a`
+  display: inline-block;
   width: 1.823rem;
   height: 1.811rem;
   margin: 0 1.4rem;

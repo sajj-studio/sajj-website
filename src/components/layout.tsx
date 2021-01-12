@@ -1,9 +1,7 @@
 import React, { FC } from 'react'
 import { Header } from './header'
 import { Footer } from './footer'
-import { GlobalStyles } from './global-styles'
-import styled, { css, ThemeProvider } from 'styled-components'
-import { theme } from './sc-theme'
+import styled, { css } from 'styled-components'
 import '../assets/fonts/fonts.css'
 import { Container } from './container'
 import { FunkyBorder, funkyBorderStyle } from './funky-border'
@@ -14,8 +12,7 @@ interface LayoutProps {
 
 export const Layout: FC<LayoutProps> = ({ headerContent, children }) => {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
+    <>
       <TopSection>
         <Header />
         {headerContent && (
@@ -27,7 +24,7 @@ export const Layout: FC<LayoutProps> = ({ headerContent, children }) => {
       </TopSection>
       <main>{children}</main>
       <Footer />
-    </ThemeProvider>
+    </>
   )
 }
 

@@ -15,11 +15,19 @@ export const TextInput: FC<TextInputProps> = ({
   label,
   name,
   color,
+  placeholder,
   ...props
 }) => {
   return (
     <InputContainer>
-      <Input as={render} color={color} id={name} name={name} {...props} />
+      <Input
+        as={render}
+        color={color}
+        id={name}
+        name={name}
+        placeholder={label}
+        {...props}
+      />
       <Label htmlFor={name}>
         <Typography variant="body" color={color}>
           {label}
@@ -48,12 +56,15 @@ const Input = styled.input<InputProps>`
       font-size: 1rem;
       width: 100%;
       box-sizing: border-box;
+      ::placeholder {
+        color: white;
+      }
 
       :focus {
         outline: none;
       }
 
-      :focus + ${Label} {
+      :not(:placeholder-shown) + ${Label} {
         transform: scale(0.7, 0.7) translate(-1.25rem, -3rem);
       }
     `}
@@ -63,7 +74,7 @@ const Label = styled.label`
   ${({ theme }) => css`
     position: absolute;
     top: 0.9rem;
-    left: 2.3125rem;
+    left: 2.5rem;
     z-index: 2;
     transition: ${theme.transitions.default};
   `}

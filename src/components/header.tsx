@@ -1,4 +1,4 @@
-import { Link } from 'gatsby'
+import { Link } from './link'
 import React, { FC, useCallback, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { SajjLogo } from '../assets/images/sajj-logo'

@@ -6,38 +6,44 @@ import { WebDesignIcon } from '../assets/images/web-design-icon'
 import { Container } from './container'
 import { FunkyBorder, funkyBorderStyle } from './funky-border'
 import { Typography } from './typography'
+import { theme } from './sc-theme'
+import { useTranslation } from 'react-i18next'
 
 /**
  * I'm trying out a new notation in this file - mixed PascalCase and underscores for nesting
  */
 
-export const WhatWeDo: FC = () => (
-  <Background>
-    <FunkyBorder top />
-    <SectionContainer>
-      <Typography variant="title" color="white">
-        What we do
-      </Typography>
-      <ItemsContainer>
-        <WhatWeDo_Item
-          icon={<BrandingIcon />}
-          title="Logo & Branding"
-          description="Creating a strategy adapted to you"
-        />
-        <WhatWeDo_Item
-          icon={<WebDesignIcon />}
-          title="Web design"
-          description="Building a website to suit your need"
-        />
-        <WhatWeDo_Item
-          icon={<SocialMediaIcon />}
-          title="Social media"
-          description="Helping you to grow your traffic"
-        />
-      </ItemsContainer>
-    </SectionContainer>
-  </Background>
-)
+export const WhatWeDo: FC = () => {
+  const { t } = useTranslation('home')
+
+  return (
+    <Background>
+      <FunkyBorder top />
+      <SectionContainer>
+        <Typography variant="title" color="white">
+          {t('whatWeDo')}
+        </Typography>
+        <ItemsContainer>
+          <WhatWeDo_Item
+            icon={<BrandingIcon />}
+            title={t('branding')}
+            description={t('branding_desc')}
+          />
+          <WhatWeDo_Item
+            icon={<WebDesignIcon />}
+            title={t('design')}
+            description={t('design_desc')}
+          />
+          <WhatWeDo_Item
+            icon={<SocialMediaIcon />}
+            title={t('socialMedia')}
+            description={t('socialMedia_desc')}
+          />
+        </ItemsContainer>
+      </SectionContainer>
+    </Background>
+  )
+}
 
 const Background = styled.section`
   ${({ theme }) => css`
@@ -51,12 +57,19 @@ const Background = styled.section`
 `
 
 const SectionContainer = styled(Container)`
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  ${({ theme }) => css`
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 
-  & > ${Typography} {
-    text-align: center;
-  }
+    & > ${Typography} {
+      text-align: center;
+
+      ${theme.media.desktop} {
+        text-align: left;
+        padding-left: 2rem;
+      }
+    }
+  `}
 `
 
 const ItemsContainer = styled.div`
@@ -64,6 +77,10 @@ const ItemsContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+
+  ${theme.media.desktop} {
+    justify-content: space-between;
+  }
 `
 
 interface WhatWeDoItemProps {
@@ -89,19 +106,33 @@ const WhatWeDo_Item_Container = styled.div`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
-    margin: 3rem 2rem;
+    margin: 3rem 1.5rem;
 
     & > div:first-child {
-      margin-right: 2.5rem;
       /* 
      * Gave this fixed width, yet one of them ends up being larger
      * Jordan pls rescue us from this nightmare
      */
-      width: 7rem;
+      width: 40%;
+
+      ${theme.media.desktop} {
+        width: 40%;
+      }
+    }
+
+    & > div:nth-child(2) {
+      width: 60%;
+      padding-left: 2.2rem;
+
+      ${theme.media.desktop} {
+        width: 65%;
+        padding-left: 1rem;
+      }
     }
 
     ${theme.media.desktop} {
-      max-width: 14rem;
+      max-width: 16rem;
+      margin: 3rem 2rem;
     }
   `}
 `

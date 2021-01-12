@@ -1,6 +1,20 @@
-import React, { FC } from 'react'
+import React, { FC, useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
+import { SeoQuery } from '../graphqlTypes'
+import { PageContext } from '../contexts/page-context'
+
+export const query = graphql`
+  query SEO {
+    site {
+      siteMetadata {
+        host
+        title
+        locales
+      }
+    }
+  }
+`
 
 type MetaProp =
   | { name: string; content: any; property?: undefined }
@@ -8,31 +22,17 @@ type MetaProp =
 
 interface SEOProps {
   title: string
-  lang?: string
   meta?: MetaProp[]
   description?: string
 }
 
-export const SEO: FC<SEOProps> = ({
-  description = '',
-  lang = 'en',
-  meta = [],
-  title,
-}) => {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `
-  )
+export const SEO: FC<SEOProps> = ({ description = '', meta = [], title }) => {
+  const data = useStaticQuery<SeoQuery>(query)
 
   const metaDescription = description
-  const defaultTitle = site.siteMetadata?.title
+  const defaultTitle = data.site?.siteMetadata?.title
+
+  const { lang, originalPath } = useContext(PageContext)
 
   return (
     <Helmet
@@ -64,7 +64,7 @@ export const SEO: FC<SEOProps> = ({
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata?.author || ``,
+          content: `SAJJ Studio`,
         },
         {
           name: `twitter:title`,
@@ -74,7 +74,28 @@ export const SEO: FC<SEOProps> = ({
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          property: `og:locale`,
+          content: lang,
+        },
       ].concat(meta)}
+      link={[
+        {
+          rel: 'canonical',
+          href: `${data.site?.siteMetadata?.host}/${lang}${originalPath}`,
+        },
+        {
+          rel: 'alternate',
+          hrefLang: 'x-default',
+          href: `${data.site?.siteMetadata?.host}${originalPath}`,
+        },
+        //@ts-ignore
+        ...(data.site?.siteMetadata?.locales ?? []).map(lang => ({
+          rel: 'alternate',
+          hrefLang: lang,
+          href: `${data.site?.siteMetadata?.host}/${lang}${originalPath}`,
+        })),
+      ]}
     />
   )
 }

@@ -6,6 +6,7 @@ import styled, { css, ThemeProvider } from 'styled-components'
 import { theme } from './sc-theme'
 import '../assets/fonts/fonts.css'
 import { Container } from './container'
+import { FunkyBorder, funkyBorderStyle } from './funky-border'
 
 interface LayoutProps {
   headerContent?: JSX.Element
@@ -22,6 +23,7 @@ export const Layout: FC<LayoutProps> = ({ headerContent, children }) => {
             <div>{headerContent}</div>
           </HeaderContentContainer>
         )}
+        <FunkyBorder bottom />
       </TopSection>
       <main>{children}</main>
       <Footer />
@@ -37,7 +39,7 @@ const TopSection = styled.section`
       ${theme.colors.red} 57.35%,
       ${theme.colors.orange} 136.6%
     );
-    padding-bottom: 2.5rem;
+    ${funkyBorderStyle('bottom')}
   `}
 `
 

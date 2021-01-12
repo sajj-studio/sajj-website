@@ -4,6 +4,7 @@ import { BrandingIcon } from '../assets/images/branding-icon'
 import { SocialMediaIcon } from '../assets/images/social-media-icon'
 import { WebDesignIcon } from '../assets/images/web-design-icon'
 import { Container } from './container'
+import { FunkyBorder, funkyBorderStyle } from './funky-border'
 import { Typography } from './typography'
 
 /**
@@ -12,6 +13,7 @@ import { Typography } from './typography'
 
 export const WhatWeDo: FC = () => (
   <Background>
+    <FunkyBorder top />
     <SectionContainer>
       <Typography variant="title" color="white">
         What we do
@@ -39,6 +41,7 @@ export const WhatWeDo: FC = () => (
 
 const Background = styled.section`
   ${({ theme }) => css`
+    ${funkyBorderStyle('top')}
     background: linear-gradient(
       21.14deg,
       ${theme.colors.darkBlue} 12.78%,

@@ -4,6 +4,7 @@ import { BrandingIcon } from '../assets/images/branding-icon'
 import { SocialMediaIcon } from '../assets/images/social-media-icon'
 import { WebDesignIcon } from '../assets/images/web-design-icon'
 import { Container } from './container'
+import { FunkyBorder, funkyBorderStyle } from './funky-border'
 import { Typography } from './typography'
 import { theme } from './sc-theme'
 import { useTranslation } from 'react-i18next'
@@ -17,6 +18,7 @@ export const WhatWeDo: FC = () => {
 
   return (
     <Background>
+      <FunkyBorder top />
       <SectionContainer>
         <Typography variant="title" color="white">
           {t('whatWeDo')}
@@ -45,6 +47,7 @@ export const WhatWeDo: FC = () => {
 
 const Background = styled.section`
   ${({ theme }) => css`
+    ${funkyBorderStyle('top')}
     background: linear-gradient(
       21.14deg,
       ${theme.colors.darkBlue} 12.78%,

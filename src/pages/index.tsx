@@ -57,10 +57,25 @@ const IndexPage: FC<PageProps<IndexPageQuery>> = ({
         <FunkyBorder top />
       </div>
       <Gradient />
-      <DesktopOnly>{data && <AboutUsSection data={data} />}</DesktopOnly>
+      <DesktopOnly>
+        {data && (
+          <>
+            <div id="about-us" />
+            <AboutUsSection data={data} />
+          </>
+        )}
+      </DesktopOnly>
     </ImageContainer>
     <ContentContainer>
-      <MobileOnly>{data && <AboutUsSection data={data} />}</MobileOnly>
+      <MobileOnly>
+        {data && (
+          <>
+            <div id="about-us" />
+            <AboutUsSection data={data} />
+          </>
+        )}
+      </MobileOnly>
+      <div id="what-we-do" />
       <WhatWeDo />
     </ContentContainer>
   </Layout>

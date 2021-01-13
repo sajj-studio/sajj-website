@@ -1,5 +1,8 @@
 {
   "en-US": {
+    "common": {
+      "otherLanguage": "Français"
+    },
     "home": {
       "hello": "Hello!",
       "letUsKnow": "Let us know what we can do for you!",
@@ -31,6 +34,9 @@
     "footer": { "contactUs": "Contact us" }
   },
   "fr-CA": {
+    "common": {
+      "otherLanguage": "English"
+    },
     "home": {
       "hello": "Bonjour!",
       "letUsKnow": "Faites-nous savoir ce que nous pouvons faire pour vous!",

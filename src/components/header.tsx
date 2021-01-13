@@ -14,10 +14,10 @@ export interface MenuItem {
 
 const menuItems: MenuItem[] = [
   { id: 'home', href: '/', label: 'Home' },
-  { id: 'about-us', href: '/gallery', label: 'About us' },
-  { id: 'services', href: '/', label: 'Services' },
-  { id: 'our-work', href: '/', label: 'Our work' },
-  { id: 'contact-us', href: '/contact', label: 'Contact us' },
+  { id: 'about-us', href: '/#about-us', label: 'About us' },
+  { id: 'services', href: '/#what-we-do', label: 'Services' },
+  // { id: 'our-work', href: '/', label: 'Our work' },
+  { id: 'contact-us', href: '/contact-us/', label: 'Contact us' },
 ]
 
 export const Header: FC = () => {

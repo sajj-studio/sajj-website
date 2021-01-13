@@ -4,7 +4,6 @@ import { BrandingIcon } from '../assets/images/branding-icon'
 import { SocialMediaIcon } from '../assets/images/social-media-icon'
 import { WebDesignIcon } from '../assets/images/web-design-icon'
 import { Container } from './container'
-import { FunkyBorder, funkyBorderStyle } from './funky-border'
 import { Typography } from './typography'
 import { theme } from './sc-theme'
 import { useTranslation } from 'react-i18next'
@@ -17,44 +16,30 @@ export const WhatWeDo: FC = () => {
   const { t } = useTranslation('home')
 
   return (
-    <Background>
-      <FunkyBorder top />
-      <SectionContainer>
-        <Typography variant="title" color="white">
-          {t('whatWeDo')}
-        </Typography>
-        <ItemsContainer>
-          <WhatWeDo_Item
-            icon={<BrandingIcon />}
-            title={t('branding')}
-            description={t('branding_desc')}
-          />
-          <WhatWeDo_Item
-            icon={<WebDesignIcon />}
-            title={t('design')}
-            description={t('design_desc')}
-          />
-          <WhatWeDo_Item
-            icon={<SocialMediaIcon />}
-            title={t('socialMedia')}
-            description={t('socialMedia_desc')}
-          />
-        </ItemsContainer>
-      </SectionContainer>
-    </Background>
+    <SectionContainer>
+      <Typography variant="title" color="white">
+        {t('whatWeDo')}
+      </Typography>
+      <ItemsContainer>
+        <WhatWeDo_Item
+          icon={<BrandingIcon />}
+          title={t('branding')}
+          description={t('branding_desc')}
+        />
+        <WhatWeDo_Item
+          icon={<WebDesignIcon />}
+          title={t('design')}
+          description={t('design_desc')}
+        />
+        <WhatWeDo_Item
+          icon={<SocialMediaIcon />}
+          title={t('socialMedia')}
+          description={t('socialMedia_desc')}
+        />
+      </ItemsContainer>
+    </SectionContainer>
   )
 }
-
-const Background = styled.section`
-  ${({ theme }) => css`
-    ${funkyBorderStyle('top')}
-    background: linear-gradient(
-      21.14deg,
-      ${theme.colors.darkBlue} 12.78%,
-      ${theme.colors.blue} 103.1%
-    );
-  `}
-`
 
 const SectionContainer = styled(Container)`
   ${({ theme }) => css`
@@ -63,11 +48,6 @@ const SectionContainer = styled(Container)`
 
     & > ${Typography} {
       text-align: center;
-
-      ${theme.media.desktop} {
-        text-align: left;
-        padding-left: 2rem;
-      }
     }
   `}
 `

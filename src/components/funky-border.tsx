@@ -40,6 +40,7 @@ export const Styles = styled.svg<StylesProps>`
   position: absolute;
   height: 100px;
   width: 100%;
+  z-index: 2;
 
   ${({ position }) =>
     position === 'top'

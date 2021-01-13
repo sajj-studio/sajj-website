@@ -36,6 +36,618 @@ export type BooleanQueryOperatorInput = {
   nin?: Maybe<Array<Maybe<Scalars['Boolean']>>>
 }
 
+export type ContentfulAboutUsEntry = ContentfulReference &
+  ContentfulEntry &
+  Node & {
+    __typename?: 'ContentfulAboutUsEntry'
+    contentful_id: Scalars['String']
+    id: Scalars['ID']
+    node_locale: Scalars['String']
+    name?: Maybe<Scalars['String']>
+    headshot?: Maybe<ContentfulAsset>
+    bio?: Maybe<ContentfulAboutUsEntryBioTextNode>
+    spaceId?: Maybe<Scalars['String']>
+    createdAt?: Maybe<Scalars['Date']>
+    updatedAt?: Maybe<Scalars['Date']>
+    sys?: Maybe<ContentfulAboutUsEntrySys>
+    parent?: Maybe<Node>
+    children: Array<Node>
+    internal: Internal
+    childContentfulAboutUsEntryBioTextNode?: Maybe<ContentfulAboutUsEntryBioTextNode>
+  }
+
+export type ContentfulAboutUsEntryCreatedAtArgs = {
+  formatString?: Maybe<Scalars['String']>
+  fromNow?: Maybe<Scalars['Boolean']>
+  difference?: Maybe<Scalars['String']>
+  locale?: Maybe<Scalars['String']>
+}
+
+export type ContentfulAboutUsEntryUpdatedAtArgs = {
+  formatString?: Maybe<Scalars['String']>
+  fromNow?: Maybe<Scalars['Boolean']>
+  difference?: Maybe<Scalars['String']>
+  locale?: Maybe<Scalars['String']>
+}
+
+export type ContentfulAboutUsEntryBioTextNode = Node & {
+  __typename?: 'contentfulAboutUsEntryBioTextNode'
+  id: Scalars['ID']
+  parent?: Maybe<Node>
+  children: Array<Node>
+  internal: Internal
+  bio?: Maybe<Scalars['String']>
+  sys?: Maybe<ContentfulAboutUsEntryBioTextNodeSys>
+}
+
+export type ContentfulAboutUsEntryBioTextNodeConnection = {
+  __typename?: 'contentfulAboutUsEntryBioTextNodeConnection'
+  totalCount: Scalars['Int']
+  edges: Array<ContentfulAboutUsEntryBioTextNodeEdge>
+  nodes: Array<ContentfulAboutUsEntryBioTextNode>
+  pageInfo: PageInfo
+  distinct: Array<Scalars['String']>
+  group: Array<ContentfulAboutUsEntryBioTextNodeGroupConnection>
+}
+
+export type ContentfulAboutUsEntryBioTextNodeConnectionDistinctArgs = {
+  field: ContentfulAboutUsEntryBioTextNodeFieldsEnum
+}
+
+export type ContentfulAboutUsEntryBioTextNodeConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>
+  limit?: Maybe<Scalars['Int']>
+  field: ContentfulAboutUsEntryBioTextNodeFieldsEnum
+}
+
+export type ContentfulAboutUsEntryBioTextNodeEdge = {
+  __typename?: 'contentfulAboutUsEntryBioTextNodeEdge'
+  next?: Maybe<ContentfulAboutUsEntryBioTextNode>
+  node: ContentfulAboutUsEntryBioTextNode
+  previous?: Maybe<ContentfulAboutUsEntryBioTextNode>
+}
+
+export enum ContentfulAboutUsEntryBioTextNodeFieldsEnum {
+  Id = 'id',
+  ParentId = 'parent___id',
+  ParentParentId = 'parent___parent___id',
+  ParentParentParentId = 'parent___parent___parent___id',
+  ParentParentParentChildren = 'parent___parent___parent___children',
+  ParentParentChildren = 'parent___parent___children',
+  ParentParentChildrenId = 'parent___parent___children___id',
+  ParentParentChildrenChildren = 'parent___parent___children___children',
+  ParentParentInternalContent = 'parent___parent___internal___content',
+  ParentParentInternalContentDigest = 'parent___parent___internal___contentDigest',
+  ParentParentInternalDescription = 'parent___parent___internal___description',
+  ParentParentInternalFieldOwners = 'parent___parent___internal___fieldOwners',
+  ParentParentInternalIgnoreType = 'parent___parent___internal___ignoreType',
+  ParentParentInternalMediaType = 'parent___parent___internal___mediaType',
+  ParentParentInternalOwner = 'parent___parent___internal___owner',
+  ParentParentInternalType = 'parent___parent___internal___type',
+  ParentChildren = 'parent___children',
+  ParentChildrenId = 'parent___children___id',
+  ParentChildrenParentId = 'parent___children___parent___id',
+  ParentChildrenParentChildren = 'parent___children___parent___children',
+  ParentChildrenChildren = 'parent___children___children',
+  ParentChildrenChildrenId = 'parent___children___children___id',
+  ParentChildrenChildrenChildren = 'parent___children___children___children',
+  ParentChildrenInternalContent = 'parent___children___internal___content',
+  ParentChildrenInternalContentDigest = 'parent___children___internal___contentDigest',
+  ParentChildrenInternalDescription = 'parent___children___internal___description',
+  ParentChildrenInternalFieldOwners = 'parent___children___internal___fieldOwners',
+  ParentChildrenInternalIgnoreType = 'parent___children___internal___ignoreType',
+  ParentChildrenInternalMediaType = 'parent___children___internal___mediaType',
+  ParentChildrenInternalOwner = 'parent___children___internal___owner',
+  ParentChildrenInternalType = 'parent___children___internal___type',
+  ParentInternalContent = 'parent___internal___content',
+  ParentInternalContentDigest = 'parent___internal___contentDigest',
+  ParentInternalDescription = 'parent___internal___description',
+  ParentInternalFieldOwners = 'parent___internal___fieldOwners',
+  ParentInternalIgnoreType = 'parent___internal___ignoreType',
+  ParentInternalMediaType = 'parent___internal___mediaType',
+  ParentInternalOwner = 'parent___internal___owner',
+  ParentInternalType = 'parent___internal___type',
+  Children = 'children',
+  ChildrenId = 'children___id',
+  ChildrenParentId = 'children___parent___id',
+  ChildrenParentParentId = 'children___parent___parent___id',
+  ChildrenParentParentChildren = 'children___parent___parent___children',
+  ChildrenParentChildren = 'children___parent___children',
+  ChildrenParentChildrenId = 'children___parent___children___id',
+  ChildrenParentChildrenChildren = 'children___parent___children___children',
+  ChildrenParentInternalContent = 'children___parent___internal___content',
+  ChildrenParentInternalContentDigest = 'children___parent___internal___contentDigest',
+  ChildrenParentInternalDescription = 'children___parent___internal___description',
+  ChildrenParentInternalFieldOwners = 'children___parent___internal___fieldOwners',
+  ChildrenParentInternalIgnoreType = 'children___parent___internal___ignoreType',
+  ChildrenParentInternalMediaType = 'children___parent___internal___mediaType',
+  ChildrenParentInternalOwner = 'children___parent___internal___owner',
+  ChildrenParentInternalType = 'children___parent___internal___type',
+  ChildrenChildren = 'children___children',
+  ChildrenChildrenId = 'children___children___id',
+  ChildrenChildrenParentId = 'children___children___parent___id',
+  ChildrenChildrenParentChildren = 'children___children___parent___children',
+  ChildrenChildrenChildren = 'children___children___children',
+  ChildrenChildrenChildrenId = 'children___children___children___id',
+  ChildrenChildrenChildrenChildren = 'children___children___children___children',
+  ChildrenChildrenInternalContent = 'children___children___internal___content',
+  ChildrenChildrenInternalContentDigest = 'children___children___internal___contentDigest',
+  ChildrenChildrenInternalDescription = 'children___children___internal___description',
+  ChildrenChildrenInternalFieldOwners = 'children___children___internal___fieldOwners',
+  ChildrenChildrenInternalIgnoreType = 'children___children___internal___ignoreType',
+  ChildrenChildrenInternalMediaType = 'children___children___internal___mediaType',
+  ChildrenChildrenInternalOwner = 'children___children___internal___owner',
+  ChildrenChildrenInternalType = 'children___children___internal___type',
+  ChildrenInternalContent = 'children___internal___content',
+  ChildrenInternalContentDigest = 'children___internal___contentDigest',
+  ChildrenInternalDescription = 'children___internal___description',
+  ChildrenInternalFieldOwners = 'children___internal___fieldOwners',
+  ChildrenInternalIgnoreType = 'children___internal___ignoreType',
+  ChildrenInternalMediaType = 'children___internal___mediaType',
+  ChildrenInternalOwner = 'children___internal___owner',
+  ChildrenInternalType = 'children___internal___type',
+  InternalContent = 'internal___content',
+  InternalContentDigest = 'internal___contentDigest',
+  InternalDescription = 'internal___description',
+  InternalFieldOwners = 'internal___fieldOwners',
+  InternalIgnoreType = 'internal___ignoreType',
+  InternalMediaType = 'internal___mediaType',
+  InternalOwner = 'internal___owner',
+  InternalType = 'internal___type',
+  Bio = 'bio',
+  SysType = 'sys___type',
+}
+
+export type ContentfulAboutUsEntryBioTextNodeFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>
+  parent?: Maybe<NodeFilterInput>
+  children?: Maybe<NodeFilterListInput>
+  internal?: Maybe<InternalFilterInput>
+  bio?: Maybe<StringQueryOperatorInput>
+  sys?: Maybe<ContentfulAboutUsEntryBioTextNodeSysFilterInput>
+}
+
+export type ContentfulAboutUsEntryBioTextNodeGroupConnection = {
+  __typename?: 'contentfulAboutUsEntryBioTextNodeGroupConnection'
+  totalCount: Scalars['Int']
+  edges: Array<ContentfulAboutUsEntryBioTextNodeEdge>
+  nodes: Array<ContentfulAboutUsEntryBioTextNode>
+  pageInfo: PageInfo
+  field: Scalars['String']
+  fieldValue?: Maybe<Scalars['String']>
+}
+
+export type ContentfulAboutUsEntryBioTextNodeSortInput = {
+  fields?: Maybe<Array<Maybe<ContentfulAboutUsEntryBioTextNodeFieldsEnum>>>
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>
+}
+
+export type ContentfulAboutUsEntryBioTextNodeSys = {
+  __typename?: 'contentfulAboutUsEntryBioTextNodeSys'
+  type?: Maybe<Scalars['String']>
+}
+
+export type ContentfulAboutUsEntryBioTextNodeSysFilterInput = {
+  type?: Maybe<StringQueryOperatorInput>
+}
+
+export type ContentfulAboutUsEntryConnection = {
+  __typename?: 'ContentfulAboutUsEntryConnection'
+  totalCount: Scalars['Int']
+  edges: Array<ContentfulAboutUsEntryEdge>
+  nodes: Array<ContentfulAboutUsEntry>
+  pageInfo: PageInfo
+  distinct: Array<Scalars['String']>
+  group: Array<ContentfulAboutUsEntryGroupConnection>
+}
+
+export type ContentfulAboutUsEntryConnectionDistinctArgs = {
+  field: ContentfulAboutUsEntryFieldsEnum
+}
+
+export type ContentfulAboutUsEntryConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>
+  limit?: Maybe<Scalars['Int']>
+  field: ContentfulAboutUsEntryFieldsEnum
+}
+
+export type ContentfulAboutUsEntryEdge = {
+  __typename?: 'ContentfulAboutUsEntryEdge'
+  next?: Maybe<ContentfulAboutUsEntry>
+  node: ContentfulAboutUsEntry
+  previous?: Maybe<ContentfulAboutUsEntry>
+}
+
+export enum ContentfulAboutUsEntryFieldsEnum {
+  ContentfulId = 'contentful_id',
+  Id = 'id',
+  NodeLocale = 'node_locale',
+  Name = 'name',
+  HeadshotContentfulId = 'headshot___contentful_id',
+  HeadshotId = 'headshot___id',
+  HeadshotSpaceId = 'headshot___spaceId',
+  HeadshotCreatedAt = 'headshot___createdAt',
+  HeadshotUpdatedAt = 'headshot___updatedAt',
+  HeadshotFileUrl = 'headshot___file___url',
+  HeadshotFileDetailsSize = 'headshot___file___details___size',
+  HeadshotFileFileName = 'headshot___file___fileName',
+  HeadshotFileContentType = 'headshot___file___contentType',
+  HeadshotTitle = 'headshot___title',
+  HeadshotDescription = 'headshot___description',
+  HeadshotNodeLocale = 'headshot___node_locale',
+  HeadshotSysType = 'headshot___sys___type',
+  HeadshotSysRevision = 'headshot___sys___revision',
+  HeadshotLocalFileSourceInstanceName = 'headshot___localFile___sourceInstanceName',
+  HeadshotLocalFileAbsolutePath = 'headshot___localFile___absolutePath',
+  HeadshotLocalFileRelativePath = 'headshot___localFile___relativePath',
+  HeadshotLocalFileExtension = 'headshot___localFile___extension',
+  HeadshotLocalFileSize = 'headshot___localFile___size',
+  HeadshotLocalFilePrettySize = 'headshot___localFile___prettySize',
+  HeadshotLocalFileModifiedTime = 'headshot___localFile___modifiedTime',
+  HeadshotLocalFileAccessTime = 'headshot___localFile___accessTime',
+  HeadshotLocalFileChangeTime = 'headshot___localFile___changeTime',
+  HeadshotLocalFileBirthTime = 'headshot___localFile___birthTime',
+  HeadshotLocalFileRoot = 'headshot___localFile___root',
+  HeadshotLocalFileDir = 'headshot___localFile___dir',
+  HeadshotLocalFileBase = 'headshot___localFile___base',
+  HeadshotLocalFileExt = 'headshot___localFile___ext',
+  HeadshotLocalFileName = 'headshot___localFile___name',
+  HeadshotLocalFileRelativeDirectory = 'headshot___localFile___relativeDirectory',
+  HeadshotLocalFileDev = 'headshot___localFile___dev',
+  HeadshotLocalFileMode = 'headshot___localFile___mode',
+  HeadshotLocalFileNlink = 'headshot___localFile___nlink',
+  HeadshotLocalFileUid = 'headshot___localFile___uid',
+  HeadshotLocalFileGid = 'headshot___localFile___gid',
+  HeadshotLocalFileRdev = 'headshot___localFile___rdev',
+  HeadshotLocalFileIno = 'headshot___localFile___ino',
+  HeadshotLocalFileAtimeMs = 'headshot___localFile___atimeMs',
+  HeadshotLocalFileMtimeMs = 'headshot___localFile___mtimeMs',
+  HeadshotLocalFileCtimeMs = 'headshot___localFile___ctimeMs',
+  HeadshotLocalFileAtime = 'headshot___localFile___atime',
+  HeadshotLocalFileMtime = 'headshot___localFile___mtime',
+  HeadshotLocalFileCtime = 'headshot___localFile___ctime',
+  HeadshotLocalFileBirthtime = 'headshot___localFile___birthtime',
+  HeadshotLocalFileBirthtimeMs = 'headshot___localFile___birthtimeMs',
+  HeadshotLocalFileBlksize = 'headshot___localFile___blksize',
+  HeadshotLocalFileBlocks = 'headshot___localFile___blocks',
+  HeadshotLocalFileUrl = 'headshot___localFile___url',
+  HeadshotLocalFilePublicUrl = 'headshot___localFile___publicURL',
+  HeadshotLocalFileChildImageSharpGatsbyImageData = 'headshot___localFile___childImageSharp___gatsbyImageData',
+  HeadshotLocalFileChildImageSharpId = 'headshot___localFile___childImageSharp___id',
+  HeadshotLocalFileChildImageSharpChildren = 'headshot___localFile___childImageSharp___children',
+  HeadshotLocalFileId = 'headshot___localFile___id',
+  HeadshotLocalFileParentId = 'headshot___localFile___parent___id',
+  HeadshotLocalFileParentChildren = 'headshot___localFile___parent___children',
+  HeadshotLocalFileChildren = 'headshot___localFile___children',
+  HeadshotLocalFileChildrenId = 'headshot___localFile___children___id',
+  HeadshotLocalFileChildrenChildren = 'headshot___localFile___children___children',
+  HeadshotLocalFileInternalContent = 'headshot___localFile___internal___content',
+  HeadshotLocalFileInternalContentDigest = 'headshot___localFile___internal___contentDigest',
+  HeadshotLocalFileInternalDescription = 'headshot___localFile___internal___description',
+  HeadshotLocalFileInternalFieldOwners = 'headshot___localFile___internal___fieldOwners',
+  HeadshotLocalFileInternalIgnoreType = 'headshot___localFile___internal___ignoreType',
+  HeadshotLocalFileInternalMediaType = 'headshot___localFile___internal___mediaType',
+  HeadshotLocalFileInternalOwner = 'headshot___localFile___internal___owner',
+  HeadshotLocalFileInternalType = 'headshot___localFile___internal___type',
+  HeadshotFixedBase64 = 'headshot___fixed___base64',
+  HeadshotFixedTracedSvg = 'headshot___fixed___tracedSVG',
+  HeadshotFixedAspectRatio = 'headshot___fixed___aspectRatio',
+  HeadshotFixedWidth = 'headshot___fixed___width',
+  HeadshotFixedHeight = 'headshot___fixed___height',
+  HeadshotFixedSrc = 'headshot___fixed___src',
+  HeadshotFixedSrcSet = 'headshot___fixed___srcSet',
+  HeadshotFixedSrcWebp = 'headshot___fixed___srcWebp',
+  HeadshotFixedSrcSetWebp = 'headshot___fixed___srcSetWebp',
+  HeadshotResolutionsBase64 = 'headshot___resolutions___base64',
+  HeadshotResolutionsTracedSvg = 'headshot___resolutions___tracedSVG',
+  HeadshotResolutionsAspectRatio = 'headshot___resolutions___aspectRatio',
+  HeadshotResolutionsWidth = 'headshot___resolutions___width',
+  HeadshotResolutionsHeight = 'headshot___resolutions___height',
+  HeadshotResolutionsSrc = 'headshot___resolutions___src',
+  HeadshotResolutionsSrcSet = 'headshot___resolutions___srcSet',
+  HeadshotResolutionsSrcWebp = 'headshot___resolutions___srcWebp',
+  HeadshotResolutionsSrcSetWebp = 'headshot___resolutions___srcSetWebp',
+  HeadshotFluidBase64 = 'headshot___fluid___base64',
+  HeadshotFluidTracedSvg = 'headshot___fluid___tracedSVG',
+  HeadshotFluidAspectRatio = 'headshot___fluid___aspectRatio',
+  HeadshotFluidSrc = 'headshot___fluid___src',
+  HeadshotFluidSrcSet = 'headshot___fluid___srcSet',
+  HeadshotFluidSrcWebp = 'headshot___fluid___srcWebp',
+  HeadshotFluidSrcSetWebp = 'headshot___fluid___srcSetWebp',
+  HeadshotFluidSizes = 'headshot___fluid___sizes',
+  HeadshotSizesBase64 = 'headshot___sizes___base64',
+  HeadshotSizesTracedSvg = 'headshot___sizes___tracedSVG',
+  HeadshotSizesAspectRatio = 'headshot___sizes___aspectRatio',
+  HeadshotSizesSrc = 'headshot___sizes___src',
+  HeadshotSizesSrcSet = 'headshot___sizes___srcSet',
+  HeadshotSizesSrcWebp = 'headshot___sizes___srcWebp',
+  HeadshotSizesSrcSetWebp = 'headshot___sizes___srcSetWebp',
+  HeadshotSizesSizes = 'headshot___sizes___sizes',
+  HeadshotResizeBase64 = 'headshot___resize___base64',
+  HeadshotResizeTracedSvg = 'headshot___resize___tracedSVG',
+  HeadshotResizeSrc = 'headshot___resize___src',
+  HeadshotResizeWidth = 'headshot___resize___width',
+  HeadshotResizeHeight = 'headshot___resize___height',
+  HeadshotResizeAspectRatio = 'headshot___resize___aspectRatio',
+  HeadshotParentId = 'headshot___parent___id',
+  HeadshotParentParentId = 'headshot___parent___parent___id',
+  HeadshotParentParentChildren = 'headshot___parent___parent___children',
+  HeadshotParentChildren = 'headshot___parent___children',
+  HeadshotParentChildrenId = 'headshot___parent___children___id',
+  HeadshotParentChildrenChildren = 'headshot___parent___children___children',
+  HeadshotParentInternalContent = 'headshot___parent___internal___content',
+  HeadshotParentInternalContentDigest = 'headshot___parent___internal___contentDigest',
+  HeadshotParentInternalDescription = 'headshot___parent___internal___description',
+  HeadshotParentInternalFieldOwners = 'headshot___parent___internal___fieldOwners',
+  HeadshotParentInternalIgnoreType = 'headshot___parent___internal___ignoreType',
+  HeadshotParentInternalMediaType = 'headshot___parent___internal___mediaType',
+  HeadshotParentInternalOwner = 'headshot___parent___internal___owner',
+  HeadshotParentInternalType = 'headshot___parent___internal___type',
+  HeadshotChildren = 'headshot___children',
+  HeadshotChildrenId = 'headshot___children___id',
+  HeadshotChildrenParentId = 'headshot___children___parent___id',
+  HeadshotChildrenParentChildren = 'headshot___children___parent___children',
+  HeadshotChildrenChildren = 'headshot___children___children',
+  HeadshotChildrenChildrenId = 'headshot___children___children___id',
+  HeadshotChildrenChildrenChildren = 'headshot___children___children___children',
+  HeadshotChildrenInternalContent = 'headshot___children___internal___content',
+  HeadshotChildrenInternalContentDigest = 'headshot___children___internal___contentDigest',
+  HeadshotChildrenInternalDescription = 'headshot___children___internal___description',
+  HeadshotChildrenInternalFieldOwners = 'headshot___children___internal___fieldOwners',
+  HeadshotChildrenInternalIgnoreType = 'headshot___children___internal___ignoreType',
+  HeadshotChildrenInternalMediaType = 'headshot___children___internal___mediaType',
+  HeadshotChildrenInternalOwner = 'headshot___children___internal___owner',
+  HeadshotChildrenInternalType = 'headshot___children___internal___type',
+  HeadshotInternalContent = 'headshot___internal___content',
+  HeadshotInternalContentDigest = 'headshot___internal___contentDigest',
+  HeadshotInternalDescription = 'headshot___internal___description',
+  HeadshotInternalFieldOwners = 'headshot___internal___fieldOwners',
+  HeadshotInternalIgnoreType = 'headshot___internal___ignoreType',
+  HeadshotInternalMediaType = 'headshot___internal___mediaType',
+  HeadshotInternalOwner = 'headshot___internal___owner',
+  HeadshotInternalType = 'headshot___internal___type',
+  BioId = 'bio___id',
+  BioParentId = 'bio___parent___id',
+  BioParentParentId = 'bio___parent___parent___id',
+  BioParentParentChildren = 'bio___parent___parent___children',
+  BioParentChildren = 'bio___parent___children',
+  BioParentChildrenId = 'bio___parent___children___id',
+  BioParentChildrenChildren = 'bio___parent___children___children',
+  BioParentInternalContent = 'bio___parent___internal___content',
+  BioParentInternalContentDigest = 'bio___parent___internal___contentDigest',
+  BioParentInternalDescription = 'bio___parent___internal___description',
+  BioParentInternalFieldOwners = 'bio___parent___internal___fieldOwners',
+  BioParentInternalIgnoreType = 'bio___parent___internal___ignoreType',
+  BioParentInternalMediaType = 'bio___parent___internal___mediaType',
+  BioParentInternalOwner = 'bio___parent___internal___owner',
+  BioParentInternalType = 'bio___parent___internal___type',
+  BioChildren = 'bio___children',
+  BioChildrenId = 'bio___children___id',
+  BioChildrenParentId = 'bio___children___parent___id',
+  BioChildrenParentChildren = 'bio___children___parent___children',
+  BioChildrenChildren = 'bio___children___children',
+  BioChildrenChildrenId = 'bio___children___children___id',
+  BioChildrenChildrenChildren = 'bio___children___children___children',
+  BioChildrenInternalContent = 'bio___children___internal___content',
+  BioChildrenInternalContentDigest = 'bio___children___internal___contentDigest',
+  BioChildrenInternalDescription = 'bio___children___internal___description',
+  BioChildrenInternalFieldOwners = 'bio___children___internal___fieldOwners',
+  BioChildrenInternalIgnoreType = 'bio___children___internal___ignoreType',
+  BioChildrenInternalMediaType = 'bio___children___internal___mediaType',
+  BioChildrenInternalOwner = 'bio___children___internal___owner',
+  BioChildrenInternalType = 'bio___children___internal___type',
+  BioInternalContent = 'bio___internal___content',
+  BioInternalContentDigest = 'bio___internal___contentDigest',
+  BioInternalDescription = 'bio___internal___description',
+  BioInternalFieldOwners = 'bio___internal___fieldOwners',
+  BioInternalIgnoreType = 'bio___internal___ignoreType',
+  BioInternalMediaType = 'bio___internal___mediaType',
+  BioInternalOwner = 'bio___internal___owner',
+  BioInternalType = 'bio___internal___type',
+  BioBio = 'bio___bio',
+  BioSysType = 'bio___sys___type',
+  SpaceId = 'spaceId',
+  CreatedAt = 'createdAt',
+  UpdatedAt = 'updatedAt',
+  SysType = 'sys___type',
+  SysRevision = 'sys___revision',
+  SysContentTypeSysType = 'sys___contentType___sys___type',
+  SysContentTypeSysLinkType = 'sys___contentType___sys___linkType',
+  SysContentTypeSysId = 'sys___contentType___sys___id',
+  ParentId = 'parent___id',
+  ParentParentId = 'parent___parent___id',
+  ParentParentParentId = 'parent___parent___parent___id',
+  ParentParentParentChildren = 'parent___parent___parent___children',
+  ParentParentChildren = 'parent___parent___children',
+  ParentParentChildrenId = 'parent___parent___children___id',
+  ParentParentChildrenChildren = 'parent___parent___children___children',
+  ParentParentInternalContent = 'parent___parent___internal___content',
+  ParentParentInternalContentDigest = 'parent___parent___internal___contentDigest',
+  ParentParentInternalDescription = 'parent___parent___internal___description',
+  ParentParentInternalFieldOwners = 'parent___parent___internal___fieldOwners',
+  ParentParentInternalIgnoreType = 'parent___parent___internal___ignoreType',
+  ParentParentInternalMediaType = 'parent___parent___internal___mediaType',
+  ParentParentInternalOwner = 'parent___parent___internal___owner',
+  ParentParentInternalType = 'parent___parent___internal___type',
+  ParentChildren = 'parent___children',
+  ParentChildrenId = 'parent___children___id',
+  ParentChildrenParentId = 'parent___children___parent___id',
+  ParentChildrenParentChildren = 'parent___children___parent___children',
+  ParentChildrenChildren = 'parent___children___children',
+  ParentChildrenChildrenId = 'parent___children___children___id',
+  ParentChildrenChildrenChildren = 'parent___children___children___children',
+  ParentChildrenInternalContent = 'parent___children___internal___content',
+  ParentChildrenInternalContentDigest = 'parent___children___internal___contentDigest',
+  ParentChildrenInternalDescription = 'parent___children___internal___description',
+  ParentChildrenInternalFieldOwners = 'parent___children___internal___fieldOwners',
+  ParentChildrenInternalIgnoreType = 'parent___children___internal___ignoreType',
+  ParentChildrenInternalMediaType = 'parent___children___internal___mediaType',
+  ParentChildrenInternalOwner = 'parent___children___internal___owner',
+  ParentChildrenInternalType = 'parent___children___internal___type',
+  ParentInternalContent = 'parent___internal___content',
+  ParentInternalContentDigest = 'parent___internal___contentDigest',
+  ParentInternalDescription = 'parent___internal___description',
+  ParentInternalFieldOwners = 'parent___internal___fieldOwners',
+  ParentInternalIgnoreType = 'parent___internal___ignoreType',
+  ParentInternalMediaType = 'parent___internal___mediaType',
+  ParentInternalOwner = 'parent___internal___owner',
+  ParentInternalType = 'parent___internal___type',
+  Children = 'children',
+  ChildrenId = 'children___id',
+  ChildrenParentId = 'children___parent___id',
+  ChildrenParentParentId = 'children___parent___parent___id',
+  ChildrenParentParentChildren = 'children___parent___parent___children',
+  ChildrenParentChildren = 'children___parent___children',
+  ChildrenParentChildrenId = 'children___parent___children___id',
+  ChildrenParentChildrenChildren = 'children___parent___children___children',
+  ChildrenParentInternalContent = 'children___parent___internal___content',
+  ChildrenParentInternalContentDigest = 'children___parent___internal___contentDigest',
+  ChildrenParentInternalDescription = 'children___parent___internal___description',
+  ChildrenParentInternalFieldOwners = 'children___parent___internal___fieldOwners',
+  ChildrenParentInternalIgnoreType = 'children___parent___internal___ignoreType',
+  ChildrenParentInternalMediaType = 'children___parent___internal___mediaType',
+  ChildrenParentInternalOwner = 'children___parent___internal___owner',
+  ChildrenParentInternalType = 'children___parent___internal___type',
+  ChildrenChildren = 'children___children',
+  ChildrenChildrenId = 'children___children___id',
+  ChildrenChildrenParentId = 'children___children___parent___id',
+  ChildrenChildrenParentChildren = 'children___children___parent___children',
+  ChildrenChildrenChildren = 'children___children___children',
+  ChildrenChildrenChildrenId = 'children___children___children___id',
+  ChildrenChildrenChildrenChildren = 'children___children___children___children',
+  ChildrenChildrenInternalContent = 'children___children___internal___content',
+  ChildrenChildrenInternalContentDigest = 'children___children___internal___contentDigest',
+  ChildrenChildrenInternalDescription = 'children___children___internal___description',
+  ChildrenChildrenInternalFieldOwners = 'children___children___internal___fieldOwners',
+  ChildrenChildrenInternalIgnoreType = 'children___children___internal___ignoreType',
+  ChildrenChildrenInternalMediaType = 'children___children___internal___mediaType',
+  ChildrenChildrenInternalOwner = 'children___children___internal___owner',
+  ChildrenChildrenInternalType = 'children___children___internal___type',
+  ChildrenInternalContent = 'children___internal___content',
+  ChildrenInternalContentDigest = 'children___internal___contentDigest',
+  ChildrenInternalDescription = 'children___internal___description',
+  ChildrenInternalFieldOwners = 'children___internal___fieldOwners',
+  ChildrenInternalIgnoreType = 'children___internal___ignoreType',
+  ChildrenInternalMediaType = 'children___internal___mediaType',
+  ChildrenInternalOwner = 'children___internal___owner',
+  ChildrenInternalType = 'children___internal___type',
+  InternalContent = 'internal___content',
+  InternalContentDigest = 'internal___contentDigest',
+  InternalDescription = 'internal___description',
+  InternalFieldOwners = 'internal___fieldOwners',
+  InternalIgnoreType = 'internal___ignoreType',
+  InternalMediaType = 'internal___mediaType',
+  InternalOwner = 'internal___owner',
+  InternalType = 'internal___type',
+  ChildContentfulAboutUsEntryBioTextNodeId = 'childContentfulAboutUsEntryBioTextNode___id',
+  ChildContentfulAboutUsEntryBioTextNodeParentId = 'childContentfulAboutUsEntryBioTextNode___parent___id',
+  ChildContentfulAboutUsEntryBioTextNodeParentParentId = 'childContentfulAboutUsEntryBioTextNode___parent___parent___id',
+  ChildContentfulAboutUsEntryBioTextNodeParentParentChildren = 'childContentfulAboutUsEntryBioTextNode___parent___parent___children',
+  ChildContentfulAboutUsEntryBioTextNodeParentChildren = 'childContentfulAboutUsEntryBioTextNode___parent___children',
+  ChildContentfulAboutUsEntryBioTextNodeParentChildrenId = 'childContentfulAboutUsEntryBioTextNode___parent___children___id',
+  ChildContentfulAboutUsEntryBioTextNodeParentChildrenChildren = 'childContentfulAboutUsEntryBioTextNode___parent___children___children',
+  ChildContentfulAboutUsEntryBioTextNodeParentInternalContent = 'childContentfulAboutUsEntryBioTextNode___parent___internal___content',
+  ChildContentfulAboutUsEntryBioTextNodeParentInternalContentDigest = 'childContentfulAboutUsEntryBioTextNode___parent___internal___contentDigest',
+  ChildContentfulAboutUsEntryBioTextNodeParentInternalDescription = 'childContentfulAboutUsEntryBioTextNode___parent___internal___description',
+  ChildContentfulAboutUsEntryBioTextNodeParentInternalFieldOwners = 'childContentfulAboutUsEntryBioTextNode___parent___internal___fieldOwners',
+  ChildContentfulAboutUsEntryBioTextNodeParentInternalIgnoreType = 'childContentfulAboutUsEntryBioTextNode___parent___internal___ignoreType',
+  ChildContentfulAboutUsEntryBioTextNodeParentInternalMediaType = 'childContentfulAboutUsEntryBioTextNode___parent___internal___mediaType',
+  ChildContentfulAboutUsEntryBioTextNodeParentInternalOwner = 'childContentfulAboutUsEntryBioTextNode___parent___internal___owner',
+  ChildContentfulAboutUsEntryBioTextNodeParentInternalType = 'childContentfulAboutUsEntryBioTextNode___parent___internal___type',
+  ChildContentfulAboutUsEntryBioTextNodeChildren = 'childContentfulAboutUsEntryBioTextNode___children',
+  ChildContentfulAboutUsEntryBioTextNodeChildrenId = 'childContentfulAboutUsEntryBioTextNode___children___id',
+  ChildContentfulAboutUsEntryBioTextNodeChildrenParentId = 'childContentfulAboutUsEntryBioTextNode___children___parent___id',
+  ChildContentfulAboutUsEntryBioTextNodeChildrenParentChildren = 'childContentfulAboutUsEntryBioTextNode___children___parent___children',
+  ChildContentfulAboutUsEntryBioTextNodeChildrenChildren = 'childContentfulAboutUsEntryBioTextNode___children___children',
+  ChildContentfulAboutUsEntryBioTextNodeChildrenChildrenId = 'childContentfulAboutUsEntryBioTextNode___children___children___id',
+  ChildContentfulAboutUsEntryBioTextNodeChildrenChildrenChildren = 'childContentfulAboutUsEntryBioTextNode___children___children___children',
+  ChildContentfulAboutUsEntryBioTextNodeChildrenInternalContent = 'childContentfulAboutUsEntryBioTextNode___children___internal___content',
+  ChildContentfulAboutUsEntryBioTextNodeChildrenInternalContentDigest = 'childContentfulAboutUsEntryBioTextNode___children___internal___contentDigest',
+  ChildContentfulAboutUsEntryBioTextNodeChildrenInternalDescription = 'childContentfulAboutUsEntryBioTextNode___children___internal___description',
+  ChildContentfulAboutUsEntryBioTextNodeChildrenInternalFieldOwners = 'childContentfulAboutUsEntryBioTextNode___children___internal___fieldOwners',
+  ChildContentfulAboutUsEntryBioTextNodeChildrenInternalIgnoreType = 'childContentfulAboutUsEntryBioTextNode___children___internal___ignoreType',
+  ChildContentfulAboutUsEntryBioTextNodeChildrenInternalMediaType = 'childContentfulAboutUsEntryBioTextNode___children___internal___mediaType',
+  ChildContentfulAboutUsEntryBioTextNodeChildrenInternalOwner = 'childContentfulAboutUsEntryBioTextNode___children___internal___owner',
+  ChildContentfulAboutUsEntryBioTextNodeChildrenInternalType = 'childContentfulAboutUsEntryBioTextNode___children___internal___type',
+  ChildContentfulAboutUsEntryBioTextNodeInternalContent = 'childContentfulAboutUsEntryBioTextNode___internal___content',
+  ChildContentfulAboutUsEntryBioTextNodeInternalContentDigest = 'childContentfulAboutUsEntryBioTextNode___internal___contentDigest',
+  ChildContentfulAboutUsEntryBioTextNodeInternalDescription = 'childContentfulAboutUsEntryBioTextNode___internal___description',
+  ChildContentfulAboutUsEntryBioTextNodeInternalFieldOwners = 'childContentfulAboutUsEntryBioTextNode___internal___fieldOwners',
+  ChildContentfulAboutUsEntryBioTextNodeInternalIgnoreType = 'childContentfulAboutUsEntryBioTextNode___internal___ignoreType',
+  ChildContentfulAboutUsEntryBioTextNodeInternalMediaType = 'childContentfulAboutUsEntryBioTextNode___internal___mediaType',
+  ChildContentfulAboutUsEntryBioTextNodeInternalOwner = 'childContentfulAboutUsEntryBioTextNode___internal___owner',
+  ChildContentfulAboutUsEntryBioTextNodeInternalType = 'childContentfulAboutUsEntryBioTextNode___internal___type',
+  ChildContentfulAboutUsEntryBioTextNodeBio = 'childContentfulAboutUsEntryBioTextNode___bio',
+  ChildContentfulAboutUsEntryBioTextNodeSysType = 'childContentfulAboutUsEntryBioTextNode___sys___type',
+}
+
+export type ContentfulAboutUsEntryFilterInput = {
+  contentful_id?: Maybe<StringQueryOperatorInput>
+  id?: Maybe<StringQueryOperatorInput>
+  node_locale?: Maybe<StringQueryOperatorInput>
+  name?: Maybe<StringQueryOperatorInput>
+  headshot?: Maybe<ContentfulAssetFilterInput>
+  bio?: Maybe<ContentfulAboutUsEntryBioTextNodeFilterInput>
+  spaceId?: Maybe<StringQueryOperatorInput>
+  createdAt?: Maybe<DateQueryOperatorInput>
+  updatedAt?: Maybe<DateQueryOperatorInput>
+  sys?: Maybe<ContentfulAboutUsEntrySysFilterInput>
+  parent?: Maybe<NodeFilterInput>
+  children?: Maybe<NodeFilterListInput>
+  internal?: Maybe<InternalFilterInput>
+  childContentfulAboutUsEntryBioTextNode?: Maybe<ContentfulAboutUsEntryBioTextNodeFilterInput>
+}
+
+export type ContentfulAboutUsEntryGroupConnection = {
+  __typename?: 'ContentfulAboutUsEntryGroupConnection'
+  totalCount: Scalars['Int']
+  edges: Array<ContentfulAboutUsEntryEdge>
+  nodes: Array<ContentfulAboutUsEntry>
+  pageInfo: PageInfo
+  field: Scalars['String']
+  fieldValue?: Maybe<Scalars['String']>
+}
+
+export type ContentfulAboutUsEntrySortInput = {
+  fields?: Maybe<Array<Maybe<ContentfulAboutUsEntryFieldsEnum>>>
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>
+}
+
+export type ContentfulAboutUsEntrySys = {
+  __typename?: 'ContentfulAboutUsEntrySys'
+  type?: Maybe<Scalars['String']>
+  revision?: Maybe<Scalars['Int']>
+  contentType?: Maybe<ContentfulAboutUsEntrySysContentType>
+}
+
+export type ContentfulAboutUsEntrySysContentType = {
+  __typename?: 'ContentfulAboutUsEntrySysContentType'
+  sys?: Maybe<ContentfulAboutUsEntrySysContentTypeSys>
+}
+
+export type ContentfulAboutUsEntrySysContentTypeFilterInput = {
+  sys?: Maybe<ContentfulAboutUsEntrySysContentTypeSysFilterInput>
+}
+
+export type ContentfulAboutUsEntrySysContentTypeSys = {
+  __typename?: 'ContentfulAboutUsEntrySysContentTypeSys'
+  type?: Maybe<Scalars['String']>
+  linkType?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['String']>
+}
+
+export type ContentfulAboutUsEntrySysContentTypeSysFilterInput = {
+  type?: Maybe<StringQueryOperatorInput>
+  linkType?: Maybe<StringQueryOperatorInput>
+  id?: Maybe<StringQueryOperatorInput>
+}
+
+export type ContentfulAboutUsEntrySysFilterInput = {
+  type?: Maybe<StringQueryOperatorInput>
+  revision?: Maybe<IntQueryOperatorInput>
+  contentType?: Maybe<ContentfulAboutUsEntrySysContentTypeFilterInput>
+}
+
 export type ContentfulAsset = ContentfulReference &
   Node & {
     __typename?: 'ContentfulAsset'
@@ -3069,6 +3681,10 @@ export type Query = {
   allContentfulHomepage: ContentfulHomepageConnection
   contentfulContactInfo?: Maybe<ContentfulContactInfo>
   allContentfulContactInfo: ContentfulContactInfoConnection
+  contentfulAboutUsEntry?: Maybe<ContentfulAboutUsEntry>
+  allContentfulAboutUsEntry: ContentfulAboutUsEntryConnection
+  contentfulAboutUsEntryBioTextNode?: Maybe<ContentfulAboutUsEntryBioTextNode>
+  allContentfulAboutUsEntryBioTextNode: ContentfulAboutUsEntryBioTextNodeConnection
   contentfulContentType?: Maybe<ContentfulContentType>
   allContentfulContentType: ContentfulContentTypeConnection
   siteBuildMetadata?: Maybe<SiteBuildMetadata>
@@ -3342,6 +3958,46 @@ export type QueryContentfulContactInfoArgs = {
 export type QueryAllContentfulContactInfoArgs = {
   filter?: Maybe<ContentfulContactInfoFilterInput>
   sort?: Maybe<ContentfulContactInfoSortInput>
+  skip?: Maybe<Scalars['Int']>
+  limit?: Maybe<Scalars['Int']>
+}
+
+export type QueryContentfulAboutUsEntryArgs = {
+  contentful_id?: Maybe<StringQueryOperatorInput>
+  id?: Maybe<StringQueryOperatorInput>
+  node_locale?: Maybe<StringQueryOperatorInput>
+  name?: Maybe<StringQueryOperatorInput>
+  headshot?: Maybe<ContentfulAssetFilterInput>
+  bio?: Maybe<ContentfulAboutUsEntryBioTextNodeFilterInput>
+  spaceId?: Maybe<StringQueryOperatorInput>
+  createdAt?: Maybe<DateQueryOperatorInput>
+  updatedAt?: Maybe<DateQueryOperatorInput>
+  sys?: Maybe<ContentfulAboutUsEntrySysFilterInput>
+  parent?: Maybe<NodeFilterInput>
+  children?: Maybe<NodeFilterListInput>
+  internal?: Maybe<InternalFilterInput>
+  childContentfulAboutUsEntryBioTextNode?: Maybe<ContentfulAboutUsEntryBioTextNodeFilterInput>
+}
+
+export type QueryAllContentfulAboutUsEntryArgs = {
+  filter?: Maybe<ContentfulAboutUsEntryFilterInput>
+  sort?: Maybe<ContentfulAboutUsEntrySortInput>
+  skip?: Maybe<Scalars['Int']>
+  limit?: Maybe<Scalars['Int']>
+}
+
+export type QueryContentfulAboutUsEntryBioTextNodeArgs = {
+  id?: Maybe<StringQueryOperatorInput>
+  parent?: Maybe<NodeFilterInput>
+  children?: Maybe<NodeFilterListInput>
+  internal?: Maybe<InternalFilterInput>
+  bio?: Maybe<StringQueryOperatorInput>
+  sys?: Maybe<ContentfulAboutUsEntryBioTextNodeSysFilterInput>
+}
+
+export type QueryAllContentfulAboutUsEntryBioTextNodeArgs = {
+  filter?: Maybe<ContentfulAboutUsEntryBioTextNodeFilterInput>
+  sort?: Maybe<ContentfulAboutUsEntryBioTextNodeSortInput>
   skip?: Maybe<Scalars['Int']>
   limit?: Maybe<Scalars['Int']>
 }
@@ -4501,6 +5157,15 @@ export type GatsbyImageSharpSizes_WithWebp_NoBase64Fragment = {
   'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
 >
 
+export type AboutUsSectionFragment = { __typename?: 'ContentfulHomepage' } & {
+  aboutUsText?: Maybe<
+    { __typename?: 'ContentfulHomepageAboutUsText' } & Pick<
+      ContentfulHomepageAboutUsText,
+      'raw'
+    >
+  >
+}
+
 export type FooterQueryVariables = Exact<{ [key: string]: never }>
 
 export type FooterQuery = { __typename?: 'Query' } & {
@@ -4540,6 +5205,24 @@ export type IndexPageQuery = { __typename?: 'Query' } & {
     { __typename?: 'ContentfulHomepage' } & Pick<
       ContentfulHomepage,
       'jumbotronTitle' | 'jumbotronText'
-    >
+    > & {
+        aboutUsImage?: Maybe<
+          { __typename?: 'ContentfulAsset' } & {
+            localFile?: Maybe<
+              { __typename?: 'File' } & {
+                childImageSharp?: Maybe<
+                  { __typename?: 'ImageSharp' } & {
+                    fluid?: Maybe<
+                      {
+                        __typename?: 'ImageSharpFluid'
+                      } & GatsbyImageSharpFluidFragment
+                    >
+                  }
+                >
+              }
+            >
+          }
+        >
+      } & AboutUsSectionFragment
   >
 }

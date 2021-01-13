@@ -18,7 +18,7 @@ export const Hamburger: FC<HamburgerProps> = ({ isOpen, onClick }) => (
 )
 
 const Buns = styled.div<BunsProps>`
-  ${({ isOpen }) => css`
+  ${({ isOpen, theme }) => css`
     height: 1.25rem;
     width: 2.625rem;
     position: relative;
@@ -29,6 +29,10 @@ const Buns = styled.div<BunsProps>`
       position: fixed;
       right: 2.25rem;
     `}
+
+    ${theme.media.desktop} {
+      display: none;
+    }
   `}
 `
 

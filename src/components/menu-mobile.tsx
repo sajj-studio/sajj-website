@@ -46,13 +46,36 @@ const _Menu = styled.ul<{ isOpen: boolean }>`
       transform: none;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     `}
+
+    ${theme.media.desktop} {
+      flex-direction: row;
+      transform: none;
+      background: none;
+      backdrop-filter: none;
+      height: min-content;
+      padding: 0;
+      max-width: none;
+      position: relative;
+      transition: none;
+      margin-left: 7.9375rem;
+      justify-content: space-between;
+      align-self: flex-end;
+    }
   `}
 `
 const _MenuItem = styled.li`
-  margin-bottom: 2.5rem;
-  &:last-of-type {
-    margin-bottom: 3rem;
-  }
+  ${({ theme }) => css`
+    margin-bottom: 2.5rem;
+    &:last-of-type {
+      margin-bottom: 3rem;
+    }
+    ${theme.media.desktop} {
+      margin: 0;
+      &:last-of-type {
+        margin: 0;
+      }
+    }
+  `}
 `
 const _MenuLink = styled(Link)`
   ${({ theme }) => css`
@@ -62,5 +85,10 @@ const _MenuLink = styled(Link)`
     font-weight: 700;
     color: white;
     text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+
+    ${theme.media.desktop} {
+      font-size: 1.5225rem;
+      text-shadow: none;
+    }
   `}
 `

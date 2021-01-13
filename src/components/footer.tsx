@@ -91,7 +91,7 @@ const _SectionWrapper = styled.div`
   }
 
   a {
-    z-index: 50;
+    z-index: 5;
   }
 
   :nth-child(1) {

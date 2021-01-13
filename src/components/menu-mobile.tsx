@@ -26,7 +26,7 @@ export const MobileMenu: FC<MenuProps> = ({ items, isOpen }) => (
 
 const _Menu = styled.ul<{ isOpen: boolean }>`
   ${({ isOpen, theme }) => css`
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 125%;
     width: calc(100%);
@@ -40,6 +40,8 @@ const _Menu = styled.ul<{ isOpen: boolean }>`
     flex-direction: column;
     transition: ${theme.transitions.default};
     z-index: 10;
+    top: 0;
+    bottom: 0;
 
     ${isOpen &&
     css`

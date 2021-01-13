@@ -27,25 +27,25 @@ export const MobileMenu: FC<MenuProps> = ({ items, isOpen }) => (
 const _Menu = styled.ul<{ isOpen: boolean }>`
   ${({ isOpen, theme }) => css`
     position: fixed;
-    top: 0;
-    left: 125%;
-    width: calc(100%);
     height: 100vh;
     padding-right: 2.25rem;
     padding-top: 9rem;
     background: ${hexToRGBA(theme.colors.darkBlue, 0.5)};
     backdrop-filter: blur(14px) brightness(0.18);
-    background-blend-mode: multiply;
     display: flex;
     flex-direction: column;
     transition: ${theme.transitions.default};
     z-index: 10;
     top: 0;
     bottom: 0;
+    width: 100%;
+    max-width: 26rem;
+    right: 0;
+    transform: translate(100%);
 
     ${isOpen &&
     css`
-      left: 0;
+      transform: none;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     `}
   `}

@@ -2,7 +2,7 @@ import { CreatePageArgs } from 'gatsby'
 import { routes } from '../routes'
 import config from './gatsby-config'
 
-const exclusions = ['/dev-404-page/', '/404/', '/404.html']
+const exclusions = ['/dev-404-page/', '/404.html']
 
 export const onCreatePage = ({
   page,

@@ -5,18 +5,31 @@ interface HamburgerProps {
   isOpen: boolean
   onClick: () => void
 }
+
+interface BunsProps {
+  isOpen: boolean
+}
+
 export const Hamburger: FC<HamburgerProps> = ({ isOpen, onClick }) => (
-  <Buns onClick={onClick}>
+  <Buns onClick={onClick} isOpen={isOpen}>
     <Line position="top" isOpen={isOpen} />
     <Line position="bottom" isOpen={isOpen} />
   </Buns>
 )
 
-const Buns = styled.div`
-  height: 1.25rem;
-  width: 2.625rem;
-  position: relative;
-  z-index: 105;
+const Buns = styled.div<BunsProps>`
+  ${({ isOpen }) => css`
+    height: 1.25rem;
+    width: 2.625rem;
+    position: relative;
+    z-index: 105;
+
+    ${isOpen &&
+    css`
+      position: fixed;
+      right: 2.25rem;
+    `}
+  `}
 `
 
 interface LineProps {

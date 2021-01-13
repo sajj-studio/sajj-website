@@ -8,7 +8,7 @@ interface ButtonProps {
 }
 
 export const Button = styled(Link)<ButtonProps>`
-  ${({ theme, fill = 'orange', color = 'blue', state }) => css`
+  ${({ theme, fill = 'orange', color = 'darkBlue', state }) => css`
     text-align: center;
     padding: 1rem 4rem;
     border-radius: 25px;

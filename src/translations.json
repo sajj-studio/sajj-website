@@ -1,6 +1,7 @@
 {
   "en-US": {
     "common": {
+      "title": "SAJJ Studio",
       "otherLanguage": "Français"
     },
     "home": {
@@ -35,6 +36,7 @@
   },
   "fr-CA": {
     "common": {
+      "title": "Studio SAJJ",
       "otherLanguage": "English"
     },
     "home": {

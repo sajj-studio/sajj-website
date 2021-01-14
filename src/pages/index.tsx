@@ -13,6 +13,7 @@ import { AboutUsSection } from '../components/about-us-section'
 
 export const query = graphql`
   query IndexPage($lang: String!) {
+    ...SEO
     contentfulHomepage(node_locale: { eq: $lang }) {
       jumbotronTitle
       jumbotronText
@@ -31,41 +32,43 @@ export const query = graphql`
 `
 
 const IndexPage: FC<PageProps<IndexPageQuery>> = ({
-  data: { contentfulHomepage: data },
+  data,
+  data: { contentfulHomepage: content },
 }) => (
   <Layout
     headerContent={
       <>
         <Typography variant="title" color="white">
-          {data?.jumbotronTitle}
+          {content?.jumbotronTitle}
         </Typography>
         <Typography variant="body" color="white">
-          {data?.jumbotronText}
+          {content?.jumbotronText}
         </Typography>
       </>
     }
   >
-    <SEO title="Home" />
+    <SEO title="Home" data={data} />
 
     <HelloContactSection />
 
     <ImageContainer
-      img={data?.aboutUsImage?.localFile?.childImageSharp?.fluid?.src ?? ''}
+      img={content?.aboutUsImage?.localFile?.childImageSharp?.fluid?.src ?? ''}
     >
       <div id="about-us" />
       <div>
-        {/*
-        //@ts-ignore */}
-        <Image fluid={data?.aboutUsImage?.localFile?.childImageSharp?.fluid} />
+        <Image
+          //@ts-ignore
+          fluid={content?.aboutUsImage?.localFile?.childImageSharp?.fluid}
+        />
         <FunkyBorder top />
       </div>
       <DesktopOnly>
-        <AboutUsSection data={data} />
+        <AboutUsSection data={content} />
       </DesktopOnly>
     </ImageContainer>
     <ContentContainer>
       <MobileOnly>
-        <AboutUsSection data={data} />
+        <AboutUsSection data={content} />
       </MobileOnly>
       <div id="what-we-do" />
       <WhatWeDo />

@@ -8,13 +8,21 @@ import { SEO } from '../components/seo'
 import { TextInput } from '../components/text-input'
 import { Typography } from '../components/typography'
 import { useTranslation } from 'react-i18next'
+import { graphql, PageProps } from 'gatsby'
+import { ContactUsPageQuery } from '../graphqlTypes'
 
-const ContactUsPage: FC = () => {
-  const [state, setState] = useState<'sending' | 'success' | 'error'>()
+export const query = graphql`
+  query ContactUsPage($lang: String!) {
+    ...SEO
+  }
+`
+
+const ContactUsPage: FC<PageProps<ContactUsPageQuery>> = ({ data }) => {
+  const [state, setState] = useState<'progress' | 'success' | 'error'>()
 
   const sendResponses = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
-      setState('sending')
+      setState('progress')
       event.preventDefault()
 
       const formData = new FormData(event.target as HTMLFormElement)
@@ -38,7 +46,7 @@ const ContactUsPage: FC = () => {
 
   return (
     <Layout>
-      <SEO title="Contact us" />
+      <SEO title="Contact us" data={data} />
       <SectionContainer>
         <Form name="Contact Form" onSubmit={sendResponses} data-netlify="true">
           <FormSection>

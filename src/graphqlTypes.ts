@@ -2106,10 +2106,30 @@ export type ContentfulSeo = ContentfulReference &
     contentful_id: Scalars['String']
     id: Scalars['ID']
     node_locale: Scalars['String']
+    keywords?: Maybe<Array<Maybe<Scalars['String']>>>
+    description?: Maybe<Scalars['String']>
+    spaceId?: Maybe<Scalars['String']>
+    createdAt?: Maybe<Scalars['Date']>
+    updatedAt?: Maybe<Scalars['Date']>
+    sys?: Maybe<ContentfulSeoSys>
     parent?: Maybe<Node>
     children: Array<Node>
     internal: Internal
   }
+
+export type ContentfulSeoCreatedAtArgs = {
+  formatString?: Maybe<Scalars['String']>
+  fromNow?: Maybe<Scalars['Boolean']>
+  difference?: Maybe<Scalars['String']>
+  locale?: Maybe<Scalars['String']>
+}
+
+export type ContentfulSeoUpdatedAtArgs = {
+  formatString?: Maybe<Scalars['String']>
+  fromNow?: Maybe<Scalars['Boolean']>
+  difference?: Maybe<Scalars['String']>
+  locale?: Maybe<Scalars['String']>
+}
 
 export type ContentfulSeoConnection = {
   __typename?: 'ContentfulSeoConnection'
@@ -2142,6 +2162,16 @@ export enum ContentfulSeoFieldsEnum {
   ContentfulId = 'contentful_id',
   Id = 'id',
   NodeLocale = 'node_locale',
+  Keywords = 'keywords',
+  Description = 'description',
+  SpaceId = 'spaceId',
+  CreatedAt = 'createdAt',
+  UpdatedAt = 'updatedAt',
+  SysType = 'sys___type',
+  SysRevision = 'sys___revision',
+  SysContentTypeSysType = 'sys___contentType___sys___type',
+  SysContentTypeSysLinkType = 'sys___contentType___sys___linkType',
+  SysContentTypeSysId = 'sys___contentType___sys___id',
   ParentId = 'parent___id',
   ParentParentId = 'parent___parent___id',
   ParentParentParentId = 'parent___parent___parent___id',
@@ -2233,6 +2263,12 @@ export type ContentfulSeoFilterInput = {
   contentful_id?: Maybe<StringQueryOperatorInput>
   id?: Maybe<StringQueryOperatorInput>
   node_locale?: Maybe<StringQueryOperatorInput>
+  keywords?: Maybe<StringQueryOperatorInput>
+  description?: Maybe<StringQueryOperatorInput>
+  spaceId?: Maybe<StringQueryOperatorInput>
+  createdAt?: Maybe<DateQueryOperatorInput>
+  updatedAt?: Maybe<DateQueryOperatorInput>
+  sys?: Maybe<ContentfulSeoSysFilterInput>
   parent?: Maybe<NodeFilterInput>
   children?: Maybe<NodeFilterListInput>
   internal?: Maybe<InternalFilterInput>
@@ -2251,6 +2287,41 @@ export type ContentfulSeoGroupConnection = {
 export type ContentfulSeoSortInput = {
   fields?: Maybe<Array<Maybe<ContentfulSeoFieldsEnum>>>
   order?: Maybe<Array<Maybe<SortOrderEnum>>>
+}
+
+export type ContentfulSeoSys = {
+  __typename?: 'ContentfulSeoSys'
+  type?: Maybe<Scalars['String']>
+  revision?: Maybe<Scalars['Int']>
+  contentType?: Maybe<ContentfulSeoSysContentType>
+}
+
+export type ContentfulSeoSysContentType = {
+  __typename?: 'ContentfulSeoSysContentType'
+  sys?: Maybe<ContentfulSeoSysContentTypeSys>
+}
+
+export type ContentfulSeoSysContentTypeFilterInput = {
+  sys?: Maybe<ContentfulSeoSysContentTypeSysFilterInput>
+}
+
+export type ContentfulSeoSysContentTypeSys = {
+  __typename?: 'ContentfulSeoSysContentTypeSys'
+  type?: Maybe<Scalars['String']>
+  linkType?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['String']>
+}
+
+export type ContentfulSeoSysContentTypeSysFilterInput = {
+  type?: Maybe<StringQueryOperatorInput>
+  linkType?: Maybe<StringQueryOperatorInput>
+  id?: Maybe<StringQueryOperatorInput>
+}
+
+export type ContentfulSeoSysFilterInput = {
+  type?: Maybe<StringQueryOperatorInput>
+  revision?: Maybe<IntQueryOperatorInput>
+  contentType?: Maybe<ContentfulSeoSysContentTypeFilterInput>
 }
 
 export type ContentfulSizes = {
@@ -3901,6 +3972,12 @@ export type QueryContentfulSeoArgs = {
   contentful_id?: Maybe<StringQueryOperatorInput>
   id?: Maybe<StringQueryOperatorInput>
   node_locale?: Maybe<StringQueryOperatorInput>
+  keywords?: Maybe<StringQueryOperatorInput>
+  description?: Maybe<StringQueryOperatorInput>
+  spaceId?: Maybe<StringQueryOperatorInput>
+  createdAt?: Maybe<DateQueryOperatorInput>
+  updatedAt?: Maybe<DateQueryOperatorInput>
+  sys?: Maybe<ContentfulSeoSysFilterInput>
   parent?: Maybe<NodeFilterInput>
   children?: Maybe<NodeFilterListInput>
   internal?: Maybe<InternalFilterInput>
@@ -5181,20 +5258,30 @@ export type FooterQuery = { __typename?: 'Query' } & {
   >
 }
 
-export type SeoQueryVariables = Exact<{ [key: string]: never }>
-
-export type SeoQuery = { __typename?: 'Query' } & {
+export type SeoFragment = { __typename?: 'Query' } & {
   site?: Maybe<
     { __typename?: 'Site' } & {
       siteMetadata?: Maybe<
         { __typename?: 'SiteSiteMetadata' } & Pick<
           SiteSiteMetadata,
-          'host' | 'title' | 'locales'
+          'host' | 'locales'
         >
       >
     }
   >
+  contentfulSeo?: Maybe<
+    { __typename?: 'ContentfulSeo' } & Pick<
+      ContentfulSeo,
+      'description' | 'keywords'
+    >
+  >
 }
+
+export type ContactUsPageQueryVariables = Exact<{
+  lang: Scalars['String']
+}>
+
+export type ContactUsPageQuery = { __typename?: 'Query' } & SeoFragment
 
 export type IndexPageQueryVariables = Exact<{
   lang: Scalars['String']
@@ -5225,4 +5312,4 @@ export type IndexPageQuery = { __typename?: 'Query' } & {
         >
       } & AboutUsSectionFragment
   >
-}
+} & SeoFragment

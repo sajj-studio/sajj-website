@@ -3,7 +3,6 @@ require('dotenv').config()
 const config = {
   siteMetadata: {
     host: `https://sajj.studio`,
-    title: `SAJJ Studio`,
     locales: ['en-US', 'fr-CA'],
     defaultLocale: 'en-US',
   },

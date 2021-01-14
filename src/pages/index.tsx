@@ -7,7 +7,7 @@ import { SEO } from '../components/seo'
 import { Typography } from '../components/typography'
 import { WhatWeDo } from '../components/what-we-do'
 import { IndexPageQuery } from '../graphqlTypes'
-import Img from 'gatsby-image'
+import GatsbyImage from 'gatsby-image'
 import { FunkyBorder, funkyBorderStyle } from '../components/funky-border'
 import { AboutUsSection } from '../components/about-us-section'
 
@@ -49,31 +49,23 @@ const IndexPage: FC<PageProps<IndexPageQuery>> = ({
 
     <HelloContactSection />
 
-    <ImageContainer>
+    <ImageContainer
+      img={data?.aboutUsImage?.localFile?.childImageSharp?.fluid?.src ?? ''}
+    >
+      <div id="about-us" />
       <div>
         {/*
         //@ts-ignore */}
-        <Img fluid={data?.aboutUsImage?.localFile?.childImageSharp?.fluid} />
+        <Image fluid={data?.aboutUsImage?.localFile?.childImageSharp?.fluid} />
         <FunkyBorder top />
       </div>
-      <Gradient />
       <DesktopOnly>
-        {data && (
-          <>
-            <div id="about-us" />
-            <AboutUsSection data={data} />
-          </>
-        )}
+        <AboutUsSection data={data} />
       </DesktopOnly>
     </ImageContainer>
     <ContentContainer>
       <MobileOnly>
-        {data && (
-          <>
-            <div id="about-us" />
-            <AboutUsSection data={data} />
-          </>
-        )}
+        <AboutUsSection data={data} />
       </MobileOnly>
       <div id="what-we-do" />
       <WhatWeDo />
@@ -96,47 +88,46 @@ const DesktopOnly = styled.div`
     display: none;
     ${theme.media.desktop} {
       display: initial;
-      position: absolute;
-      top: 5rem;
-      bottom: 0;
-      left: 0;
-      right: 0;
     }
   `}
 `
 
-const ImageContainer = styled.section`
-  ${funkyBorderStyle('top')};
-  padding-top: 0;
-  position: relative;
-
-  & > div:first-child {
+const ImageContainer = styled.section<{ img: string }>`
+  ${({ img, theme }) => css`
+    ${funkyBorderStyle('top')};
+    padding-top: 0;
     position: relative;
-  }
-`
-const Gradient = styled.div`
-  ${({ theme }) => css`
     background: linear-gradient(
-      180deg,
-      rgba(100, 26, 255, 0) 33.85%,
-      #641aff 100%
-    );
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+        180deg,
+        rgba(100, 26, 255, 0) 33.85%,
+        #641aff 100%
+      ),
+      url(${img});
+    background-position-y: center;
+    background-repeat: no-repeat;
 
     ${theme.media.desktop} {
       background: linear-gradient(
-        90deg,
-        rgba(100, 26, 255, 1) 0%,
-        rgba(100, 26, 255, 1) 30%,
-        rgba(99, 24, 255, 0) 100%
-      );
+          90deg,
+          rgba(100, 26, 255, 1) 0%,
+          rgba(100, 26, 255, 1) 30%,
+          rgba(99, 24, 255, 0) 100%
+        ),
+        url(${img});
+      background-position-y: center;
     }
   `}
 `
+
+const Image = styled(GatsbyImage)`
+  ${({ theme }) => css`
+    opacity: 0;
+    ${theme.media.desktop} {
+      display: none;
+    }
+  `}
+`
+
 const ContentContainer = styled.section`
   ${({ theme }) => css`
     background: linear-gradient(18.79deg, #182e74 20.58%, #641aff 89.82%);

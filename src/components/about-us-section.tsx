@@ -17,7 +17,7 @@ export const fragment = graphql`
 `
 
 interface AboutUsSectionProps {
-  data: AboutUsSectionFragment
+  data?: AboutUsSectionFragment | null
 }
 
 export const AboutUsSection: FC<AboutUsSectionProps> = ({ data }) => {
@@ -29,7 +29,7 @@ export const AboutUsSection: FC<AboutUsSectionProps> = ({ data }) => {
         <Typography variant="title" color="white">
           {t('aboutUs')}
         </Typography>
-        {documentToReactComponents(JSON.parse(data.aboutUsText?.raw ?? '{}'), {
+        {documentToReactComponents(JSON.parse(data?.aboutUsText?.raw ?? '{}'), {
           renderNode: {
             [BLOCKS.PARAGRAPH]: (_, children) => (
               <Typography variant="body" color="white">
@@ -50,9 +50,18 @@ const AboutUsSectionContainer = styled(Container)`
 
     ${theme.media.desktop} {
       text-align: left;
+      padding-top: 4.5rem;
+      padding-bottom: 4rem;
     }
   `}
 `
 const ContentContainer = styled.div`
-  max-width: 23rem;
+  ${({ theme }) =>
+    css`
+      max-width: 25rem;
+      ${theme.media.mobile} {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    `}
 `

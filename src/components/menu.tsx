@@ -11,18 +11,20 @@ interface MenuProps {
   handleClick: () => void
 }
 
-export const MobileMenu: FC<MenuProps> = ({ items, isOpen, handleClick }) => (
-  <_Menu isOpen={isOpen}>
+export const Menu: FC<MenuProps> = ({ items, isOpen, handleClick }) => (
+  <Container isOpen={isOpen}>
     {items.map(item => (
-      <_MenuItem key={item.label} onClick={handleClick}>
-        <_MenuLink to={item.href}>{item.label}</_MenuLink>
-      </_MenuItem>
+      <Item key={item.label} onClick={handleClick}>
+        <MenuLink to={item.href}>{item.label}</MenuLink>
+      </Item>
     ))}
-    <LanguageSwitcher />
-  </_Menu>
+    <Item onClick={handleClick}>
+      <LanguageSwitcher />
+    </Item>
+  </Container>
 )
 
-const _Menu = styled.ul<{ isOpen: boolean }>`
+const Container = styled.ul<{ isOpen: boolean }>`
   ${({ isOpen, theme }) => css`
     position: fixed;
     height: 100vh;
@@ -62,27 +64,27 @@ const _Menu = styled.ul<{ isOpen: boolean }>`
       max-width: none;
       position: relative;
       transition: none;
-      margin-left: 7.9375rem;
-      justify-content: space-between;
+      width: auto;
       align-self: flex-end;
+      margin-bottom: 0.5rem;
     }
   `}
 `
-const _MenuItem = styled.li`
+const Item = styled.li`
   ${({ theme }) => css`
     margin-bottom: 2.5rem;
     &:last-of-type {
       margin-bottom: 3rem;
     }
     ${theme.media.desktop} {
-      margin: 0;
+      margin: 0 1.5rem;
       &:last-of-type {
-        margin: 0;
+        margin-bottom: 0;
       }
     }
   `}
 `
-const _MenuLink = styled(Link)`
+const MenuLink = styled(Link)`
   ${({ theme }) => css`
     display: block;
     font-family: ${theme.typography.sansSerif};

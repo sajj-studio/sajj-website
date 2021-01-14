@@ -56,6 +56,7 @@ const Input = styled.input<InputProps>`
       font-size: 1rem;
       width: 100%;
       box-sizing: border-box;
+
       ::placeholder {
         color: white;
       }
@@ -65,7 +66,7 @@ const Input = styled.input<InputProps>`
       }
 
       :not(:placeholder-shown) + ${Label} {
-        transform: scale(0.7, 0.7) translate(-1.25rem, -3rem);
+        transform: scale(0.7, 0.7) translate(-1rem, -3rem);
       }
     `}
 `
@@ -77,5 +78,7 @@ const Label = styled.label`
     left: 2.5rem;
     z-index: 2;
     transition: ${theme.transitions.default};
+    transform-origin: top left;
+    transform: scale(1) translate(0);
   `}
 `

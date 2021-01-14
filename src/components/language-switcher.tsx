@@ -24,8 +24,15 @@ export const LanguageSwitcher: FC = () => {
 }
 
 const LanguageLink = styled(Link)`
-  display: flex;
-  flex-direction: column;
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: column;
+
+    ${theme.media.desktop} {
+      position: relative;
+      top: 0.75rem;
+    }
+  `}
 `
 
 const LanguageText = styled.div`
@@ -36,6 +43,10 @@ const LanguageText = styled.div`
     font-size: 1.5rem;
     color: ${theme.colors.white};
     text-align: right;
+
+    ${theme.media.desktop} {
+      font-size: 1.0575rem;
+    }
   `}
 `
 

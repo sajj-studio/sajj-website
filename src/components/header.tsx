@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 import { SajjLogo } from '../assets/images/sajj-logo'
 import { Container } from './container'
 import { Hamburger } from './hamburger'
-import { MobileMenu } from './menu-mobile'
+import { Menu } from './menu'
 
 export interface MenuItem {
   id: 'home' | 'about-us' | 'services' | 'our-work' | 'contact-us'
@@ -32,7 +32,7 @@ export const Header: FC = () => {
         <SajjLogo />
       </LogoContainer>
       <Hamburger isOpen={isOpen} onClick={toggle} />
-      <MobileMenu items={menuItems} isOpen={isOpen} />
+      <Menu items={menuItems} isOpen={isOpen} handleClick={toggle} />
     </HeaderContainer>
   )
 }

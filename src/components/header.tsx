@@ -32,7 +32,7 @@ export const Header: FC = () => {
         <SajjLogo />
       </LogoContainer>
       <Hamburger isOpen={isOpen} onClick={toggle} />
-      <MobileMenu items={menuItems} isOpen={isOpen} />
+      <MobileMenu items={menuItems} isOpen={isOpen} handleClick={toggle} />
     </HeaderContainer>
   )
 }

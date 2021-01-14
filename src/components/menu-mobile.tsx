@@ -8,12 +8,13 @@ import { hexToRGBA } from './sc-theme'
 interface MenuProps {
   items: MenuItem[]
   isOpen: boolean
+  handleClick: () => void
 }
 
-export const MobileMenu: FC<MenuProps> = ({ items, isOpen }) => (
+export const MobileMenu: FC<MenuProps> = ({ items, isOpen, handleClick }) => (
   <_Menu isOpen={isOpen}>
     {items.map(item => (
-      <_MenuItem key={item.label}>
+      <_MenuItem key={item.label} onClick={handleClick}>
         <_MenuLink to={item.href}>{item.label}</_MenuLink>
       </_MenuItem>
     ))}
@@ -45,6 +46,10 @@ const _Menu = styled.ul<{ isOpen: boolean }>`
     css`
       transform: none;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+      ${theme.media.desktop} {
+        box-shadow: none;
+      }
     `}
 
     ${theme.media.desktop} {

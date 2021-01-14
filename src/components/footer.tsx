@@ -65,7 +65,7 @@ export const Footer: FC = () => {
           <ImageLink href={data?.twitterPage ?? ''}>
             <TwitterLogo color="orange" />
           </ImageLink>
-          <ImageLink href={data?.facebookPage ?? ''}>
+          <ImageLink href={data?.linkedInPage ?? ''}>
             <LinkedinLogo color="orange" />
           </ImageLink>
         </_SectionWrapper>

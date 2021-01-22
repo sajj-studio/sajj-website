@@ -56,16 +56,32 @@ export const Footer: FC = () => {
         </_SectionWrapper>
         <_Line />
         <_SectionWrapper>
-          <ImageLink href={data?.facebookPage ?? ''}>
+          <ImageLink
+            href={data?.facebookPage ?? ''}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FacebookLogo color="orange" />
           </ImageLink>
-          <ImageLink href={data?.instagramPage ?? ''}>
+          <ImageLink
+            href={data?.instagramPage ?? ''}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <InstagramLogo color="orange" />
           </ImageLink>
-          <ImageLink href={data?.twitterPage ?? ''}>
+          <ImageLink
+            href={data?.twitterPage ?? ''}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <TwitterLogo color="orange" />
           </ImageLink>
-          <ImageLink href={data?.linkedInPage ?? ''}>
+          <ImageLink
+            href={data?.linkedInPage ?? ''}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <LinkedinLogo color="orange" />
           </ImageLink>
         </_SectionWrapper>

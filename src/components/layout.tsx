@@ -1,26 +1,39 @@
 import React, { FC } from 'react'
 import { Header } from './header'
 import { Footer } from './footer'
-import styled, { css } from 'styled-components'
+import styled, { css, DefaultTheme } from 'styled-components'
 import '../assets/fonts/fonts.css'
 import { Container } from './container'
 import { FunkyBorder, funkyBorderStyle } from './funky-border'
 
 interface LayoutProps {
   headerContent?: JSX.Element
+  funkyBorder?: boolean
+  logoGradient?: boolean
+  whiteHamburger?: keyof DefaultTheme['colors']
 }
 
-export const Layout: FC<LayoutProps> = ({ headerContent, children }) => {
+interface TopSectionProps {
+  funkyBorder?: boolean
+}
+
+export const Layout: FC<LayoutProps> = ({
+  headerContent,
+  funkyBorder,
+  children,
+  logoGradient,
+  whiteHamburger,
+}) => {
   return (
     <>
-      <TopSection>
-        <Header />
+      <TopSection funkyBorder={funkyBorder}>
+        <Header logoGradient={logoGradient} whiteHamburger={whiteHamburger} />
         {headerContent && (
           <HeaderContentContainer>
             <div>{headerContent}</div>
           </HeaderContentContainer>
         )}
-        <FunkyBorder bottom />
+        {funkyBorder && <FunkyBorder bottom />}
       </TopSection>
       <main>{children}</main>
       <Footer />
@@ -28,15 +41,22 @@ export const Layout: FC<LayoutProps> = ({ headerContent, children }) => {
   )
 }
 
-const TopSection = styled.section`
-  ${({ theme }) => css`
+const TopSection = styled.section<TopSectionProps>`
+  ${({ theme, funkyBorder }) => css`
     background: linear-gradient(
       49.79deg,
       ${theme.colors.blue} -21.04%,
       ${theme.colors.red} 57.35%,
       ${theme.colors.orange} 136.6%
     );
-    ${funkyBorderStyle('bottom')}
+
+    ${funkyBorder
+      ? css`
+          ${funkyBorderStyle('bottom')}
+        `
+      : css`
+          background: white;
+        `}
   `}
 `
 

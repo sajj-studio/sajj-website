@@ -11,4 +11,8 @@ export const routes: Record<string, Record<string, string>> = {
     'en-US': '/404/',
     'fr-CA': '/404/',
   },
+  '/about-us/': {
+    'en-US': '/about-us/',
+    'fr-CA': '/a-propos-de-nous/',
+  },
 }

@@ -36,6 +36,7 @@ const IndexPage: FC<PageProps<IndexPageQuery>> = ({
   data: { contentfulHomepage: content },
 }) => (
   <Layout
+    funkyBorder={true}
     headerContent={
       <>
         <Typography variant="title" color="white">

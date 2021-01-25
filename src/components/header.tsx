@@ -1,6 +1,6 @@
 import { Link } from './link'
 import React, { FC, useCallback, useState } from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css, DefaultTheme } from 'styled-components'
 import { SajjLogo } from '../assets/images/sajj-logo'
 import { Container } from './container'
 import { Hamburger } from './hamburger'
@@ -12,6 +12,11 @@ export interface MenuItem {
   label: string
 }
 
+interface HeaderProps {
+  logoGradient?: boolean
+  whiteHamburger?: keyof DefaultTheme['colors']
+}
+
 const menuItems: MenuItem[] = [
   { id: 'home', href: '/', label: 'Home' },
   { id: 'about-us', href: '/#about-us', label: 'About us' },
@@ -20,7 +25,7 @@ const menuItems: MenuItem[] = [
   { id: 'contact-us', href: '/contact-us/', label: 'Contact us' },
 ]
 
-export const Header: FC = () => {
+export const Header: FC<HeaderProps> = ({ logoGradient, whiteHamburger }) => {
   const [isOpen, setIsOpen] = useState(false)
   const toggle = useCallback(() => {
     setIsOpen(isOpen => !isOpen)
@@ -29,9 +34,9 @@ export const Header: FC = () => {
   return (
     <HeaderContainer>
       <LogoContainer to="/">
-        <SajjLogo />
+        <SajjLogo gradient={logoGradient} />
       </LogoContainer>
-      <Hamburger isOpen={isOpen} onClick={toggle} />
+      <Hamburger isOpen={isOpen} onClick={toggle} white={whiteHamburger} />
       <Menu items={menuItems} isOpen={isOpen} handleClick={toggle} />
     </HeaderContainer>
   )

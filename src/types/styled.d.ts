@@ -18,6 +18,7 @@ declare module 'styled-components' {
       red: string
       orange: string
       darkBlue: string
+      gray: string
     }
     transitions: {
       default: string

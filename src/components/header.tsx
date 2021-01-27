@@ -1,6 +1,6 @@
 import { Link } from './link'
 import React, { FC, useCallback, useState } from 'react'
-import styled, { css, DefaultTheme } from 'styled-components'
+import styled, { css } from 'styled-components'
 import { SajjLogo } from '../assets/images/sajj-logo'
 import { Container } from './container'
 import { Hamburger } from './hamburger'
@@ -13,8 +13,8 @@ export interface MenuItem {
 }
 
 interface HeaderProps {
-  logoGradient?: boolean
-  whiteHamburger?: keyof DefaultTheme['colors']
+  logoGradient: 'standard' | 'grayscale'
+  variant: 'standard' | 'grayscale'
 }
 
 const menuItems: MenuItem[] = [
@@ -25,29 +25,40 @@ const menuItems: MenuItem[] = [
   { id: 'contact-us', href: '/contact-us/', label: 'Contact us' },
 ]
 
-export const Header: FC<HeaderProps> = ({ logoGradient, whiteHamburger }) => {
+export const Header: FC<HeaderProps> = ({ logoGradient, variant }) => {
   const [isOpen, setIsOpen] = useState(false)
   const toggle = useCallback(() => {
     setIsOpen(isOpen => !isOpen)
   }, [])
 
   return (
-    <HeaderContainer>
+    <HeaderContainer height={variant}>
       <LogoContainer to="/">
         <SajjLogo gradient={logoGradient} />
       </LogoContainer>
-      <Hamburger isOpen={isOpen} onClick={toggle} white={whiteHamburger} />
-      <Menu items={menuItems} isOpen={isOpen} handleClick={toggle} />
+      <Hamburger isOpen={isOpen} onClick={toggle} colorVariant={variant} />
+      <Menu
+        items={menuItems}
+        isOpen={isOpen}
+        handleClick={toggle}
+        menuVariant={variant}
+      />
     </HeaderContainer>
   )
 }
 
-const HeaderContainer = styled(Container)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 1.875rem;
-  padding-bottom: 1.875rem;
+interface HeaderContainerProps {
+  height: 'standard' | 'grayscale'
+}
+
+const HeaderContainer = styled(Container)<HeaderContainerProps>`
+  ${({ height }) => css`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.875rem;
+    padding-bottom: ${height === 'standard' ? '1.875rem' : '0.2rem'};
+  `}
 `
 
 const LogoContainer = styled(Link)`

@@ -5,7 +5,11 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'gatsby'
 import { routes } from '../routes'
 
-export const LanguageSwitcher: FC = () => {
+interface LanguageSwitcherProps {
+  colorTheme: 'standard' | 'grayscale'
+}
+
+export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ colorTheme }) => {
   const { lang, originalPath } = useContext(PageContext)
   const { t } = useTranslation('common')
 
@@ -17,10 +21,18 @@ export const LanguageSwitcher: FC = () => {
     <LanguageLink
       to={`/${otherLanguage}${routes[originalPath][otherLanguage]}`}
     >
-      <LanguageText>{t('otherLanguage')}</LanguageText>
-      <LanguageIndicator />
+      <LanguageText color={colorTheme}>{t('otherLanguage')}</LanguageText>
+      <LanguageIndicator color={colorTheme} />
     </LanguageLink>
   )
+}
+
+interface LanguageTextColor {
+  color: 'standard' | 'grayscale'
+}
+
+interface LanguageIndicatorColor {
+  color: 'standard' | 'grayscale'
 }
 
 const LanguageLink = styled(Link)`
@@ -35,8 +47,8 @@ const LanguageLink = styled(Link)`
   `}
 `
 
-const LanguageText = styled.div`
-  ${({ theme }) => css`
+const LanguageText = styled.div<LanguageTextColor>`
+  ${({ theme, color }) => css`
     font-family: ${theme.typography.sansSerif};
     font-weight: 400;
     line-height: 1.125rem;
@@ -46,14 +58,18 @@ const LanguageText = styled.div`
 
     ${theme.media.desktop} {
       font-size: 1.0575rem;
+      color: ${color === 'grayscale'
+        ? theme.colors.darkBlue
+        : theme.colors.white};
     }
   `}
 `
 
-const LanguageIndicator = styled.div`
-  ${({ theme }) => css`
+const LanguageIndicator = styled.div<LanguageIndicatorColor>`
+  ${({ theme, color }) => css`
     height: 0;
-    border-bottom: 2px solid ${theme.colors.white};
+    border-bottom: 2px solid
+      ${color === 'grayscale' ? theme.colors.darkBlue : theme.colors.white};
     margin-top: 0.75rem;
     opacity: 0;
 

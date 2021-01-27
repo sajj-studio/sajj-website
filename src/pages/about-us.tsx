@@ -7,7 +7,7 @@ import { Typography } from '../components/typography'
 
 const AboutUsPage: FC<PageProps> = ({ data }) => {
   return (
-    <Layout funkyBorder={false} logoGradient={true} whiteHamburger="gray">
+    <Layout funkyHeight="half" headerVariant="grayscale">
       <IndividualInfo>
         <Container>
           <ImageContainer></ImageContainer>

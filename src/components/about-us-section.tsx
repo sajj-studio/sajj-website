@@ -7,6 +7,7 @@ import { Typography } from './typography'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS } from '@contentful/rich-text-types'
 import styled, { css } from 'styled-components'
+import { Button } from './button'
 
 export const fragment = graphql`
   fragment AboutUsSection on ContentfulHomepage {
@@ -38,10 +39,25 @@ export const AboutUsSection: FC<AboutUsSectionProps> = ({ data }) => {
             ),
           },
         })}
+        <ButtonContainer>
+          <Button to="/about-us/">{'MEET THE TEAM'}</Button>
+        </ButtonContainer>
       </ContentContainer>
     </AboutUsSectionContainer>
   )
 }
+
+const ButtonContainer = styled.div`
+  ${({ theme }) => css`
+    margin-top: 1.7rem;
+
+    ${theme.media.desktop} {
+      a {
+        width: 80%;
+      }
+    }
+  `}
+`
 
 const AboutUsSectionContainer = styled(Container)`
   ${({ theme }) => css`

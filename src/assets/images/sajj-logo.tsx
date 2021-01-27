@@ -3,13 +3,13 @@ import { DefaultTheme, ThemeContext } from 'styled-components'
 
 interface LogoProps {
   color?: keyof DefaultTheme['colors']
-  gradient?: boolean
+  gradient: 'standard' | 'grayscale'
 }
 
 export const SajjLogo: FC<LogoProps> = ({ color = 'white', gradient }) => {
   const { colors } = useContext(ThemeContext)
 
-  return gradient ? (
+  return gradient === 'grayscale' ? (
     <svg
       width="74"
       height="44"

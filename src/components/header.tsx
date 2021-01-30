@@ -15,6 +15,7 @@ export interface MenuItem {
 interface HeaderProps {
   logoGradient: 'standard' | 'grayscale'
   variant: 'standard' | 'grayscale'
+  variantDesktop?: boolean
 }
 
 const menuItems: MenuItem[] = [
@@ -25,16 +26,20 @@ const menuItems: MenuItem[] = [
   { id: 'contact-us', href: '/contact-us/', label: 'Contact us' },
 ]
 
-export const Header: FC<HeaderProps> = ({ logoGradient, variant }) => {
+export const Header: FC<HeaderProps> = ({
+  logoGradient,
+  variant,
+  variantDesktop,
+}) => {
   const [isOpen, setIsOpen] = useState(false)
   const toggle = useCallback(() => {
     setIsOpen(isOpen => !isOpen)
   }, [])
 
   return (
-    <HeaderContainer height={variant}>
+    <HeaderContainer height={variant} desktop={variantDesktop}>
       <LogoContainer to="/">
-        <SajjLogo gradient={logoGradient} />
+        <SajjLogo gradient={logoGradient} standardDesktop={variantDesktop} />
       </LogoContainer>
       <Hamburger isOpen={isOpen} onClick={toggle} colorVariant={variant} />
       <Menu
@@ -42,6 +47,7 @@ export const Header: FC<HeaderProps> = ({ logoGradient, variant }) => {
         isOpen={isOpen}
         handleClick={toggle}
         menuVariant={variant}
+        variantDesktop={variantDesktop}
       />
     </HeaderContainer>
   )
@@ -49,15 +55,23 @@ export const Header: FC<HeaderProps> = ({ logoGradient, variant }) => {
 
 interface HeaderContainerProps {
   height: 'standard' | 'grayscale'
+  desktop?: boolean
 }
 
 const HeaderContainer = styled(Container)<HeaderContainerProps>`
-  ${({ height }) => css`
+  ${({ height, desktop, theme }) => css`
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-top: 1.875rem;
     padding-bottom: ${height === 'standard' ? '1.875rem' : '0.2rem'};
+
+    ${theme.media.desktop} {
+      ${desktop &&
+      css`
+        padding-bottom: 1.875rem;
+      `}
+    }
   `}
 `
 

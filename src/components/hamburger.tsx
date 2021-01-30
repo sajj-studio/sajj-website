@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import styled, { css } from 'styled-components'
+import { theme } from './sc-theme'
 
 interface HamburgerProps {
   isOpen: boolean
@@ -17,10 +18,25 @@ export const Hamburger: FC<HamburgerProps> = ({
   colorVariant,
 }) => (
   <Buns onClick={onClick} isOpen={isOpen}>
-    <Line position="top" isOpen={isOpen} lineColor={colorVariant} />
-    <Line position="bottom" isOpen={isOpen} />
+    <Line position="top" isOpen={isOpen} lineColor={getColor(colorVariant)} />
+    <Line
+      position="bottom"
+      isOpen={isOpen}
+      lineColor={getColor(colorVariant)}
+    />
   </Buns>
 )
+
+function getColor(
+  menuVariant: 'standard' | 'grayscale' | undefined
+): string | undefined {
+  switch (menuVariant) {
+    case 'standard':
+      return theme.colors.white
+    case 'grayscale':
+      return theme.colors.gray
+  }
+}
 
 const Buns = styled.div<BunsProps>`
   ${({ isOpen, theme }) => css`
@@ -44,7 +60,7 @@ const Buns = styled.div<BunsProps>`
 interface LineProps {
   position: 'top' | 'bottom'
   isOpen: boolean
-  lineColor?: 'standard' | 'grayscale'
+  lineColor?: string | undefined
 }
 const Line = styled.div<LineProps>`
   background: white;
@@ -66,22 +82,19 @@ const Line = styled.div<LineProps>`
             `
           : css`
               top: 0;
-              background: ${lineColor === 'standard'
-                ? theme.colors.white
-                : theme.colors.gray};
+              background: ${lineColor};
             `
       case 'bottom':
         return css`
           width: 1.875rem;
-          background: ${lineColor === 'standard'
-            ? theme.colors.white
-            : theme.colors.gray};
+          background: ${lineColor};
 
           ${isOpen
             ? css`
                 transform: rotate(-45deg);
                 top: calc(50% - 0.2rem);
                 width: 100%;
+                background: ${theme.colors.white};
               `
             : css`
                 bottom: 0;

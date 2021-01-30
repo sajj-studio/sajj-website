@@ -7,9 +7,13 @@ import { routes } from '../routes'
 
 interface LanguageSwitcherProps {
   colorTheme: 'standard' | 'grayscale'
+  desktopColorvariant?: boolean
 }
 
-export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ colorTheme }) => {
+export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({
+  colorTheme,
+  desktopColorvariant,
+}) => {
   const { lang, originalPath } = useContext(PageContext)
   const { t } = useTranslation('common')
 
@@ -21,8 +25,12 @@ export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ colorTheme }) => {
     <LanguageLink
       to={`/${otherLanguage}${routes[originalPath][otherLanguage]}`}
     >
-      <LanguageText color={colorTheme}>{t('otherLanguage')}</LanguageText>
-      <LanguageIndicator color={colorTheme} />
+      <LanguageText color={desktopColorvariant ? 'standard' : colorTheme}>
+        {t('otherLanguage')}
+      </LanguageText>
+      <LanguageIndicator
+        color={desktopColorvariant ? 'standard' : colorTheme}
+      />
     </LanguageLink>
   )
 }

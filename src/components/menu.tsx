@@ -10,6 +10,7 @@ interface MenuProps {
   isOpen: boolean
   handleClick: () => void
   menuVariant: 'standard' | 'grayscale'
+  variantDesktop?: boolean
 }
 
 export const Menu: FC<MenuProps> = ({
@@ -17,23 +18,32 @@ export const Menu: FC<MenuProps> = ({
   isOpen,
   handleClick,
   menuVariant,
+  variantDesktop,
 }) => (
   <Container isOpen={isOpen}>
     {items.map(item => (
       <Item key={item.label} onClick={handleClick}>
-        <MenuLink to={item.href} colorVariant={menuVariant}>
+        <MenuLink
+          to={item.href}
+          colorVariant={menuVariant}
+          desktopColorvariant={variantDesktop}
+        >
           {item.label}
         </MenuLink>
       </Item>
     ))}
     <Item onClick={handleClick}>
-      <LanguageSwitcher colorTheme={menuVariant} />
+      <LanguageSwitcher
+        colorTheme={menuVariant}
+        desktopColorvariant={variantDesktop}
+      />
     </Item>
   </Container>
 )
 
 interface MenuLinkProps {
   colorVariant: 'standard' | 'grayscale'
+  desktopColorvariant?: boolean
 }
 
 const Container = styled.ul<{ isOpen: boolean }>`
@@ -97,7 +107,7 @@ const Item = styled.li`
   `}
 `
 const MenuLink = styled(Link)<MenuLinkProps>`
-  ${({ theme, colorVariant }) => css`
+  ${({ theme, colorVariant, desktopColorvariant }) => css`
     display: block;
     font-family: ${theme.typography.sansSerif};
     font-size: 2.5rem;
@@ -111,6 +121,11 @@ const MenuLink = styled(Link)<MenuLinkProps>`
       color: ${colorVariant === 'grayscale'
         ? theme.colors.darkBlue
         : theme.colors.white};
+
+      ${desktopColorvariant &&
+      css`
+        color: ${theme.colors.white};
+      `}
     }
   `}
 `

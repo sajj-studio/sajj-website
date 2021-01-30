@@ -10,6 +10,7 @@ interface LayoutProps {
   headerContent?: JSX.Element
   funkyHeight?: 'half' | 'quarter'
   headerVariant: 'standard' | 'grayscale'
+  standardDesktop?: boolean
 }
 
 export const Layout: FC<LayoutProps> = ({
@@ -17,11 +18,20 @@ export const Layout: FC<LayoutProps> = ({
   children,
   funkyHeight,
   headerVariant,
+  standardDesktop,
 }) => {
   return (
     <>
-      <TopSection topSectionVariant={headerVariant} borderHeight={funkyHeight}>
-        <Header logoGradient={headerVariant} variant={headerVariant} />
+      <TopSection
+        topSectionVariant={headerVariant}
+        borderHeight={funkyHeight}
+        variantDesktop={standardDesktop}
+      >
+        <Header
+          logoGradient={headerVariant}
+          variant={headerVariant}
+          variantDesktop={standardDesktop}
+        />
         {headerContent && (
           <HeaderContentContainer>
             <div>{headerContent}</div>
@@ -38,10 +48,11 @@ export const Layout: FC<LayoutProps> = ({
 interface TopSectionProps {
   topSectionVariant: 'standard' | 'grayscale'
   borderHeight?: 'half' | 'quarter'
+  variantDesktop?: boolean
 }
 
 const TopSection = styled.section<TopSectionProps>`
-  ${({ theme, topSectionVariant, borderHeight }) => css`
+  ${({ theme, topSectionVariant, borderHeight, variantDesktop }) => css`
     ${topSectionVariant === 'grayscale' &&
     css`
           padding-bottom: 40px;
@@ -55,6 +66,21 @@ const TopSection = styled.section<TopSectionProps>`
           ${theme.media.desktop} {
             background: ${theme.colors.white};
           }
+
+          ${
+            variantDesktop &&
+            css`
+              ${theme.media.desktop} {
+                background: linear-gradient(
+                  49.79deg,
+                  ${theme.colors.blue} -21.04%,
+                  ${theme.colors.red} 57.35%,
+                  ${theme.colors.orange} 136.6%
+                );
+              }
+            `
+          }
+
   `}
 
     ${topSectionVariant === 'standard' &&

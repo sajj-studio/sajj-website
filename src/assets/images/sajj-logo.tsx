@@ -4,15 +4,20 @@ import { DefaultTheme, ThemeContext } from 'styled-components'
 interface LogoProps {
   color?: keyof DefaultTheme['colors']
   gradient: 'standard' | 'grayscale'
+  standardDesktop?: boolean
 }
 
-export const SajjLogo: FC<LogoProps> = ({ color = 'white', gradient }) => {
+export const SajjLogo: FC<LogoProps> = ({
+  color = 'white',
+  gradient,
+  standardDesktop,
+}) => {
   const { colors } = useContext(ThemeContext)
 
   return gradient === 'grayscale' ? (
     <svg
-      width="74"
-      height="44"
+      width="100%"
+      height="100%"
       viewBox="0 0 74 44"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

@@ -64,7 +64,8 @@ const TopSection = styled.section<TopSectionProps>`
           ${funkyBorderStyle('bottom', borderHeight)}}
 
           ${theme.media.desktop} {
-            background: ${theme.colors.white};
+            ${funkyBorderStyle('bottom')}}
+            margin-bottom: 5rem;
           }
 
           ${

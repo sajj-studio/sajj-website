@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import { MenuItem } from './header'
 import { LanguageSwitcher } from './language-switcher'
 import { Link } from './link'
-import { hexToRGBA } from './sc-theme'
+import { hexToRGBA, theme } from './sc-theme'
 
 interface MenuProps {
   items: MenuItem[]
@@ -25,7 +25,7 @@ export const Menu: FC<MenuProps> = ({
       <Item key={item.label} onClick={handleClick}>
         <MenuLink
           to={item.href}
-          colorVariant={menuVariant}
+          colorVariant={getColor(menuVariant)}
           desktopColorvariant={variantDesktop}
         >
           {item.label}
@@ -34,7 +34,7 @@ export const Menu: FC<MenuProps> = ({
     ))}
     <Item onClick={handleClick}>
       <LanguageSwitcher
-        colorTheme={menuVariant}
+        colorTheme={getColor(menuVariant)}
         desktopColorvariant={variantDesktop}
       />
     </Item>
@@ -42,8 +42,17 @@ export const Menu: FC<MenuProps> = ({
 )
 
 interface MenuLinkProps {
-  colorVariant: 'standard' | 'grayscale'
+  colorVariant: string | undefined
   desktopColorvariant?: boolean
+}
+
+function getColor(menuVariant: string): string | undefined {
+  switch (menuVariant) {
+    case 'standard':
+      return theme.colors.white
+    case 'grayscale':
+      return theme.colors.darkBlue
+  }
 }
 
 const Container = styled.ul<{ isOpen: boolean }>`
@@ -118,9 +127,7 @@ const MenuLink = styled(Link)<MenuLinkProps>`
     ${theme.media.desktop} {
       font-size: 1.5225rem;
       text-shadow: none;
-      color: ${colorVariant === 'grayscale'
-        ? theme.colors.darkBlue
-        : theme.colors.white};
+      color: ${colorVariant};
 
       ${desktopColorvariant &&
       css`

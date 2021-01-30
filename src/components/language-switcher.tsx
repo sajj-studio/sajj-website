@@ -6,7 +6,7 @@ import { Link } from 'gatsby'
 import { routes } from '../routes'
 
 interface LanguageSwitcherProps {
-  colorTheme: 'standard' | 'grayscale'
+  colorTheme: string | undefined
   desktopColorvariant?: boolean
 }
 
@@ -25,22 +25,18 @@ export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({
     <LanguageLink
       to={`/${otherLanguage}${routes[originalPath][otherLanguage]}`}
     >
-      <LanguageText color={desktopColorvariant ? 'standard' : colorTheme}>
-        {t('otherLanguage')}
-      </LanguageText>
-      <LanguageIndicator
-        color={desktopColorvariant ? 'standard' : colorTheme}
-      />
+      <LanguageText color={colorTheme}>{t('otherLanguage')}</LanguageText>
+      <LanguageIndicator color={colorTheme} />
     </LanguageLink>
   )
 }
 
 interface LanguageTextColor {
-  color: 'standard' | 'grayscale'
+  color: string | undefined
 }
 
 interface LanguageIndicatorColor {
-  color: 'standard' | 'grayscale'
+  color: string | undefined
 }
 
 const LanguageLink = styled(Link)`
@@ -66,9 +62,7 @@ const LanguageText = styled.div<LanguageTextColor>`
 
     ${theme.media.desktop} {
       font-size: 1.0575rem;
-      color: ${color === 'grayscale'
-        ? theme.colors.darkBlue
-        : theme.colors.white};
+      color: ${color};
     }
   `}
 `
@@ -76,8 +70,7 @@ const LanguageText = styled.div<LanguageTextColor>`
 const LanguageIndicator = styled.div<LanguageIndicatorColor>`
   ${({ theme, color }) => css`
     height: 0;
-    border-bottom: 2px solid
-      ${color === 'grayscale' ? theme.colors.darkBlue : theme.colors.white};
+    border-bottom: 2px solid ${color};
     margin-top: 0.75rem;
     opacity: 0;
 

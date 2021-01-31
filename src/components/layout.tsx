@@ -9,7 +9,7 @@ import { FunkyBorder, funkyBorderStyle } from './funky-border'
 interface LayoutProps {
   headerContent?: JSX.Element
   funkyHeight?: 'half' | 'quarter'
-  headerVariant: 'standard' | 'grayscale'
+  headerVariant: 'standard' | 'grayscale' | 'mustard'
   standardDesktop?: boolean
 }
 
@@ -46,7 +46,7 @@ export const Layout: FC<LayoutProps> = ({
 }
 
 interface TopSectionProps {
-  topSectionVariant: 'standard' | 'grayscale'
+  topSectionVariant: 'standard' | 'grayscale' | 'mustard'
   borderHeight?: 'half' | 'quarter'
   variantDesktop?: boolean
 }
@@ -82,6 +82,21 @@ const TopSection = styled.section<TopSectionProps>`
             `
           }
 
+
+  `}
+
+    ${topSectionVariant === 'mustard' &&
+    css`
+          padding-bottom: 40px;
+          background: ${theme.colors.lightYellow};
+          ${funkyBorderStyle('bottom', borderHeight)}}
+
+          ${theme.media.desktop} {
+            ${funkyBorderStyle('bottom')}}
+            margin-bottom: 5rem;
+          }
+
+
   `}
 
     ${topSectionVariant === 'standard' &&
@@ -92,6 +107,7 @@ const TopSection = styled.section<TopSectionProps>`
     ${theme.colors.red} 57.35%,
     ${theme.colors.orange} 136.6%
   );
+  
   ${funkyBorderStyle('bottom', borderHeight)}}
   `}
   `}

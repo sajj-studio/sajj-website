@@ -9,7 +9,7 @@ interface MenuProps {
   items: MenuItem[]
   isOpen: boolean
   handleClick: () => void
-  menuVariant: 'standard' | 'grayscale'
+  menuVariant: 'standard' | 'grayscale' | 'mustard'
   variantDesktop?: boolean
 }
 
@@ -51,6 +51,8 @@ function getColor(menuVariant: string): string | undefined {
     case 'standard':
       return theme.colors.white
     case 'grayscale':
+      return theme.colors.darkBlue
+    case 'mustard':
       return theme.colors.darkBlue
   }
 }

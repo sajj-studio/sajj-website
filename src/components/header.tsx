@@ -13,8 +13,8 @@ export interface MenuItem {
 }
 
 interface HeaderProps {
-  logoGradient: 'standard' | 'grayscale'
-  variant: 'standard' | 'grayscale'
+  logoGradient: 'standard' | 'grayscale' | 'mustard'
+  variant: 'standard' | 'grayscale' | 'mustard'
   variantDesktop?: boolean
 }
 
@@ -54,7 +54,7 @@ export const Header: FC<HeaderProps> = ({
 }
 
 interface HeaderContainerProps {
-  height: 'standard' | 'grayscale'
+  height: 'standard' | 'grayscale' | 'mustard'
   desktop?: boolean
 }
 

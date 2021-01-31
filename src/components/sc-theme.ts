@@ -21,6 +21,7 @@ export const theme: DefaultTheme = {
     red: '#f25767',
     darkBlue: '#182E74',
     gray: '#E0E0E0',
+    lightYellow: '#FFB600',
   },
   transitions: {
     default: '0.2s',

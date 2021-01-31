@@ -5,7 +5,7 @@ import { theme } from './sc-theme'
 interface HamburgerProps {
   isOpen: boolean
   onClick: () => void
-  colorVariant?: 'standard' | 'grayscale'
+  colorVariant?: 'standard' | 'grayscale' | 'mustard'
 }
 
 interface BunsProps {
@@ -28,13 +28,15 @@ export const Hamburger: FC<HamburgerProps> = ({
 )
 
 function getColor(
-  menuVariant: 'standard' | 'grayscale' | undefined
+  menuVariant: 'standard' | 'grayscale' | 'mustard' | undefined
 ): string | undefined {
   switch (menuVariant) {
     case 'standard':
       return theme.colors.white
     case 'grayscale':
       return theme.colors.gray
+    case 'mustard':
+      return theme.colors.darkBlue
   }
 }
 

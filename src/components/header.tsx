@@ -12,6 +12,12 @@ export interface MenuItem {
   label: string
 }
 
+interface HeaderProps {
+  logoGradient: 'standard' | 'grayscale' | 'mustard'
+  variant: 'standard' | 'grayscale' | 'mustard'
+  variantDesktop?: boolean
+}
+
 const menuItems: MenuItem[] = [
   { id: 'home', href: '/', label: 'Home' },
   { id: 'about-us', href: '/#about-us', label: 'About us' },
@@ -20,29 +26,53 @@ const menuItems: MenuItem[] = [
   { id: 'contact-us', href: '/contact-us/', label: 'Contact us' },
 ]
 
-export const Header: FC = () => {
+export const Header: FC<HeaderProps> = ({
+  logoGradient,
+  variant,
+  variantDesktop,
+}) => {
   const [isOpen, setIsOpen] = useState(false)
   const toggle = useCallback(() => {
     setIsOpen(isOpen => !isOpen)
   }, [])
 
   return (
-    <HeaderContainer>
+    <HeaderContainer height={variant} desktop={variantDesktop}>
       <LogoContainer to="/">
-        <SajjLogo />
+        <SajjLogo gradient={logoGradient} standardDesktop={variantDesktop} />
       </LogoContainer>
-      <Hamburger isOpen={isOpen} onClick={toggle} />
-      <Menu items={menuItems} isOpen={isOpen} handleClick={toggle} />
+      <Hamburger isOpen={isOpen} onClick={toggle} colorVariant={variant} />
+      <Menu
+        items={menuItems}
+        isOpen={isOpen}
+        handleClick={toggle}
+        menuVariant={variant}
+        variantDesktop={variantDesktop}
+      />
     </HeaderContainer>
   )
 }
 
-const HeaderContainer = styled(Container)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 1.875rem;
-  padding-bottom: 1.875rem;
+interface HeaderContainerProps {
+  height: 'standard' | 'grayscale' | 'mustard'
+  desktop?: boolean
+}
+
+const HeaderContainer = styled(Container)<HeaderContainerProps>`
+  ${({ height, desktop, theme }) => css`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.875rem;
+    padding-bottom: ${height === 'standard' ? '1.875rem' : '0.2rem'};
+
+    ${theme.media.desktop} {
+      ${desktop &&
+      css`
+        padding-bottom: 1.875rem;
+      `}
+    }
+  `}
 `
 
 const LogoContainer = styled(Link)`

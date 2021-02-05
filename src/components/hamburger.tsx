@@ -1,21 +1,44 @@
 import React, { FC } from 'react'
 import styled, { css } from 'styled-components'
+import { theme } from './sc-theme'
 
 interface HamburgerProps {
   isOpen: boolean
   onClick: () => void
+  colorVariant?: 'standard' | 'grayscale' | 'mustard'
 }
 
 interface BunsProps {
   isOpen: boolean
 }
 
-export const Hamburger: FC<HamburgerProps> = ({ isOpen, onClick }) => (
+export const Hamburger: FC<HamburgerProps> = ({
+  isOpen,
+  onClick,
+  colorVariant,
+}) => (
   <Buns onClick={onClick} isOpen={isOpen}>
-    <Line position="top" isOpen={isOpen} />
-    <Line position="bottom" isOpen={isOpen} />
+    <Line position="top" isOpen={isOpen} lineColor={getColor(colorVariant)} />
+    <Line
+      position="bottom"
+      isOpen={isOpen}
+      lineColor={getColor(colorVariant)}
+    />
   </Buns>
 )
+
+function getColor(
+  menuVariant: 'standard' | 'grayscale' | 'mustard' | undefined
+): string | undefined {
+  switch (menuVariant) {
+    case 'standard':
+      return theme.colors.white
+    case 'grayscale':
+      return theme.colors.gray
+    case 'mustard':
+      return theme.colors.darkBlue
+  }
+}
 
 const Buns = styled.div<BunsProps>`
   ${({ isOpen, theme }) => css`
@@ -39,17 +62,19 @@ const Buns = styled.div<BunsProps>`
 interface LineProps {
   position: 'top' | 'bottom'
   isOpen: boolean
+  lineColor?: string | undefined
 }
 const Line = styled.div<LineProps>`
+  background: white;
   position: absolute;
   display: block;
   width: 100%;
   height: 0.3125rem;
-  background: white;
+
   border-radius: 0.125rem;
   transition: 0.2s;
 
-  ${({ position, isOpen }) => {
+  ${({ position, isOpen, lineColor, theme }) => {
     switch (position) {
       case 'top':
         return isOpen
@@ -59,16 +84,19 @@ const Line = styled.div<LineProps>`
             `
           : css`
               top: 0;
+              background: ${lineColor};
             `
       case 'bottom':
         return css`
           width: 1.875rem;
+          background: ${lineColor};
 
           ${isOpen
             ? css`
                 transform: rotate(-45deg);
                 top: calc(50% - 0.2rem);
                 width: 100%;
+                background: ${theme.colors.white};
               `
             : css`
                 bottom: 0;

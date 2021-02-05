@@ -8,19 +8,36 @@ import { FunkyBorder, funkyBorderStyle } from './funky-border'
 
 interface LayoutProps {
   headerContent?: JSX.Element
+  funkyHeight?: 'half' | 'quarter'
+  headerVariant: 'standard' | 'grayscale' | 'mustard'
+  standardDesktop?: boolean
 }
 
-export const Layout: FC<LayoutProps> = ({ headerContent, children }) => {
+export const Layout: FC<LayoutProps> = ({
+  headerContent,
+  children,
+  funkyHeight,
+  headerVariant,
+  standardDesktop,
+}) => {
   return (
     <>
-      <TopSection>
-        <Header />
+      <TopSection
+        topSectionVariant={headerVariant}
+        borderHeight={funkyHeight}
+        variantDesktop={standardDesktop}
+      >
+        <Header
+          logoGradient={headerVariant}
+          variant={headerVariant}
+          variantDesktop={standardDesktop}
+        />
         {headerContent && (
           <HeaderContentContainer>
             <div>{headerContent}</div>
           </HeaderContentContainer>
         )}
-        <FunkyBorder bottom />
+        <FunkyBorder bottom height={funkyHeight} />
       </TopSection>
       <main>{children}</main>
       <Footer />
@@ -28,15 +45,71 @@ export const Layout: FC<LayoutProps> = ({ headerContent, children }) => {
   )
 }
 
-const TopSection = styled.section`
-  ${({ theme }) => css`
+interface TopSectionProps {
+  topSectionVariant: 'standard' | 'grayscale' | 'mustard'
+  borderHeight?: 'half' | 'quarter'
+  variantDesktop?: boolean
+}
+
+const TopSection = styled.section<TopSectionProps>`
+  ${({ theme, topSectionVariant, borderHeight, variantDesktop }) => css`
+    ${topSectionVariant === 'grayscale' &&
+    css`
+          padding-bottom: 40px;
+          background: linear-gradient(
+            180deg,
+            ${theme.colors.white} 63.54%,
+            #f2f2f2 100%
+          );
+          ${funkyBorderStyle('bottom', borderHeight)}}
+
+          ${theme.media.desktop} {
+            ${funkyBorderStyle('bottom')}}
+            margin-bottom: 5rem;
+          }
+
+          ${
+            variantDesktop &&
+            css`
+              ${theme.media.desktop} {
+                background: linear-gradient(
+                  49.79deg,
+                  ${theme.colors.blue} -21.04%,
+                  ${theme.colors.red} 57.35%,
+                  ${theme.colors.orange} 136.6%
+                );
+              }
+            `
+          }
+
+
+  `}
+
+    ${topSectionVariant === 'mustard' &&
+    css`
+          padding-bottom: 40px;
+          background: ${theme.colors.lightYellow};
+          ${funkyBorderStyle('bottom', borderHeight)}}
+
+          ${theme.media.desktop} {
+            ${funkyBorderStyle('bottom')}}
+            margin-bottom: 5rem;
+          }
+
+
+  `}
+
+    ${topSectionVariant === 'standard' &&
+    css`
     background: linear-gradient(
-      49.79deg,
-      ${theme.colors.blue} -21.04%,
-      ${theme.colors.red} 57.35%,
-      ${theme.colors.orange} 136.6%
-    );
-    ${funkyBorderStyle('bottom')}
+    49.79deg,
+    ${theme.colors.blue} -21.04%,
+    ${theme.colors.red} 57.35%,
+    ${theme.colors.orange} 136.6%
+  );
+  
+  ${funkyBorderStyle('bottom', borderHeight)}}
+  `}
   `}
 `
 

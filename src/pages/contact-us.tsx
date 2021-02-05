@@ -45,7 +45,7 @@ const ContactUsPage: FC<PageProps<ContactUsPageQuery>> = ({ data }) => {
   const { t } = useTranslation('contact')
 
   return (
-    <Layout>
+    <Layout funkyHeight="half" headerVariant="grayscale">
       <SEO title="Contact us" data={data} />
       <SectionContainer>
         <Form name="Contact Form" onSubmit={sendResponses} data-netlify="true">

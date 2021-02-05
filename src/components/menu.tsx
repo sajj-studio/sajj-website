@@ -3,26 +3,59 @@ import styled, { css } from 'styled-components'
 import { MenuItem } from './header'
 import { LanguageSwitcher } from './language-switcher'
 import { Link } from './link'
-import { hexToRGBA } from './sc-theme'
+import { hexToRGBA, theme } from './sc-theme'
 
 interface MenuProps {
   items: MenuItem[]
   isOpen: boolean
   handleClick: () => void
+  menuVariant: 'standard' | 'grayscale' | 'mustard'
+  variantDesktop?: boolean
 }
 
-export const Menu: FC<MenuProps> = ({ items, isOpen, handleClick }) => (
+export const Menu: FC<MenuProps> = ({
+  items,
+  isOpen,
+  handleClick,
+  menuVariant,
+  variantDesktop,
+}) => (
   <Container isOpen={isOpen}>
     {items.map(item => (
       <Item key={item.label} onClick={handleClick}>
-        <MenuLink to={item.href}>{item.label}</MenuLink>
+        <MenuLink
+          to={item.href}
+          colorVariant={getColor(menuVariant)}
+          desktopColorvariant={variantDesktop}
+        >
+          {item.label}
+        </MenuLink>
       </Item>
     ))}
     <Item onClick={handleClick}>
-      <LanguageSwitcher />
+      <LanguageSwitcher
+        colorTheme={getColor(menuVariant)}
+        desktopColorvariant={variantDesktop}
+      />
     </Item>
   </Container>
 )
+
+interface MenuLinkProps {
+  colorVariant: string | undefined
+  desktopColorvariant?: boolean
+}
+
+function getColor(menuVariant: string): string | undefined {
+  switch (menuVariant) {
+    case 'standard':
+      return theme.colors.white
+    case 'grayscale':
+      return theme.colors.darkBlue
+    case 'mustard':
+      return theme.colors.darkBlue
+  }
+}
 
 const Container = styled.ul<{ isOpen: boolean }>`
   ${({ isOpen, theme }) => css`
@@ -84,8 +117,8 @@ const Item = styled.li`
     }
   `}
 `
-const MenuLink = styled(Link)`
-  ${({ theme }) => css`
+const MenuLink = styled(Link)<MenuLinkProps>`
+  ${({ theme, colorVariant, desktopColorvariant }) => css`
     display: block;
     font-family: ${theme.typography.sansSerif};
     font-size: 2.5rem;
@@ -96,6 +129,12 @@ const MenuLink = styled(Link)`
     ${theme.media.desktop} {
       font-size: 1.5225rem;
       text-shadow: none;
+      color: ${colorVariant};
+
+      ${desktopColorvariant &&
+      css`
+        color: ${theme.colors.white};
+      `}
     }
   `}
 `

@@ -8,8 +8,12 @@ interface FunkyBorderBottomProps {
   bottom: boolean
 }
 
+interface FunkyBorderHeight {
+  height?: 'half' | 'quarter' | undefined
+}
+
 export const FunkyBorder: FC<
-  FunkyBorderTopProps | FunkyBorderBottomProps
+  (FunkyBorderTopProps | FunkyBorderBottomProps) & FunkyBorderHeight
 > = props => {
   const isTop = useMemo(() => 'top' in props && props.top, [props])
 
@@ -19,6 +23,7 @@ export const FunkyBorder: FC<
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 100 100"
       preserveAspectRatio="none"
+      height={props.height}
     >
       <path
         d={
@@ -35,32 +40,62 @@ export const FunkyBorder: FC<
 
 interface StylesProps {
   position: 'top' | 'bottom'
+  height: 'half' | 'quarter' | undefined
 }
 export const Styles = styled.svg<StylesProps>`
-  position: absolute;
-  height: 100px;
-  width: 100%;
-  z-index: 2;
+  ${({ height, position }) =>
+    css`
+      position: absolute;
+      height: 100px;
+      width: 100%;
+      z-index: 2;
 
-  ${({ position }) =>
-    position === 'top'
-      ? css`
-          top: 0;
-        `
-      : css`
-          bottom: 0;
-        `}
+      ${() =>
+        position === 'top'
+          ? css`
+              top: 0;
+            `
+          : css`
+              bottom: 0;
+            `}
+
+      ${() => {
+        switch (height) {
+          case 'half':
+            return css`
+              height: 50px;
+            `
+          case 'quarter':
+            return css`
+              height: 25px;
+            `
+        }
+      }}
+    `}
 `
 
 export const funkyBorderStyle = (
-  position: 'top' | 'bottom'
+  position: 'top' | 'bottom',
+  height?: 'half' | 'quarter'
 ): ReturnType<typeof css> =>
-  position === 'top'
-    ? css`
-        position: relative;
-        padding-top: calc((6.25rem / 2) + 1.875rem);
-      `
-    : css`
-        position: relative;
-        padding-bottom: calc((6.25rem / 2) + 1.875rem);
-      `
+  css`
+    ${position === 'top'
+      ? css`
+          position: relative;
+          padding-top: calc((6.25rem / 2) + 1.875rem);
+        `
+      : css`
+          position: relative;
+          padding-bottom: calc((6.25rem / 2) + 1.875rem);
+        `}
+
+    ${height === 'half' &&
+    css`
+      padding-bottom: calc(((6.25rem / 2) + 1.875rem) / 2);
+    `}
+
+    ${height === 'quarter' &&
+    css`
+      padding-bottom: calc(((6.25rem / 2) + 1.875rem) / 4);
+    `}
+  `

@@ -21,7 +21,7 @@ export const Layout: FC<LayoutProps> = ({
   standardDesktop,
 }) => {
   return (
-    <>
+    <LayoutContainer bodyColor={headerVariant}>
       <TopSection
         topSectionVariant={headerVariant}
         borderHeight={funkyHeight}
@@ -37,13 +37,23 @@ export const Layout: FC<LayoutProps> = ({
             <div>{headerContent}</div>
           </HeaderContentContainer>
         )}
-        <FunkyBorder bottom height={funkyHeight} />
+        <FunkyBorder bottom height={funkyHeight} color={headerVariant} />
       </TopSection>
       <main>{children}</main>
       <Footer />
-    </>
+    </LayoutContainer>
   )
 }
+
+interface LayoutContainerProps {
+  bodyColor?: 'standard' | 'grayscale' | 'mustard'
+}
+
+const LayoutContainer = styled.div<LayoutContainerProps>`
+  ${({ theme, bodyColor }) => css`
+    background: ${bodyColor === 'mustard' && theme.colors.orange};
+  `}
+`
 
 interface TopSectionProps {
   topSectionVariant: 'standard' | 'grayscale' | 'mustard'

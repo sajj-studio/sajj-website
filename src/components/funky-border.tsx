@@ -1,5 +1,6 @@
 import React, { FC, useMemo } from 'react'
 import styled, { css } from 'styled-components'
+import { theme } from './sc-theme'
 
 interface FunkyBorderTopProps {
   top: boolean
@@ -12,8 +13,14 @@ interface FunkyBorderHeight {
   height?: 'half' | 'quarter' | undefined
 }
 
+interface FunkyBorderColor {
+  color?: 'standard' | 'grayscale' | 'mustard'
+}
+
 export const FunkyBorder: FC<
-  (FunkyBorderTopProps | FunkyBorderBottomProps) & FunkyBorderHeight
+  (FunkyBorderTopProps | FunkyBorderBottomProps) &
+    FunkyBorderHeight &
+    FunkyBorderColor
 > = props => {
   const isTop = useMemo(() => 'top' in props && props.top, [props])
 
@@ -32,7 +39,7 @@ export const FunkyBorder: FC<
             : 'M0,50 C40,190 66,-25 100,50 L100,100 L0,100 Z'
         }
         stroke-width="0"
-        fill="#fff"
+        fill={props.color === 'mustard' ? theme.colors.orange : '#fff'}
       />
     </Styles>
   )

@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const config = {
+  flags: { DEV_SSR: true },
   siteMetadata: {
     host: `https://sajj.studio`,
     locales: ['en-US', 'fr-CA'],

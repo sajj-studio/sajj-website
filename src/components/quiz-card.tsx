@@ -1,24 +1,71 @@
-import React, { FC, useCallback, useState } from 'react'
+import React, { FC, useRef, useState } from 'react'
+import { useSpring, animated, config } from 'react-spring'
+import { useDrag } from 'react-use-gesture'
 import styled, { css } from 'styled-components'
 import { Typography } from './typography'
 
+const SCALE = {
+  min: 1,
+  max: 2,
+}
+const ROTATE = {
+  min: 0,
+  max: 30,
+}
+const ANSWER_THRESHOLD = 0.6
+
 export const QuizCard: FC = () => {
-  const [response, setResponse] = useState<'yes' | 'no'>()
-  const randomResponse = useCallback(() => {
-    setResponse(Math.round(Math.random() * 100) % 2 === 0 ? 'yes' : 'no')
-  }, [])
-  const clearResponse = useCallback(() => {
-    setResponse(undefined)
-  }, [])
+  const [response, setResponse] = useState<'yes' | 'no' | undefined>()
+
+  const cardRef = useRef<HTMLDivElement | null>(null)
+
+  const [{ scale, rotate }, set] = useSpring(() => ({
+    rotate: ROTATE.min + 'deg',
+    scale: SCALE.min,
+    config: config.gentle,
+  }))
+
+  const bind = useDrag(({ active, movement: [mx] }) => {
+    const cardWidth = cardRef.current?.offsetWidth ?? 0
+    const distancePercentage = Math.min(Math.abs(mx / cardWidth), 1)
+
+    // If mx < 0, swiping left => yes
+    setResponse(mx < 0 ? 'yes' : 'no')
+
+    if (active) {
+      // If the animation is at less than threshold, let them swipe
+      if (distancePercentage < ANSWER_THRESHOLD) {
+        set({
+          scale: SCALE.max - 1 + distancePercentage,
+          rotate: (mx < 0 ? '-' : '') + ROTATE.max * distancePercentage + 'deg',
+        })
+        // Otherwise lock into the end of the animation
+      } else {
+        set({
+          scale: SCALE.max,
+          rotate: (mx < 0 ? '-' : '') + ROTATE.max + 'deg',
+        })
+      }
+    } else {
+      // If the animation didn't reach the threshold, reset it, along with the answer
+      if (distancePercentage < ANSWER_THRESHOLD) {
+        setResponse(undefined)
+        set({
+          rotate: ROTATE.min + 'deg',
+          scale: SCALE.min,
+        })
+      }
+    }
+  })
 
   return (
     <CardContainer>
       <Card
-        tilt={
-          response === 'yes' ? 'left' : response === 'no' ? 'right' : undefined
-        }
-        onMouseEnter={randomResponse}
-        onMouseLeave={clearResponse}
+        ref={cardRef}
+        style={{
+          transform: rotate.interpolate(rotate => `rotate(${rotate})`),
+        }}
+        {...bind()}
       >
         <Stripes />
         <CardNumber>
@@ -30,12 +77,40 @@ export const QuizCard: FC = () => {
           Do you need a shop on your website?
         </CardQuestion>
       </Card>
-      <YesOrNo no selected={response === 'no'}>
+      <YesOrNo
+        no
+        style={{
+          transform: scale.interpolate(
+            (scale = 0) =>
+              `scale(${
+                response === 'no'
+                  ? scale
+                  : response === 'yes'
+                  ? scale ** -1
+                  : SCALE.min
+              })`
+          ),
+        }}
+      >
         <Typography color="white" variant="title">
           No
         </Typography>
       </YesOrNo>
-      <YesOrNo yes selected={response === 'yes'}>
+      <YesOrNo
+        yes
+        style={{
+          transform: scale.interpolate(
+            (scale = 0) =>
+              `scale(${
+                response === 'yes'
+                  ? scale
+                  : response === 'no'
+                  ? scale ** -1
+                  : SCALE.min
+              })`
+          ),
+        }}
+      >
         <Typography color="white" variant="title">
           Yes
         </Typography>
@@ -47,13 +122,11 @@ export const QuizCard: FC = () => {
 const CardContainer = styled.div`
   position: relative;
   height: 30rem;
+  user-select: none;
 `
 
-interface CardProps {
-  tilt?: 'left' | 'right'
-}
-const Card = styled.div<CardProps>`
-  ${({ theme, tilt }) => css`
+const Card = styled(animated.div)`
+  ${({ theme }) => css`
     position: absolute;
     top: 0;
     bottom: 0;
@@ -66,18 +139,9 @@ const Card = styled.div<CardProps>`
     z-index: 2;
     box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
     overflow: hidden;
+    margin-bottom: 2rem;
 
     transform-origin: bottom center;
-    transition: transform 0.2s ease-in;
-
-    ${tilt === 'left' &&
-    css`
-      transform: rotate(-22deg);
-    `}
-    ${tilt === 'right' &&
-    css`
-      transform: rotate(22deg);
-    `}
   `}
 `
 
@@ -126,11 +190,8 @@ interface YesProps {
 interface NoProps {
   no: boolean
 }
-interface YesOrNoProps {
-  selected?: boolean
-}
-const YesOrNo = styled.div<(YesProps | NoProps) & YesOrNoProps>`
-  ${({ theme, selected, ...props }) =>
+const YesOrNo = styled(animated.div)<YesProps | NoProps>`
+  ${({ theme, ...props }) =>
     css`
       position: absolute;
       top: 10.375rem;
@@ -142,7 +203,7 @@ const YesOrNo = styled.div<(YesProps | NoProps) & YesOrNoProps>`
       border-radius: 50%;
       z-index: 1;
 
-      transition: transform 0.2s ease-in;
+      transform-origin: center center;
 
       ${'no' in props &&
       css`
@@ -153,17 +214,6 @@ const YesOrNo = styled.div<(YesProps | NoProps) & YesOrNoProps>`
       css`
         right: 0;
         background: #68d1d8;
-      `}
-
-      ${selected &&
-      'no' in props &&
-      css`
-        transform: scale(2) translate(-1rem);
-      `}
-      ${selected &&
-      'yes' in props &&
-      css`
-        transform: scale(2) translate(1rem);
       `}
     `}
 `

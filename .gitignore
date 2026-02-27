@@ -56,7 +56,13 @@ typings/
 
 # gatsby files
 .cache/
-public
+
+# next.js build output (public/ is now a source dir, not build output)
+.next/
+out/
+
+# typescript incremental build cache
+tsconfig.tsbuildinfo
 
 # Mac files
 .DS_Store

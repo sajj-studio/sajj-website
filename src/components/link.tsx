@@ -1,19 +1,17 @@
-import React, { FC, useContext } from 'react'
-import { Link as GatsbyLink, GatsbyLinkProps } from 'gatsby'
-import { PageContext } from '../contexts/page-context'
-import { routes } from '../routes'
+'use client'
 
-export const Link: FC<GatsbyLinkProps<unknown>> = ({ to, ref, ...rest }) => {
-  const { lang } = useContext(PageContext)
-  const matchArray = to?.match(/(\/([A-Za-z-]*\/)?)(#[A-Za-z-]+)?/)
+import React, { FC } from 'react'
+import { Link as NextIntlLink } from '@/navigation'
+import type { ComponentPropsWithoutRef } from 'react'
 
-  const route = matchArray?.[1] ?? ''
-  const anchor = matchArray?.[3]
+type NextIntlLinkProps = ComponentPropsWithoutRef<typeof NextIntlLink>
 
-  return (
-    <GatsbyLink
-      {...rest}
-      to={`/${lang}${routes[route][lang]}${anchor ?? ''}`}
-    />
-  )
+// Allow string hrefs (for hash anchors like /#about-us) in addition to
+// next-intl's typed pathname union
+type LinkProps = Omit<NextIntlLinkProps, 'href'> & {
+  href: NextIntlLinkProps['href'] | string
 }
+
+export const Link: FC<LinkProps> = ({ href, ...rest }) => (
+  <NextIntlLink href={href as NextIntlLinkProps['href']} {...rest} />
+)

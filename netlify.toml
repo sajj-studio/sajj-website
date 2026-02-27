@@ -1,0 +1,18 @@
+[build]
+  command = "yarn build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[[redirects]]
+  from = "/"
+  to = "/en-US/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact-us/"
+  to = "/en-US/contact-us/"
+  status = 301
+  force = true

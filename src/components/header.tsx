@@ -1,3 +1,5 @@
+'use client'
+
 import { Link } from './link'
 import React, { FC, useCallback, useState } from 'react'
 import styled, { css } from 'styled-components'
@@ -17,7 +19,7 @@ const menuItems: MenuItem[] = [
   { id: 'about-us', href: '/#about-us', label: 'About us' },
   { id: 'services', href: '/#what-we-do', label: 'Services' },
   // { id: 'our-work', href: '/', label: 'Our work' },
-  { id: 'contact-us', href: '/contact-us/', label: 'Contact us' },
+  { id: 'contact-us', href: '/contact-us', label: 'Contact us' },
 ]
 
 export const Header: FC = () => {
@@ -28,7 +30,7 @@ export const Header: FC = () => {
 
   return (
     <HeaderContainer>
-      <LogoContainer to="/">
+      <LogoContainer href="/">
         <SajjLogo />
       </LogoContainer>
       <Hamburger isOpen={isOpen} onClick={toggle} />

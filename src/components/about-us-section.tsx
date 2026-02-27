@@ -1,27 +1,21 @@
+'use client'
+
 import React, { FC } from 'react'
-import { graphql } from 'gatsby'
-import { AboutUsSectionFragment } from '../graphqlTypes'
-import { useTranslation } from 'react-i18next'
+import styled, { css } from 'styled-components'
 import { Container } from './container'
 import { Typography } from './typography'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS } from '@contentful/rich-text-types'
-import styled, { css } from 'styled-components'
-
-export const fragment = graphql`
-  fragment AboutUsSection on ContentfulHomepage {
-    aboutUsText {
-      raw
-    }
-  }
-`
+import { useTranslations } from 'next-intl'
+import type { Document } from '@contentful/rich-text-types'
+import type { HomepageFields } from '@/lib/contentful-types'
 
 interface AboutUsSectionProps {
-  data?: AboutUsSectionFragment | null
+  data?: HomepageFields | null
 }
 
 export const AboutUsSection: FC<AboutUsSectionProps> = ({ data }) => {
-  const { t } = useTranslation('home')
+  const t = useTranslations('home')
 
   return (
     <AboutUsSectionContainer>
@@ -29,15 +23,16 @@ export const AboutUsSection: FC<AboutUsSectionProps> = ({ data }) => {
         <Typography variant="title" color="white">
           {t('aboutUs')}
         </Typography>
-        {documentToReactComponents(JSON.parse(data?.aboutUsText?.raw ?? '{}'), {
-          renderNode: {
-            [BLOCKS.PARAGRAPH]: (_, children) => (
-              <Typography variant="body" color="white">
-                {children}
-              </Typography>
-            ),
-          },
-        })}
+        {data?.aboutUsText &&
+          documentToReactComponents(data.aboutUsText as Document, {
+            renderNode: {
+              [BLOCKS.PARAGRAPH]: (_, children) => (
+                <Typography variant="body" color="white">
+                  {children}
+                </Typography>
+              ),
+            },
+          })}
       </ContentContainer>
     </AboutUsSectionContainer>
   )

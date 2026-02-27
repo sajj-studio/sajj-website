@@ -1,12 +1,14 @@
+'use client'
+
 import React, { FC } from 'react'
 import styled from 'styled-components'
 import { Button } from './button'
 import { Container } from './container'
 import { Typography } from './typography'
-import { useTranslation } from 'react-i18next'
+import { useTranslations } from 'next-intl'
 
 export const HelloContactSection: FC = () => {
-  const { t } = useTranslation('home')
+  const t = useTranslations('home')
 
   return (
     <SectionContainer>
@@ -16,7 +18,7 @@ export const HelloContactSection: FC = () => {
       <Typography variant="body" color="blue">
         {t('letUsKnow')}
       </Typography>
-      <Button to="/contact-us/">{t('completeTheForm')}</Button>
+      <Button href="/contact-us">{t('completeTheForm')}</Button>
     </SectionContainer>
   )
 }

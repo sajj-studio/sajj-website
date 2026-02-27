@@ -1,0 +1,37 @@
+{
+  "common": {
+    "title": "SAJJ Studio",
+    "otherLanguage": "Français"
+  },
+  "home": {
+    "hello": "Hello!",
+    "letUsKnow": "Let us know what we can do for you!",
+    "completeTheForm": "Complete the form",
+    "aboutUs": "About Us",
+    "whatWeDo": "What we do",
+    "branding": "Logo & Branding",
+    "branding_desc": "Creating a strategy adapted to you",
+    "design": "Web design",
+    "design_desc": "Building a website to suit your need",
+    "socialMedia": "Social media",
+    "socialMedia_desc": "Helping you to grow your traffic"
+  },
+  "contact": {
+    "contact": "Contact Us",
+    "takeAFewSeconds": "Please take a few seconds to tell us more about you and your project!",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "companyLabel": "Company or project name",
+    "services": "What services are you interested in?",
+    "selectMany": "Select as many as you want.",
+    "branding": "Logo & Branding",
+    "design": "Web design",
+    "socialMedia": "Social media",
+    "additional": "Additional information",
+    "typeHere": "Type here",
+    "send": "Send"
+  },
+  "footer": {
+    "contactUs": "Contact us"
+  }
+}

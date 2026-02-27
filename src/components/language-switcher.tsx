@@ -1,22 +1,20 @@
-import React, { FC, useContext, useMemo } from 'react'
-import { PageContext } from '../contexts/page-context'
+'use client'
+
+import React, { FC } from 'react'
 import styled, { css } from 'styled-components'
-import { useTranslation } from 'react-i18next'
-import { Link } from 'gatsby'
-import { routes } from '../routes'
+import { useTranslations } from 'next-intl'
+import { useLocale } from 'next-intl'
+import { usePathname, Link } from '@/navigation'
 
 export const LanguageSwitcher: FC = () => {
-  const { lang, originalPath } = useContext(PageContext)
-  const { t } = useTranslation('common')
+  const locale = useLocale()
+  const pathname = usePathname()
+  const t = useTranslations('common')
 
-  const otherLanguage = useMemo(() => (lang === 'en-US' ? 'fr-CA' : 'en-US'), [
-    lang,
-  ])
+  const nextLocale = locale === 'en-US' ? 'fr-CA' : 'en-US'
 
   return (
-    <LanguageLink
-      to={`/${otherLanguage}${routes[originalPath][otherLanguage]}`}
-    >
+    <LanguageLink href={pathname} locale={nextLocale}>
       <LanguageText>{t('otherLanguage')}</LanguageText>
       <LanguageIndicator />
     </LanguageLink>

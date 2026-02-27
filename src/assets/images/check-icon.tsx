@@ -1,12 +1,14 @@
-import React, { FC, useContext } from 'react'
-import { DefaultTheme, ThemeContext } from 'styled-components'
+'use client'
+
+import React, { FC } from 'react'
+import { DefaultTheme, useTheme } from 'styled-components'
 
 interface CheckIconProps {
   color: keyof DefaultTheme['colors']
 }
 
 export const CheckIcon: FC<CheckIconProps> = ({ color }) => {
-  const theme = useContext(ThemeContext)
+  const theme = useTheme()
 
   return (
     <svg

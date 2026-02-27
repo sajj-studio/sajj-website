@@ -1,3 +1,5 @@
+'use client'
+
 import React, { FC } from 'react'
 import styled, { css } from 'styled-components'
 import { MenuItem } from './header'
@@ -15,7 +17,7 @@ export const Menu: FC<MenuProps> = ({ items, isOpen, handleClick }) => (
   <Container isOpen={isOpen}>
     {items.map(item => (
       <Item key={item.label} onClick={handleClick}>
-        <MenuLink to={item.href}>{item.label}</MenuLink>
+        <MenuLink href={item.href}>{item.label}</MenuLink>
       </Item>
     ))}
     <Item onClick={handleClick}>

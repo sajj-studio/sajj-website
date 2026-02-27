@@ -1,12 +1,14 @@
-import React, { FC, useContext } from 'react'
-import { DefaultTheme, ThemeContext } from 'styled-components'
+'use client'
+
+import React, { FC } from 'react'
+import { DefaultTheme, useTheme } from 'styled-components'
 
 interface LogoProps {
   color: keyof DefaultTheme['colors']
 }
 
 export const LinkedinLogo: FC<LogoProps> = ({ color }) => {
-  const { colors } = useContext(ThemeContext)
+  const { colors } = useTheme()
 
   return (
     <svg

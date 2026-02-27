@@ -1,3 +1,5 @@
+'use client'
+
 import React, { FC } from 'react'
 import styled, { css } from 'styled-components'
 import { BrandingIcon } from '../assets/images/branding-icon'
@@ -6,14 +8,14 @@ import { WebDesignIcon } from '../assets/images/web-design-icon'
 import { Container } from './container'
 import { Typography } from './typography'
 import { theme } from './sc-theme'
-import { useTranslation } from 'react-i18next'
+import { useTranslations } from 'next-intl'
 
 /**
  * I'm trying out a new notation in this file - mixed PascalCase and underscores for nesting
  */
 
 export const WhatWeDo: FC = () => {
-  const { t } = useTranslation('home')
+  const t = useTranslations('home')
 
   return (
     <SectionContainer>

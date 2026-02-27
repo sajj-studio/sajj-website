@@ -1,10 +1,12 @@
-import React, { FC, useContext } from 'react'
-import { ThemeContext } from 'styled-components'
+'use client'
+
+import React, { FC } from 'react'
+import { useTheme } from 'styled-components'
 
 export const SocialMediaIcon: FC = () => {
   const {
     colors: { blue, red, orange },
-  } = useContext(ThemeContext)
+  } = useTheme()
 
   return (
     <svg

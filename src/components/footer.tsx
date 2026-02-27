@@ -1,3 +1,5 @@
+'use client'
+
 import React, { FC } from 'react'
 import styled, { css } from 'styled-components'
 import { SajjLogo } from '../assets/images/sajj-logo'
@@ -5,28 +7,18 @@ import { FacebookLogo } from '../assets/images/facebook-logo'
 import { InstagramLogo } from '../assets/images/instagram-logo'
 import { TwitterLogo } from '../assets/images/twitter-logo'
 import { LinkedinLogo } from '../assets/images/linkedin-logo'
-import { useTranslation } from 'react-i18next'
+import { useTranslations } from 'next-intl'
 import { Typography } from './typography'
 import { theme } from './sc-theme'
 import { Link } from './link'
-import { graphql, useStaticQuery } from 'gatsby'
-import { FooterQuery } from '../graphqlTypes'
+import type { ContactInfoFields } from '@/lib/contentful-types'
 
-export const query = graphql`
-  query Footer {
-    contentfulContactInfo {
-      email
-      facebookPage
-      instagramPage
-      twitterPage
-      linkedInPage
-    }
-  }
-`
+interface FooterProps {
+  data?: ContactInfoFields | null
+}
 
-export const Footer: FC = () => {
-  const { t } = useTranslation('footer')
-  const { contentfulContactInfo: data } = useStaticQuery<FooterQuery>(query)
+export const Footer: FC<FooterProps> = ({ data }) => {
+  const t = useTranslations('footer')
 
   return (
     <_FooterWrapper>
@@ -38,7 +30,7 @@ export const Footer: FC = () => {
           <_VerticalAlign>
             <Typography
               as={Link}
-              to="/contact-us/"
+              href="/contact-us"
               color="orange"
               variant="body"
             >

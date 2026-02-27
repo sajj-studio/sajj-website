@@ -1,16 +1,19 @@
 import React from 'react'
 import { Metadata } from 'next'
+import { setRequestLocale } from 'next-intl/server'
 import { getSeoData, getContactInfo } from '@/lib/contentful'
 import { Layout } from '@/components/layout'
 import { ContactForm } from '@/components/contact-form'
 
 interface ContactPageProps {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: ContactPageProps): Promise<Metadata> {
+  const { locale } = await params
+  setRequestLocale(locale)
   const seoData = await getSeoData(locale)
   return {
     title: 'Contact Us',
@@ -31,8 +34,10 @@ export async function generateMetadata({
 }
 
 export default async function ContactPage({
-  params: { locale: _locale },
+  params,
 }: ContactPageProps): Promise<JSX.Element> {
+  const { locale } = await params
+  setRequestLocale(locale)
   const footerData = await getContactInfo()
 
   return (

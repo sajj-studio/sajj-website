@@ -1,17 +1,20 @@
 import React from 'react'
 import { Metadata } from 'next'
+import { setRequestLocale } from 'next-intl/server'
 import { getHomepageData, getSeoData, getContactInfo } from '@/lib/contentful'
 import { Layout } from '@/components/layout'
 import { HomePageContent } from '@/components/home-page-content'
 import { HomeHeaderContent } from '@/components/home-header-content'
 
 interface HomePageProps {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: HomePageProps): Promise<Metadata> {
+  const { locale } = await params
+  setRequestLocale(locale)
   const seoData = await getSeoData(locale)
   return {
     title: { template: '%s | SAJJ Studio', default: 'SAJJ Studio' },
@@ -32,8 +35,10 @@ export async function generateMetadata({
 }
 
 export default async function HomePage({
-  params: { locale },
+  params,
 }: HomePageProps): Promise<JSX.Element> {
+  const { locale } = await params
+  setRequestLocale(locale)
   const content = await getHomepageData(locale)
   const footerData = await getContactInfo()
 

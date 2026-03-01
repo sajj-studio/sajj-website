@@ -1,6 +1,5 @@
 'use client'
-
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Link as NextIntlLink } from '@/navigation'
 import type { ComponentPropsWithoutRef } from 'react'
 

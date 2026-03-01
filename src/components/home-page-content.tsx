@@ -1,51 +1,31 @@
 'use client'
-
-import React from 'react'
 import Image from 'next/image'
 import styled, { css } from 'styled-components'
 import { HelloContactSection } from './hello-contact'
 import { FunkyBorder, funkyBorderStyle } from './funky-border'
 import { AboutUsSection } from './about-us-section'
 import { WhatWeDo } from './what-we-do'
-import type { HomepageFields } from '@/lib/contentful-types'
+import montrealSkyline from '@/assets/images/montreal_skyline.jpg'
+import { ReactNode } from 'react'
 
-interface HomePageContentProps {
-  content: HomepageFields | null
-  imageUrl: string
-  imageWidth: number
-  imageHeight: number
-}
-
-export function HomePageContent({
-  content,
-  imageUrl,
-  imageWidth,
-  imageHeight,
-}: HomePageContentProps): JSX.Element {
+export function HomePageContent(): ReactNode {
   return (
     <>
       <HelloContactSection />
 
-      <ImageContainer img={imageUrl}>
+      <ImageContainer img={montrealSkyline.src}>
         <div id="about-us" />
         <div>
-          {imageUrl && (
-            <HiddenImage
-              src={imageUrl}
-              alt=""
-              width={imageWidth}
-              height={imageHeight}
-            />
-          )}
+          <HiddenImage src={montrealSkyline} alt="" />
           <FunkyBorder top />
         </div>
         <DesktopOnly>
-          <AboutUsSection data={content} />
+          <AboutUsSection />
         </DesktopOnly>
       </ImageContainer>
       <ContentContainer>
         <MobileOnly>
-          <AboutUsSection data={content} />
+          <AboutUsSection />
         </MobileOnly>
         <div id="what-we-do" />
         <WhatWeDo />
@@ -71,22 +51,23 @@ const DesktopOnly = styled.div`
   `}
 `
 
-const ImageContainer = styled.section<{ img: string }>`
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const ImageContainer = styled(({ img, ...props }) => <section {...props} />)<{
+  img: string
+}>`
   ${({ img, theme }) => css`
     ${funkyBorderStyle('top')};
     padding-top: 0;
     position: relative;
-    background: linear-gradient(
-        180deg,
-        rgba(100, 26, 255, 0) 33.85%,
-        #641aff 100%
-      ),
+    background:
+      linear-gradient(180deg, rgba(100, 26, 255, 0) 33.85%, #641aff 100%),
       url(${img});
     background-position-y: center;
     background-repeat: no-repeat;
 
     ${theme.media.desktop} {
-      background: linear-gradient(
+      background:
+        linear-gradient(
           90deg,
           rgba(100, 26, 255, 1) 0%,
           rgba(100, 26, 255, 1) 30%,

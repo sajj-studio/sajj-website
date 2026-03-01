@@ -1,6 +1,5 @@
 'use client'
-
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { useTheme } from 'styled-components'
 
 export const BrandingIcon: FC = () => {
@@ -38,8 +37,8 @@ export const BrandingIcon: FC = () => {
         fill={red}
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M60.0851 37.567V21.9731H77.0965V9.2146H112.537V77.9693H60.0851V63.0842H96.9431V37.567H60.0851Z"
         fill={red}
       />
@@ -68,7 +67,7 @@ export const BrandingIcon: FC = () => {
         height="24.4471"
         fill={blue}
         stroke={orange}
-        stroke-width="1.07008"
+        strokeWidth="1.07008"
       />
       <path
         d="M44.491 38.2758L45.5159 41.118L48.5357 41.2144L46.1494 43.0674L46.9908 45.9693L44.491 44.2723L41.9913 45.9693L42.8327 43.0674L40.4463 41.2144L43.4661 41.118L44.491 38.2758Z"
@@ -107,13 +106,13 @@ export const BrandingIcon: FC = () => {
         <path
           d="M21.3611 26.2107L26.6963 11.4155L32.0315 26.2107C32.2657 26.8602 32.8725 27.301 33.5626 27.3231L49.2824 27.8252L36.86 37.4712C36.3146 37.8947 36.0828 38.608 36.2751 39.2712L40.6553 54.3767L27.6426 45.5431C27.0713 45.1553 26.3213 45.1553 25.75 45.5431L12.7374 54.3767L17.1175 39.2712C17.3098 38.608 17.078 37.8947 16.5327 37.4712L4.11026 27.8252L19.83 27.3231C20.5201 27.301 21.1269 26.8602 21.3611 26.2107Z"
           stroke={orange}
-          stroke-width="2"
+          strokeWidth="2"
         />
       </mask>
       <g mask="url(#mask0)">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M34.1713 5.61993H-3.55945V60.4364H34.1713V32.6722H53.3925V9.17944H34.1713V5.61993Z"
           fill={orange}
         />

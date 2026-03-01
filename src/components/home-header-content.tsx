@@ -1,24 +1,16 @@
 'use client'
-
-import React from 'react'
+import { useTranslations } from 'next-intl'
 import { Typography } from './typography'
 
-interface HomeHeaderContentProps {
-  title: string
-  text: string
-}
-
-export function HomeHeaderContent({
-  title,
-  text,
-}: HomeHeaderContentProps): JSX.Element {
+export function HomeHeaderContent() {
+  const t = useTranslations('home')
   return (
     <>
       <Typography variant="title" color="white">
-        {title}
+        {t('jumbotronTitle')}
       </Typography>
       <Typography variant="body" color="white">
-        {text}
+        {t('jumbotronText')}
       </Typography>
     </>
   )

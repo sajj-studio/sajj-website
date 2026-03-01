@@ -11,5 +11,6 @@
   "typescript.preferences.importModuleSpecifier": "relative",
   "typescript.suggest.completeFunctionCalls": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "i18n-ally.localesPaths": ["src/i18n", "src/messages"]
 }

@@ -5,7 +5,10 @@ interface TypographyProps {
   variant: 'title' | 'subtitle' | 'body' | 'inline'
 }
 
-export const Typography = styled.p<TypographyProps>`
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const Typography = styled(({ color, variant, ...props }) => (
+  <p {...props} />
+))<TypographyProps>`
   ${({ theme, color, variant }) => css`
     color: ${theme.colors[color]};
     font-family: ${theme.typography.sansSerif};

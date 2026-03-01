@@ -1,9 +1,9 @@
-import React from 'react'
+import { ReactNode } from 'react'
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
-}): React.ReactNode {
+  children: ReactNode
+}): ReactNode {
   return children
 }

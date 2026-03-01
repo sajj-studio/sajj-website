@@ -69,7 +69,11 @@ tsconfig.tsbuildinfo
 
 # Yarn
 yarn-error.log
-.pnp/
-.pnp.js
-# Yarn Integrity file
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
 .yarn-integrity

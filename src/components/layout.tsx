@@ -1,25 +1,17 @@
 'use client'
-
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Header } from './header'
 import { Footer } from './footer'
 import styled, { css } from 'styled-components'
 import '../assets/fonts/fonts.css'
 import { Container } from './container'
 import { FunkyBorder, funkyBorderStyle } from './funky-border'
-import type { ContactInfoFields } from '@/lib/contentful-types'
-
 interface LayoutProps {
   headerContent?: React.ReactNode
-  footerData?: ContactInfoFields | null
   children?: React.ReactNode
 }
 
-export const Layout: FC<LayoutProps> = ({
-  headerContent,
-  footerData,
-  children,
-}) => {
+export const Layout: FC<LayoutProps> = ({ headerContent, children }) => {
   return (
     <>
       <TopSection>
@@ -32,7 +24,7 @@ export const Layout: FC<LayoutProps> = ({
         <FunkyBorder bottom />
       </TopSection>
       <main>{children}</main>
-      <Footer data={footerData} />
+      <Footer />
     </>
   )
 }

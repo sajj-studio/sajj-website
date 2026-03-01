@@ -14,7 +14,10 @@
     "design": "Création de sites web",
     "design_desc": "Créer un site Web adapté à vos besoins",
     "socialMedia": "Des réseaux sociaux",
-    "socialMedia_desc": "Vous aider à développer votre trafic"
+    "socialMedia_desc": "Vous aider à développer votre trafic",
+    "jumbotronTitle": "Bienvenue dans le meilleur studio de création numérique au monde",
+    "jumbotronText": "Basé sur aucune étude scientifique réelle, mais nous avons de grands espoirs.",
+    "aboutUsText": "On est un petit studio, mais super ambitieux, basé à Montréal. Pourquoi est-ce qu'on a décide de faire ça? C'est assez simple: il y a beaucoup trop de studios et travailleurs indépendants qui prennent votre argent et qui font un travail vraiment mauvais (faites-nous confiance, on en a vu des affaires...). On veut arranger ça! Une garanti qu'on donne est que vous n'allez pas trouvé un autre studio avec une ténacité comme la notre!"
   },
   "contact": {
     "contact": "Nous contacter",
@@ -31,7 +34,17 @@
     "typeHere": "Écrivez ici",
     "send": "Envoyer"
   },
+  "nav": {
+    "home": "Accueil",
+    "aboutUs": "À propos",
+    "services": "Services",
+    "contactUs": "Nous contacter"
+  },
   "footer": {
     "contactUs": "Nous contacter"
+  },
+  "seo": {
+    "description": "Le meilleur studio de création numérique au monde!",
+    "keywords": "studio web, créative, créatif, site internet"
   }
 }

@@ -1,6 +1,5 @@
 'use client'
-
-import React, { FC } from 'react'
+import { FC } from 'react'
 import styled, { css } from 'styled-components'
 import { useTranslations } from 'next-intl'
 import { useLocale } from 'next-intl'
@@ -11,7 +10,7 @@ export const LanguageSwitcher: FC = () => {
   const pathname = usePathname()
   const t = useTranslations('common')
 
-  const nextLocale = locale === 'en-US' ? 'fr-CA' : 'en-US'
+  const nextLocale = locale === 'en' ? 'fr' : 'en'
 
   return (
     <LanguageLink href={pathname} locale={nextLocale}>

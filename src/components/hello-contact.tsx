@@ -1,6 +1,5 @@
 'use client'
-
-import React, { FC } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
 import { Button } from './button'
 import { Container } from './container'

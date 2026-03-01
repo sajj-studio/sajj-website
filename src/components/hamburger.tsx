@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import styled, { css } from 'styled-components'
 
 interface HamburgerProps {
@@ -17,7 +17,8 @@ export const Hamburger: FC<HamburgerProps> = ({ isOpen, onClick }) => (
   </Buns>
 )
 
-const Buns = styled.div<BunsProps>`
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const Buns = styled(({ isOpen, ...props }) => <div {...props} />)<BunsProps>`
   ${({ isOpen, theme }) => css`
     height: 1.25rem;
     width: 2.625rem;
@@ -40,7 +41,10 @@ interface LineProps {
   position: 'top' | 'bottom'
   isOpen: boolean
 }
-const Line = styled.div<LineProps>`
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const Line = styled(({ isOpen, position, ...props }) => (
+  <div {...props} />
+))<LineProps>`
   position: absolute;
   display: block;
   width: 100%;

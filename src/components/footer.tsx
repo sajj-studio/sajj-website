@@ -1,6 +1,5 @@
 'use client'
-
-import React, { FC } from 'react'
+import { FC } from 'react'
 import styled, { css } from 'styled-components'
 import { SajjLogo } from '../assets/images/sajj-logo'
 import { FacebookLogo } from '../assets/images/facebook-logo'
@@ -11,13 +10,9 @@ import { useTranslations } from 'next-intl'
 import { Typography } from './typography'
 import { theme } from './sc-theme'
 import { Link } from './link'
-import type { ContactInfoFields } from '@/lib/contentful-types'
+import { contactInfo } from '@/lib/static-content'
 
-interface FooterProps {
-  data?: ContactInfoFields | null
-}
-
-export const Footer: FC<FooterProps> = ({ data }) => {
+export const Footer: FC = () => {
   const t = useTranslations('footer')
 
   return (
@@ -38,39 +33,39 @@ export const Footer: FC<FooterProps> = ({ data }) => {
             </Typography>
             <Typography
               as="a"
-              href={`mailto:${data?.email}`}
+              href={`mailto:${contactInfo.email}`}
               color="orange"
               variant="body"
             >
-              {data?.email}
+              {contactInfo.email}
             </Typography>
           </_VerticalAlign>
         </_SectionWrapper>
         <_Line />
         <_SectionWrapper>
           <ImageLink
-            href={data?.facebookPage ?? ''}
+            href={contactInfo.facebookPage}
             target="_blank"
             rel="noopener noreferrer"
           >
             <FacebookLogo color="orange" />
           </ImageLink>
           <ImageLink
-            href={data?.instagramPage ?? ''}
+            href={contactInfo.instagramPage}
             target="_blank"
             rel="noopener noreferrer"
           >
             <InstagramLogo color="orange" />
           </ImageLink>
           <ImageLink
-            href={data?.twitterPage ?? ''}
+            href={contactInfo.twitterPage}
             target="_blank"
             rel="noopener noreferrer"
           >
             <TwitterLogo color="orange" />
           </ImageLink>
           <ImageLink
-            href={data?.linkedInPage ?? ''}
+            href={contactInfo.linkedInPage}
             target="_blank"
             rel="noopener noreferrer"
           >

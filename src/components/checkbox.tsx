@@ -1,10 +1,12 @@
-import React, { FC } from 'react'
+import { FC, InputHTMLAttributes } from 'react'
 import styled, { css, DefaultTheme } from 'styled-components'
 import { CheckIcon } from '../assets/images/check-icon'
 import { Typography } from './typography'
 
-interface CheckboxProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'color'> {
+interface CheckboxProps extends Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'color'
+> {
   label: string
   name: string
   color: keyof DefaultTheme['colors']

@@ -1,6 +1,5 @@
 'use client'
-
-import React, { FC, useCallback, useState } from 'react'
+import { FC, SubmitEvent, useCallback, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { Button } from './button'
 import { Checkbox } from './checkbox'
@@ -14,7 +13,7 @@ export const ContactForm: FC = () => {
   const t = useTranslations('contact')
 
   const sendResponses = useCallback(
-    async (event: React.FormEvent<HTMLFormElement>) => {
+    async (event: SubmitEvent<HTMLFormElement>) => {
       setState('progress')
       event.preventDefault()
 
@@ -31,7 +30,7 @@ export const ContactForm: FC = () => {
           setState('error')
         })
     },
-    []
+    [],
   )
 
   return (

@@ -1,4 +1,4 @@
-import React from 'react'
+import { ReactNode } from 'react'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
@@ -11,16 +11,16 @@ export function generateStaticParams(): { locale: string }[] {
 }
 
 interface LocaleLayoutProps {
-  children: React.ReactNode
+  children: ReactNode
   params: Promise<{ locale: string }>
 }
 
 export default async function LocaleLayout({
   children,
   params,
-}: LocaleLayoutProps): Promise<JSX.Element> {
+}: LocaleLayoutProps): Promise<ReactNode> {
   const { locale } = await params
-  if (!routing.locales.includes(locale as typeof routing.locales[number])) {
+  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound()
   }
 

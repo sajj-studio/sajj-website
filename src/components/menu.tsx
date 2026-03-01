@@ -1,6 +1,5 @@
 'use client'
-
-import React, { FC } from 'react'
+import { FC } from 'react'
 import styled, { css } from 'styled-components'
 import { MenuItem } from './header'
 import { LanguageSwitcher } from './language-switcher'
@@ -26,7 +25,10 @@ export const Menu: FC<MenuProps> = ({ items, isOpen, handleClick }) => (
   </Container>
 )
 
-const Container = styled.ul<{ isOpen: boolean }>`
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const Container = styled(({ isOpen, ...props }) => <ul {...props} />)<{
+  isOpen: boolean
+}>`
   ${({ isOpen, theme }) => css`
     position: fixed;
     height: 100vh;

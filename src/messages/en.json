@@ -14,7 +14,10 @@
     "design": "Web design",
     "design_desc": "Building a website to suit your need",
     "socialMedia": "Social media",
-    "socialMedia_desc": "Helping you to grow your traffic"
+    "socialMedia_desc": "Helping you to grow your traffic",
+    "jumbotronTitle": "Welcome to the best digital creative studio in the world",
+    "jumbotronText": "Based on no real scientific studies, but we have high hopes.",
+    "aboutUsText": "We are a humble, yet very ambitious digital creative studio based in Montreal. Why do we do this? Simple: there are too many studios and freelancers out there that take your money and don't do a good job (trust us, we've seen things...). We want to fix that! We can guarantee that you will not find tenacity like ours in any other studio."
   },
   "contact": {
     "contact": "Contact Us",
@@ -31,7 +34,17 @@
     "typeHere": "Type here",
     "send": "Send"
   },
+  "nav": {
+    "home": "Home",
+    "aboutUs": "About us",
+    "services": "Services",
+    "contactUs": "Contact us"
+  },
   "footer": {
     "contactUs": "Contact us"
+  },
+  "seo": {
+    "description": "The best digital creative studio in the world!",
+    "keywords": "web studio, creative, website"
   }
 }

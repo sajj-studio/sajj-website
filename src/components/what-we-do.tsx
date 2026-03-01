@@ -1,6 +1,5 @@
 'use client'
-
-import React, { FC } from 'react'
+import { FC, ReactNode } from 'react'
 import styled, { css } from 'styled-components'
 import { BrandingIcon } from '../assets/images/branding-icon'
 import { SocialMediaIcon } from '../assets/images/social-media-icon'
@@ -44,14 +43,12 @@ export const WhatWeDo: FC = () => {
 }
 
 const SectionContainer = styled(Container)`
-  ${({ theme }) => css`
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 
-    & > ${Typography} {
-      text-align: center;
-    }
-  `}
+  & > ${Typography} {
+    text-align: center;
+  }
 `
 
 const ItemsContainer = styled.div`
@@ -66,7 +63,7 @@ const ItemsContainer = styled.div`
 `
 
 interface WhatWeDoItemProps {
-  icon: JSX.Element
+  icon: ReactNode
   title: string
   description: string
 }

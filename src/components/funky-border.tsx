@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react'
+import { FC } from 'react'
 import styled, { css } from 'styled-components'
 
 interface FunkyBorderTopProps {
@@ -11,7 +11,7 @@ interface FunkyBorderBottomProps {
 export const FunkyBorder: FC<
   FunkyBorderTopProps | FunkyBorderBottomProps
 > = props => {
-  const isTop = useMemo(() => 'top' in props && props.top, [props])
+  const isTop = 'top' in props && props.top
 
   return (
     <Styles
@@ -26,7 +26,7 @@ export const FunkyBorder: FC<
             ? 'M0,5 C60,-10 65,100 100,40 L100,0 L0,0 Z'
             : 'M0,50 C40,190 66,-25 100,50 L100,100 L0,100 Z'
         }
-        stroke-width="0"
+        strokeWidth="0"
         fill="#fff"
       />
     </Styles>
@@ -36,7 +36,10 @@ export const FunkyBorder: FC<
 interface StylesProps {
   position: 'top' | 'bottom'
 }
-export const Styles = styled.svg<StylesProps>`
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const Styles = styled(({ position, ...props }) => (
+  <svg {...props} />
+))<StylesProps>`
   position: absolute;
   height: 100px;
   width: 100%;
@@ -53,7 +56,7 @@ export const Styles = styled.svg<StylesProps>`
 `
 
 export const funkyBorderStyle = (
-  position: 'top' | 'bottom'
+  position: 'top' | 'bottom',
 ): ReturnType<typeof css> =>
   position === 'top'
     ? css`

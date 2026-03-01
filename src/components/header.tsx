@@ -1,12 +1,12 @@
 'use client'
-
 import { Link } from './link'
-import React, { FC, useCallback, useState } from 'react'
+import { FC, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { SajjLogo } from '../assets/images/sajj-logo'
 import { Container } from './container'
 import { Hamburger } from './hamburger'
 import { Menu } from './menu'
+import { useTranslations } from 'next-intl'
 
 export interface MenuItem {
   id: 'home' | 'about-us' | 'services' | 'our-work' | 'contact-us'
@@ -14,19 +14,20 @@ export interface MenuItem {
   label: string
 }
 
-const menuItems: MenuItem[] = [
-  { id: 'home', href: '/', label: 'Home' },
-  { id: 'about-us', href: '/#about-us', label: 'About us' },
-  { id: 'services', href: '/#what-we-do', label: 'Services' },
-  // { id: 'our-work', href: '/', label: 'Our work' },
-  { id: 'contact-us', href: '/contact-us', label: 'Contact us' },
-]
-
 export const Header: FC = () => {
+  const t = useTranslations('nav')
   const [isOpen, setIsOpen] = useState(false)
-  const toggle = useCallback(() => {
+  function toggle() {
     setIsOpen(isOpen => !isOpen)
-  }, [])
+  }
+
+  const menuItems: MenuItem[] = [
+    { id: 'home', href: '/', label: t('home') },
+    { id: 'about-us', href: '/#about-us', label: t('aboutUs') },
+    { id: 'services', href: '/#what-we-do', label: t('services') },
+    // { id: 'our-work', href: '/', label: 'Our work' },
+    { id: 'contact-us', href: '/contact-us', label: t('contactUs') },
+  ]
 
   return (
     <HeaderContainer>

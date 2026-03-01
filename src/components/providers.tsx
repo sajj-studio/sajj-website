@@ -1,15 +1,14 @@
 'use client'
-
-import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './sc-theme'
 import { GlobalStyles } from './global-styles'
+import { ReactNode } from 'react'
 
 export function Providers({
   children,
 }: {
   children: React.ReactNode
-}): JSX.Element {
+}): ReactNode {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />

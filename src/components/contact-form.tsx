@@ -18,7 +18,7 @@ export const ContactForm: FC = () => {
       event.preventDefault()
 
       const formData = new FormData(event.target as HTMLFormElement)
-      await fetch('/', {
+      await fetch('/__forms.html', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(formData as any).toString(),
@@ -35,7 +35,7 @@ export const ContactForm: FC = () => {
 
   return (
     <SectionContainer>
-      <Form name="Contact Form" onSubmit={sendResponses} data-netlify="true">
+      <Form name="Contact Form" onSubmit={sendResponses}>
         <FormSection>
           <input type="hidden" name="form-name" value="Contact Form" />
 

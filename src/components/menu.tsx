@@ -4,26 +4,41 @@ import styled, { css } from 'styled-components'
 import { MenuItem } from './header'
 import { LanguageSwitcher } from './language-switcher'
 import { Link } from './link'
-import { hexToRGBA } from './sc-theme'
+import { hexToRGBA, theme } from './sc-theme'
 
 interface MenuProps {
   items: MenuItem[]
   isOpen: boolean
   handleClick: () => void
+  menuVariant?: 'standard' | 'grayscale' | 'mustard'
+  variantDesktop?: boolean
 }
 
-export const Menu: FC<MenuProps> = ({ items, isOpen, handleClick }) => (
+export const Menu: FC<MenuProps> = ({ items, isOpen, handleClick, menuVariant, variantDesktop }) => (
   <Container isOpen={isOpen}>
     {items.map(item => (
       <Item key={item.label} onClick={handleClick}>
-        <MenuLink href={item.href}>{item.label}</MenuLink>
+        <MenuLink href={item.href} colorVariant={getColor(menuVariant)} desktopColorVariant={variantDesktop}>
+          {item.label}
+        </MenuLink>
       </Item>
     ))}
     <Item onClick={handleClick}>
-      <LanguageSwitcher />
+      <LanguageSwitcher colorTheme={getColor(menuVariant)} desktopColorVariant={variantDesktop} />
     </Item>
   </Container>
 )
+
+function getColor(menuVariant: string | undefined): string | undefined {
+  switch (menuVariant) {
+    case 'standard':
+      return theme.colors.white
+    case 'grayscale':
+      return theme.colors.darkBlue
+    case 'mustard':
+      return theme.colors.darkBlue
+  }
+}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Container = styled(({ isOpen, ...props }) => <ul {...props} />)<{
@@ -88,8 +103,15 @@ const Item = styled.li`
     }
   `}
 `
-const MenuLink = styled(Link)`
-  ${({ theme }) => css`
+
+interface MenuLinkProps {
+  colorVariant?: string
+  desktopColorVariant?: boolean
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const MenuLink = styled(({ colorVariant, desktopColorVariant, ...props }) => <Link {...props} />)<MenuLinkProps>`
+  ${({ theme, colorVariant, desktopColorVariant }) => css`
     display: block;
     font-family: ${theme.typography.sansSerif};
     font-size: 2.5rem;
@@ -100,6 +122,12 @@ const MenuLink = styled(Link)`
     ${theme.media.desktop} {
       font-size: 1.5225rem;
       text-shadow: none;
+      color: ${colorVariant};
+
+      ${desktopColorVariant &&
+      css`
+        color: ${theme.colors.white};
+      `}
     }
   `}
 `

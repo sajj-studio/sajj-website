@@ -5,7 +5,12 @@ import { useTranslations } from 'next-intl'
 import { useLocale } from 'next-intl'
 import { usePathname, Link } from '@/navigation'
 
-export const LanguageSwitcher: FC = () => {
+interface LanguageSwitcherProps {
+  colorTheme?: string
+  desktopColorVariant?: boolean
+}
+
+export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ colorTheme, desktopColorVariant }) => {
   const locale = useLocale()
   const pathname = usePathname()
   const t = useTranslations('common')
@@ -14,8 +19,8 @@ export const LanguageSwitcher: FC = () => {
 
   return (
     <LanguageLink href={pathname} locale={nextLocale}>
-      <LanguageText>{t('otherLanguage')}</LanguageText>
-      <LanguageIndicator />
+      <LanguageText colorTheme={colorTheme} desktopColorVariant={desktopColorVariant}>{t('otherLanguage')}</LanguageText>
+      <LanguageIndicator colorTheme={colorTheme} desktopColorVariant={desktopColorVariant} />
     </LanguageLink>
   )
 }
@@ -32,8 +37,14 @@ const LanguageLink = styled(Link)`
   `}
 `
 
-const LanguageText = styled.div`
-  ${({ theme }) => css`
+interface ColorProps {
+  colorTheme?: string
+  desktopColorVariant?: boolean
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const LanguageText = styled(({ colorTheme, desktopColorVariant, ...props }) => <div {...props} />)<ColorProps>`
+  ${({ theme, colorTheme, desktopColorVariant }) => css`
     font-family: ${theme.typography.sansSerif};
     font-weight: 400;
     line-height: 1.125rem;
@@ -43,16 +54,32 @@ const LanguageText = styled.div`
 
     ${theme.media.desktop} {
       font-size: 1.0575rem;
+      color: ${colorTheme};
+
+      ${desktopColorVariant &&
+      css`
+        color: ${theme.colors.white};
+      `}
     }
   `}
 `
 
-const LanguageIndicator = styled.div`
-  ${({ theme }) => css`
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const LanguageIndicator = styled(({ colorTheme, desktopColorVariant, ...props }) => <div {...props} />)<ColorProps>`
+  ${({ theme, colorTheme, desktopColorVariant }) => css`
     height: 0;
     border-bottom: 2px solid ${theme.colors.white};
     margin-top: 0.75rem;
     opacity: 0;
+
+    ${theme.media.desktop} {
+      border-bottom-color: ${colorTheme};
+
+      ${desktopColorVariant &&
+      css`
+        border-bottom-color: ${theme.colors.white};
+      `}
+    }
 
     ${LanguageText}:hover + & {
       opacity: 1;

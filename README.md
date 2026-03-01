@@ -1,99 +1,132 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<p align="center">
-  <a href="https://www.gatsbyjs.com">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby's default starter
-</h1>
+# Sajj Website
 
-Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+Marketing website for Sajj, built with Next.js 16 (App Router), React 19, TypeScript, Styled Components, and next-intl for bilingual (EN/FR) support. Deployed on Netlify.
 
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.com/docs/gatsby-starters/)._
+---
 
-## 🚀 Quick start
+## Quick Start
 
-1.  **Create a Gatsby site.**
+**Requirements:** Node.js 20+, Yarn 4.x
 
-    Use the Gatsby CLI to create a new site, specifying the default starter.
+```bash
+yarn install
+yarn dev        # http://localhost:3000
+```
 
-    ```shell
-    # create a new Gatsby site using the default starter
-    gatsby new my-default-starter https://github.com/gatsbyjs/gatsby-starter-default
-    ```
+Other commands:
 
-1.  **Start developing.**
+| Command        | Description                        |
+| -------------- | ---------------------------------- |
+| `yarn build`   | Production build                   |
+| `yarn start`   | Serve the production build locally |
+| `yarn lint`    | Run ESLint                         |
 
-    Navigate into your new site’s directory and start it up.
+Pre-commit hooks run ESLint and Prettier automatically on staged files via Husky + lint-staged. To format manually:
 
-    ```shell
-    cd my-default-starter/
-    gatsby develop
-    ```
+```bash
+npx prettier --write .
+```
 
-1.  **Open the source code and start editing!**
+---
 
-    Your site is now running at `http://localhost:8000`!
+## Tooling Overview
 
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.com/tutorial/part-five/#introducing-graphiql)._
+| Tool | Version | Purpose |
+|---|---|---|
+| [Next.js](https://nextjs.org) | 16 | Framework (App Router) |
+| [React](https://react.dev) | 19 | UI library |
+| [TypeScript](https://www.typescriptlang.org) | 5 | Static typing |
+| [Styled Components](https://styled-components.com) | 6 | CSS-in-JS styling |
+| [next-intl](https://next-intl.dev) | 4 | Internationalisation (EN/FR) |
+| [ESLint](https://eslint.org) | 9 | Linting (flat config) |
+| [Prettier](https://prettier.io) | 3 | Code formatting |
+| [Husky](https://typicode.github.io/husky) + [lint-staged](https://github.com/lint-staged/lint-staged) | — | Pre-commit hooks |
+| [Netlify](https://netlify.com) | — | Hosting & form handling |
 
-    Open the `my-default-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+### Internationalisation
 
-## 🧐 What's inside?
+Routing is locale-prefixed. The default locale (`en`) is served without a prefix in development but with one in production.
 
-A quick look at the top-level files and directories you'll see in a Gatsby project.
+| Locale | Home | Contact |
+|--------|------|---------|
+| English | `/en` | `/en/contact` |
+| French | `/fr` | `/fr/nous-contacter` |
 
-    .
-    ├── node_modules
-    ├── src
-    ├── .gitignore
-    ├── .prettierrc
-    ├── gatsby-browser.js
-    ├── gatsby-config.js
-    ├── gatsby-node.js
-    ├── gatsby-ssr.js
-    ├── LICENSE
-    ├── package-lock.json
-    ├── package.json
-    └── README.md
+Translation strings live in `src/messages/{locale}.json`. Add a key to both files whenever you add copy.
 
-1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
+### Styling
 
-2.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
+All styling uses Styled Components. The theme object is defined in [src/components/sc-theme.ts](src/components/sc-theme.ts) and made available via the providers in [src/components/providers.tsx](src/components/providers.tsx). Global baseline styles are in [src/components/global-styles.ts](src/components/global-styles.ts).
 
-3.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
+Styled Components requires a server-side registry to avoid a flash of unstyled content during SSR — this is wired up in [src/components/registry.tsx](src/components/registry.tsx).
 
-4.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
+---
 
-5.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.com/docs/browser-apis/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
+## File Overview
 
-6.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.com/docs/gatsby-config/) for more detail).
+```
+sajj-website/
+├── src/
+│   ├── app/                        Next.js App Router entry points
+│   │   ├── layout.tsx              Root layout (wraps the whole app)
+│   │   ├── manifest.ts             Web app manifest
+│   │   ├── not-found.tsx           Global 404 (before locale is known)
+│   │   └── [locale]/               Locale-prefixed routes
+│   │       ├── layout.tsx          Locale layout (providers, fonts, global styles)
+│   │       ├── page.tsx            Home page
+│   │       ├── not-found.tsx       Locale-aware 404
+│   │       └── contact-us/
+│   │           └── page.tsx        Contact page
+│   │
+│   ├── components/                 Shared UI components
+│   │   ├── providers.tsx           Wraps app in theme + intl providers
+│   │   ├── registry.tsx            Styled Components SSR registry
+│   │   ├── sc-theme.ts             Design tokens / theme object
+│   │   ├── global-styles.ts        CSS baseline / resets
+│   │   ├── layout.tsx              Page layout shell (header + footer)
+│   │   ├── header.tsx              Site header with nav and language switcher
+│   │   ├── footer.tsx              Site footer
+│   │   ├── language-switcher.tsx   EN/FR toggle
+│   │   ├── contact-form.tsx        Contact form (submitted via Netlify Forms)
+│   │   ├── typography.tsx          Heading / body text primitives
+│   │   ├── button.tsx              Button component
+│   │   ├── link.tsx                i18n-aware link wrapper
+│   │   └── ...                     Other page-section components
+│   │
+│   ├── i18n/
+│   │   ├── routing.ts              Locale list, default locale, localised pathnames
+│   │   └── request.ts              Server-side locale resolution + message loading
+│   │
+│   ├── messages/
+│   │   ├── en.json                 English copy
+│   │   └── fr.json                 French copy
+│   │
+│   ├── assets/
+│   │   ├── fonts/                  Rubik font files + fonts.css
+│   │   └── images/                 SVG icons (as TSX) + static images
+│   │
+│   ├── lib/
+│   │   └── static-content.ts       Any copy not yet moved to i18n messages
+│   │
+│   ├── types/
+│   │   └── styled.d.ts             Augments DefaultTheme with sc-theme shape
+│   │
+│   └── navigation.ts               Re-exports next-intl navigation helpers
+│                                   (use instead of next/link / next/navigation)
+│
+├── public/
+│   ├── favicon.png
+│   └── __forms.html                Netlify Forms detection stub
+│
+├── next.config.mjs                 Next.js config (next-intl plugin, image domains)
+├── netlify.toml                    Netlify build settings
+├── eslint.config.mjs               ESLint flat config
+├── tsconfig.json                   TypeScript config
+└── package.json
+```
 
-7.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.com/docs/node-apis/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
+### Key conventions
 
-8.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.com/docs/ssr-apis/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
-
-9.  **`LICENSE`**: This Gatsby starter is licensed under the 0BSD license. This means that you can see this file as a placeholder and replace it with your own license.
-
-10. **`package-lock.json`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
-
-11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
-
-12. **`README.md`**: A text file containing useful reference information about your project.
-
-## 🎓 Learning Gatsby
-
-Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.com/). Here are some places to start:
-
-- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.com/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
-
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.com/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
-
-## 💫 Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/gatsbyjs/gatsby-starter-default)
-
-<!-- AUTO-GENERATED-CONTENT:END -->
+- **Navigation:** Always import `Link`, `useRouter`, `redirect`, etc. from `src/navigation.ts`, not from `next/link` or `next/navigation`. This ensures locale is preserved automatically.
+- **Translations:** Use the `useTranslations` hook (from `next-intl`) inside components; use `getTranslations` in Server Components and page metadata.
+- **Images:** Remote images must come from `images.ctfassets.net` (Contentful). All other images live in `src/assets/images/`.

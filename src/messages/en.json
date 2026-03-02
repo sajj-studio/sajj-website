@@ -43,6 +43,50 @@
   "footer": {
     "contactUs": "Contact us"
   },
+  "quiz": {
+    "selector": {
+      "title": "What are you looking for?"
+    },
+    "yes": "Yes",
+    "no": "No",
+    "web-presence": {
+      "label": "Web Presence",
+      "label_desc": "Build or refresh your website with a solid brand foundation.",
+      "has-website": "Do you already have a website?",
+      "needs-redesign": "Does it need a full redesign?",
+      "has-brand-identity": "Do you have an existing brand identity (logo, colors, typography)?",
+      "needs-cms": "Do you need to manage your content yourself without a developer?"
+    },
+    "web-application": {
+      "label": "Web Application",
+      "label_desc": "Design and develop custom platforms, dashboards, or SaaS products.",
+      "is-app-project": "Are you looking to build something beyond a standard website — like a platform, dashboard, or SaaS product?",
+      "has-existing-app": "Do you have an existing application you want to extend?",
+      "needs-api-integrations": "Does it require new third-party API integrations (payments, CRMs, external services)?",
+      "needs-auth": "Will users need to log in and have their own accounts?",
+      "needs-roles": "Do you need multiple user roles or permission levels?",
+      "needs-database": "Does the project require storing and querying custom data?"
+    },
+    "ongoing-support": {
+      "label": "Ongoing Support",
+      "label_desc": "Keep your site healthy, up to date, and growing with reliable ongoing care.",
+      "has-live-site": "Do you have a live website that needs ongoing care?",
+      "needs-content-updates": "Do you need regular content or text updates made for you?",
+      "needs-hosting-managed": "Do you want hosting and server infrastructure fully managed for you?",
+      "needs-monitoring": "Do you need proactive performance and security monitoring?",
+      "needs-seo": "Do you need technical SEO work (site structure, speed, schema markup)?",
+      "needs-social-setup": "Do you need your social media profiles set up and aligned with your brand?"
+    },
+    "form": {
+      "title": "Almost done!",
+      "subtitle": "Tell us a bit about yourself and we'll get back to you.",
+      "nameLabel": "Name",
+      "emailLabel": "Email",
+      "companyLabel": "Company or project name",
+      "commentsLabel": "Additional comments",
+      "send": "Send"
+    }
+  },
   "seo": {
     "description": "The best digital creative studio in the world!",
     "keywords": "web studio, creative, website"

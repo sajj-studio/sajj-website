@@ -5,18 +5,16 @@ interface ButtonProps {
   fill?: keyof DefaultTheme['colors']
   color?: keyof DefaultTheme['colors']
   state?: 'progress' | 'success' | 'error'
+  $icon?: boolean
 }
 
 export const Button = styled(Link)<ButtonProps>`
-  ${({ theme, fill = 'orange', color = 'darkBlue', state }) => css`
-    text-align: center;
-    padding: 1rem 4rem;
+  ${({ theme, fill = 'orange', color = 'darkBlue', state, $icon }) => css`
     border-radius: 25px;
     font-family: ${theme.typography.sansSerif};
     font-weight: 500;
     font-size: 1.125rem;
     text-transform: uppercase;
-    display: inline-block;
     box-shadow: 4px 5px 0px ${theme.colors[color]};
     border: 2px solid ${theme.colors[color]};
     color: ${theme.colors[color]};
@@ -24,16 +22,31 @@ export const Button = styled(Link)<ButtonProps>`
     outline: none;
     position: relative;
 
-    :hover {
+    &:hover {
       top: -2px;
       left: -3px;
       box-shadow: 6px 8px 0px ${theme.colors[color]};
     }
-    :active {
+    &:active {
       box-shadow: none;
       top: 6px;
       left: 7px;
     }
+
+    ${$icon
+      ? css`
+          display: flex;
+          align-items: center;
+          gap: 1.5rem;
+          width: 100%;
+          padding: 1.25rem 2rem;
+          text-align: left;
+        `
+      : css`
+          display: inline-block;
+          padding: 1rem 4rem;
+          text-align: center;
+        `}
 
     @keyframes gradient {
       0% {

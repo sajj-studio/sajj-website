@@ -1,6 +1,6 @@
 import { setRequestLocale } from 'next-intl/server'
 import { Layout } from '@/components/layout'
-import { QuizCard } from '@/components/quiz-card'
+import { Quiz } from '@/components/quiz'
 import { ReactNode } from 'react'
 import styled from 'styled-components'
 import { Container } from '@/components/container'
@@ -18,7 +18,7 @@ export default async function QuizPage({
   return (
     <Layout headerVariant="grayscale" funkyHeight="half">
       <SectionContainer>
-        <QuizCard />
+        <Quiz />
       </SectionContainer>
     </Layout>
   )

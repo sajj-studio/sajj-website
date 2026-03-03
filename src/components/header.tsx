@@ -32,7 +32,7 @@ export const Header: FC<HeaderProps> = ({ logoGradient, variant, variantDesktop 
     { id: 'about-us', href: '/#about-us', label: t('aboutUs') },
     { id: 'services', href: '/#what-we-do', label: t('services') },
     // { id: 'our-work', href: '/', label: 'Our work' },
-    { id: 'contact-us', href: '/contact-us', label: t('contactUs') },
+    { id: 'contact-us', href: '/quiz', label: t('contactUs') },
   ]
 
   return (

@@ -49,33 +49,43 @@
     },
     "yes": "Oui",
     "no": "Non",
-    "web-presence": {
-      "label": "Présence web",
-      "label_desc": "Créez ou rafraîchissez votre site web avec des bases de marque solides.",
-      "has-website": "Avez-vous déjà un site web?",
+    "web-design": {
+      "label": "Conception et développement web",
+      "label_desc": "Créez ou refaites votre site web ou votre application web.",
+      "has-website": "Avez-vous déjà un site web ou une application?",
       "needs-redesign": "A-t-il besoin d'une refonte complète?",
-      "has-brand-identity": "Avez-vous une identité de marque existante (logo, couleurs, typographie)?",
-      "needs-cms": "Avez-vous besoin de gérer votre contenu vous-même sans développeur?"
+      "has-brand-identity": "Avez-vous déjà un logo et une identité visuelle?",
+      "needs-cms": "Souhaitez-vous pouvoir mettre à jour votre contenu vous-même?",
+      "needs-new-features": "Avez-vous besoin de nouvelles fonctionnalités?",
+      "needs-external-services": "Doit-il se connecter à des services externes?",
+      "needs-content-management": "Avez-vous besoin de quelqu'un pour gérer vos mises à jour de contenu et de design?",
+      "is-platform": "Cherchez-vous à créer quelque chose de plus qu'un site web standard — comme une plateforme ou un outil?",
+      "needs-auth": "Les utilisateurs devront-ils se connecter et avoir un compte?",
+      "needs-roles": "Avez-vous besoin de différents niveaux d'accès pour différents types d'utilisateurs?"
     },
-    "web-application": {
-      "label": "Application web",
-      "label_desc": "Concevez et développez des plateformes, tableaux de bord ou produits SaaS sur mesure.",
-      "is-app-project": "Cherchez-vous à créer quelque chose au-delà d'un site web standard — comme une plateforme, un tableau de bord ou un produit SaaS?",
-      "has-existing-app": "Avez-vous une application existante que vous souhaitez enrichir?",
-      "needs-api-integrations": "Nécessite-t-il de nouvelles intégrations d'API tierces (paiements, CRM, services externes)?",
-      "needs-auth": "Les utilisateurs devront-ils se connecter et avoir leurs propres comptes?",
-      "needs-roles": "Avez-vous besoin de plusieurs rôles d'utilisateurs ou niveaux de permission?",
-      "needs-database": "Le projet nécessite-t-il de stocker et d'interroger des données personnalisées?"
+    "hosting": {
+      "label": "Hébergement et maintenance",
+      "label_desc": "Confiez entièrement la gestion de votre hébergement, maintenance et support.",
+      "wants-managed-hosting": "Voulez-vous que votre hébergement et vos serveurs soient entièrement pris en charge?",
+      "needs-content-updates": "Avez-vous besoin que quelqu'un effectue des mises à jour de contenu pour vous?",
+      "wants-bundle-plan": "Souhaitez-vous tout regrouper sous un seul forfait mensuel?",
+      "wants-security-monitoring": "Souhaitez-vous également une surveillance continue de la sécurité et des performances?",
+      "wants-monitoring": "Souhaitez-vous une surveillance continue de la sécurité et des performances?",
+      "wants-monthly-report": "Voulez-vous un rapport mensuel sur la disponibilité et les performances?",
+      "needs-backup": "Avez-vous besoin d'aide pour les sauvegardes et la récupération en cas de problème?"
     },
-    "ongoing-support": {
-      "label": "Soutien continu",
-      "label_desc": "Gardez votre site en bonne santé, à jour et en croissance avec un suivi fiable.",
-      "has-live-site": "Avez-vous un site web en ligne qui a besoin d'un suivi régulier?",
-      "needs-content-updates": "Avez-vous besoin de mises à jour régulières de contenu ou de texte faites pour vous?",
-      "needs-hosting-managed": "Souhaitez-vous que l'hébergement et l'infrastructure serveur soient entièrement gérés pour vous?",
-      "needs-monitoring": "Avez-vous besoin d'une surveillance proactive des performances et de la sécurité?",
-      "needs-seo": "Avez-vous besoin de travaux SEO techniques (structure du site, vitesse, balisage schema)?",
-      "needs-social-setup": "Avez-vous besoin que vos profils de réseaux sociaux soient configurés et alignés avec votre image de marque?"
+    "seo": {
+      "label": "SEO et visibilité",
+      "label_desc": "Augmentez votre visibilité en ligne grâce au SEO et aux réseaux sociaux.",
+      "wants-seo": "Voulez-vous que votre site web apparaisse plus haut dans les résultats de recherche?",
+      "has-seo-review": "Votre site a-t-il déjà été analysé pour des problèmes de SEO technique?",
+      "wants-seo-reports": "Voulez-vous un suivi continu et des rapports SEO réguliers?",
+      "needs-social-setup-seo": "Avez-vous également besoin de configurer vos profils de réseaux sociaux?",
+      "needs-social-profiles": "Avez-vous besoin que vos profils de réseaux sociaux soient créés ou nettoyés?",
+      "should-match-brand": "Doivent-ils correspondre à un logo et une identité visuelle existants?",
+      "wants-seo-with-social": "Voulez-vous également de l'aide pour être trouvé sur les moteurs de recherche?",
+      "wants-visibility": "Cherchez-vous à augmenter la visibilité de votre entreprise en ligne en général?",
+      "wants-seo-general": "Voulez-vous de l'aide pour être trouvé sur les moteurs de recherche?"
     },
     "form": {
       "title": "Presque terminé!",

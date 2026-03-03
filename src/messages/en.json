@@ -49,33 +49,43 @@
     },
     "yes": "Yes",
     "no": "No",
-    "web-presence": {
-      "label": "Web Presence",
-      "label_desc": "Build or refresh your website with a solid brand foundation.",
-      "has-website": "Do you already have a website?",
+    "web-design": {
+      "label": "Web Design & Development",
+      "label_desc": "Build or redesign your website or web application.",
+      "has-website": "Do you have an existing website or application?",
       "needs-redesign": "Does it need a full redesign?",
-      "has-brand-identity": "Do you have an existing brand identity (logo, colors, typography)?",
-      "needs-cms": "Do you need to manage your content yourself without a developer?"
+      "has-brand-identity": "Do you already have a logo and visual identity?",
+      "needs-cms": "Will you want to update your content yourself?",
+      "needs-new-features": "Do you need new features or functionality added?",
+      "needs-external-services": "Does it need to connect to external services?",
+      "needs-content-management": "Do you need someone to handle content and design updates for you?",
+      "is-platform": "Are you looking to build something more than a standard website — like a platform or a tool?",
+      "needs-auth": "Will users need to log in and have accounts?",
+      "needs-roles": "Do you need different access levels for different types of users?"
     },
-    "web-application": {
-      "label": "Web Application",
-      "label_desc": "Design and develop custom platforms, dashboards, or SaaS products.",
-      "is-app-project": "Are you looking to build something beyond a standard website — like a platform, dashboard, or SaaS product?",
-      "has-existing-app": "Do you have an existing application you want to extend?",
-      "needs-api-integrations": "Does it require new third-party API integrations (payments, CRMs, external services)?",
-      "needs-auth": "Will users need to log in and have their own accounts?",
-      "needs-roles": "Do you need multiple user roles or permission levels?",
-      "needs-database": "Does the project require storing and querying custom data?"
+    "hosting": {
+      "label": "Hosting & Maintenance",
+      "label_desc": "Get your hosting, maintenance, and support fully managed.",
+      "wants-managed-hosting": "Do you want your hosting and servers fully taken care of for you?",
+      "needs-content-updates": "Do you need someone to make content updates for you?",
+      "wants-bundle-plan": "Do you want all of that covered under a single monthly plan?",
+      "wants-security-monitoring": "Do you also want ongoing security and performance monitoring?",
+      "wants-monitoring": "Do you want ongoing security and performance monitoring?",
+      "wants-monthly-report": "Do you want a monthly report on uptime and performance?",
+      "needs-backup": "Do you need help with backups and recovery in case something goes wrong?"
     },
-    "ongoing-support": {
-      "label": "Ongoing Support",
-      "label_desc": "Keep your site healthy, up to date, and growing with reliable ongoing care.",
-      "has-live-site": "Do you have a live website that needs ongoing care?",
-      "needs-content-updates": "Do you need regular content or text updates made for you?",
-      "needs-hosting-managed": "Do you want hosting and server infrastructure fully managed for you?",
-      "needs-monitoring": "Do you need proactive performance and security monitoring?",
-      "needs-seo": "Do you need technical SEO work (site structure, speed, schema markup)?",
-      "needs-social-setup": "Do you need your social media profiles set up and aligned with your brand?"
+    "seo": {
+      "label": "SEO & Visibility",
+      "label_desc": "Grow your online visibility through SEO and social media.",
+      "wants-seo": "Do you want your website to show up higher in search results?",
+      "has-seo-review": "Has your site ever been reviewed for technical SEO issues?",
+      "wants-seo-reports": "Do you want ongoing monitoring and regular SEO reports?",
+      "needs-social-setup-seo": "Do you also need your social media profiles set up?",
+      "needs-social-profiles": "Do you need your social media profiles created or cleaned up?",
+      "should-match-brand": "Should they match an existing logo and visual identity?",
+      "wants-seo-with-social": "Do you also want help getting found on search engines?",
+      "wants-visibility": "Are you looking to get more visibility for your business online in general?",
+      "wants-seo-general": "Do you want help getting found on search engines?"
     },
     "form": {
       "title": "Almost done!",

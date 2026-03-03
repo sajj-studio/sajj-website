@@ -33,15 +33,26 @@ export const QuizServiceSelector: FC<Props> = ({ quizzes, onSelect }) => {
           return (
             <animated.div key={quiz.id} style={spring}>
               {/* @ts-ignore */}
-              <Button $icon fill={quiz.color} as="button" onClick={() => onSelect(quiz)}>
+              <Button
+                $icon
+                fill={quiz.color}
+                as="button"
+                onClick={() => onSelect(quiz)}
+              >
                 <IconWrapper>
                   <Icon />
                 </IconWrapper>
                 <TextBlock>
-                  <Typography variant="subtitle" color="darkBlue">
+                  <Typography
+                    variant="subtitle"
+                    color={quiz.color === 'blue' ? 'orange' : 'darkBlue'}
+                  >
                     {t(quiz.labelKey as any)}
                   </Typography>
-                  <Typography variant="body" color="darkBlue">
+                  <Typography
+                    variant="body"
+                    color={quiz.color === 'blue' ? 'orange' : 'darkBlue'}
+                  >
                     {t(`${quiz.labelKey}_desc` as any)}
                   </Typography>
                 </TextBlock>

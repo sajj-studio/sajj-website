@@ -25,7 +25,7 @@ export const Footer: FC = () => {
           <_VerticalAlign>
             <Typography
               as={Link}
-              href="/contact-us"
+              href="/quiz"
               color="orange"
               variant="body"
             >

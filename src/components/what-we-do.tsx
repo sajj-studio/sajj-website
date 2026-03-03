@@ -15,6 +15,7 @@ import { useTranslations } from 'next-intl'
 
 export const WhatWeDo: FC = () => {
   const t = useTranslations('home')
+  const tQuiz = useTranslations('quiz')
 
   return (
     <SectionContainer>
@@ -23,19 +24,19 @@ export const WhatWeDo: FC = () => {
       </Typography>
       <ItemsContainer>
         <WhatWeDo_Item
-          icon={<BrandingIcon />}
-          title={t('branding')}
-          description={t('branding_desc')}
+          icon={<WebDesignIcon />}
+          title={tQuiz('web-design.label')}
+          description={tQuiz('web-design.label_desc')}
         />
         <WhatWeDo_Item
-          icon={<WebDesignIcon />}
-          title={t('design')}
-          description={t('design_desc')}
+          icon={<BrandingIcon />}
+          title={tQuiz('hosting.label')}
+          description={tQuiz('hosting.label_desc')}
         />
         <WhatWeDo_Item
           icon={<SocialMediaIcon />}
-          title={t('socialMedia')}
-          description={t('socialMedia_desc')}
+          title={tQuiz('seo.label')}
+          description={tQuiz('seo.label_desc')}
         />
       </ItemsContainer>
     </SectionContainer>

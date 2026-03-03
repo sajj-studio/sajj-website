@@ -10,7 +10,10 @@ interface LanguageSwitcherProps {
   desktopColorVariant?: boolean
 }
 
-export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ colorTheme, desktopColorVariant }) => {
+export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({
+  colorTheme,
+  desktopColorVariant,
+}) => {
   const locale = useLocale()
   const pathname = usePathname()
   const t = useTranslations('common')
@@ -19,8 +22,16 @@ export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ colorTheme, deskto
 
   return (
     <LanguageLink href={pathname} locale={nextLocale}>
-      <LanguageText colorTheme={colorTheme} desktopColorVariant={desktopColorVariant}>{t('otherLanguage')}</LanguageText>
-      <LanguageIndicator colorTheme={colorTheme} desktopColorVariant={desktopColorVariant} />
+      <LanguageText
+        colorTheme={colorTheme}
+        desktopColorVariant={desktopColorVariant}
+      >
+        {t('otherLanguage')}
+      </LanguageText>
+      <LanguageIndicator
+        colorTheme={colorTheme}
+        desktopColorVariant={desktopColorVariant}
+      />
     </LanguageLink>
   )
 }
@@ -43,7 +54,9 @@ interface ColorProps {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const LanguageText = styled(({ colorTheme, desktopColorVariant, ...props }) => <div {...props} />)<ColorProps>`
+const LanguageText = styled(({ colorTheme, desktopColorVariant, ...props }) => (
+  <div {...props} />
+))<ColorProps>`
   ${({ theme, colorTheme, desktopColorVariant }) => css`
     font-family: ${theme.typography.sansSerif};
     font-weight: 400;
@@ -64,8 +77,10 @@ const LanguageText = styled(({ colorTheme, desktopColorVariant, ...props }) => <
   `}
 `
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const LanguageIndicator = styled(({ colorTheme, desktopColorVariant, ...props }) => <div {...props} />)<ColorProps>`
+const LanguageIndicator = styled(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  ({ colorTheme, desktopColorVariant, ...props }) => <div {...props} />,
+)<ColorProps>`
   ${({ theme, colorTheme, desktopColorVariant }) => css`
     height: 0;
     border-bottom: 2px solid ${theme.colors.white};

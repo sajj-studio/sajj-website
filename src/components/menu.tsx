@@ -14,17 +14,30 @@ interface MenuProps {
   variantDesktop?: boolean
 }
 
-export const Menu: FC<MenuProps> = ({ items, isOpen, handleClick, menuVariant, variantDesktop }) => (
+export const Menu: FC<MenuProps> = ({
+  items,
+  isOpen,
+  handleClick,
+  menuVariant,
+  variantDesktop,
+}) => (
   <Container isOpen={isOpen}>
     {items.map(item => (
       <Item key={item.label} onClick={handleClick}>
-        <MenuLink href={item.href} colorVariant={getColor(menuVariant)} desktopColorVariant={variantDesktop}>
+        <MenuLink
+          href={item.href}
+          colorVariant={getColor(menuVariant)}
+          desktopColorVariant={variantDesktop}
+        >
           {item.label}
         </MenuLink>
       </Item>
     ))}
     <Item onClick={handleClick}>
-      <LanguageSwitcher colorTheme={getColor(menuVariant)} desktopColorVariant={variantDesktop} />
+      <LanguageSwitcher
+        colorTheme={getColor(menuVariant)}
+        desktopColorVariant={variantDesktop}
+      />
     </Item>
   </Container>
 )
@@ -75,6 +88,7 @@ const Container = styled(({ isOpen, ...props }) => <ul {...props} />)<{
 
     ${theme.media.desktop} {
       flex-direction: row;
+      align-items: flex-start;
       transform: none;
       background: none;
       backdrop-filter: none;
@@ -110,7 +124,9 @@ interface MenuLinkProps {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const MenuLink = styled(({ colorVariant, desktopColorVariant, ...props }) => <Link {...props} />)<MenuLinkProps>`
+const MenuLink = styled(({ colorVariant, desktopColorVariant, ...props }) => (
+  <Link {...props} />
+))<MenuLinkProps>`
   ${({ theme, colorVariant, desktopColorVariant }) => css`
     display: block;
     font-family: ${theme.typography.sansSerif};
@@ -119,14 +135,46 @@ const MenuLink = styled(({ colorVariant, desktopColorVariant, ...props }) => <Li
     color: white;
     text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 
+    &::after {
+      content: '';
+      display: block;
+      height: 0;
+      border-bottom: 2px solid ${theme.colors.white};
+      margin-top: 0.75rem;
+      opacity: 0;
+    }
+
+    &:hover::after {
+      opacity: 1;
+      animation-duration: 0.5s;
+      animation-name: slideIn;
+    }
+
+    @keyframes slideIn {
+      0% {
+        width: 1px;
+      }
+      100% {
+        width: 100%;
+      }
+    }
+
     ${theme.media.desktop} {
       font-size: 1.5225rem;
       text-shadow: none;
       color: ${colorVariant};
 
+      &::after {
+        border-bottom-color: ${colorVariant};
+      }
+
       ${desktopColorVariant &&
       css`
         color: ${theme.colors.white};
+
+        &::after {
+          border-bottom-color: ${theme.colors.white};
+        }
       `}
     }
   `}

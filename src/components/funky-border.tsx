@@ -8,8 +8,12 @@ interface FunkyBorderBottomProps {
   bottom: boolean
 }
 
+interface FunkyBorderHeight {
+  height?: 'half' | 'quarter'
+}
+
 export const FunkyBorder: FC<
-  FunkyBorderTopProps | FunkyBorderBottomProps
+  (FunkyBorderTopProps | FunkyBorderBottomProps) & FunkyBorderHeight
 > = props => {
   const isTop = 'top' in props && props.top
 
@@ -19,6 +23,7 @@ export const FunkyBorder: FC<
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 100 100"
       preserveAspectRatio="none"
+      borderHeight={props.height}
     >
       <path
         d={
@@ -35,9 +40,10 @@ export const FunkyBorder: FC<
 
 interface StylesProps {
   position: 'top' | 'bottom'
+  borderHeight?: 'half' | 'quarter'
 }
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const Styles = styled(({ position, ...props }) => (
+export const Styles = styled(({ position, borderHeight, ...props }) => (
   <svg {...props} />
 ))<StylesProps>`
   position: absolute;
@@ -53,17 +59,43 @@ export const Styles = styled(({ position, ...props }) => (
       : css`
           bottom: 0;
         `}
+
+  ${({ borderHeight }) => {
+    switch (borderHeight) {
+      case 'half':
+        return css`
+          height: 50px;
+        `
+      case 'quarter':
+        return css`
+          height: 25px;
+        `
+    }
+  }}
 `
 
 export const funkyBorderStyle = (
   position: 'top' | 'bottom',
+  height?: 'half' | 'quarter'
 ): ReturnType<typeof css> =>
-  position === 'top'
-    ? css`
-        position: relative;
-        padding-top: calc((6.25rem / 2) + 1.875rem);
-      `
-    : css`
-        position: relative;
-        padding-bottom: calc((6.25rem / 2) + 1.875rem);
-      `
+  css`
+    ${position === 'top'
+      ? css`
+          position: relative;
+          padding-top: calc((6.25rem / 2) + 1.875rem);
+        `
+      : css`
+          position: relative;
+          padding-bottom: calc((6.25rem / 2) + 1.875rem);
+        `}
+
+    ${height === 'half' &&
+    css`
+      padding-bottom: calc(((6.25rem / 2) + 1.875rem) / 2);
+    `}
+
+    ${height === 'quarter' &&
+    css`
+      padding-bottom: calc(((6.25rem / 2) + 1.875rem) / 4);
+    `}
+  `

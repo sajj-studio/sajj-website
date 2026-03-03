@@ -43,6 +43,60 @@
   "footer": {
     "contactUs": "Contact us"
   },
+  "quiz": {
+    "selector": {
+      "title": "What are you looking for?"
+    },
+    "yes": "Yes",
+    "no": "No",
+    "web-design": {
+      "label": "Web Design & Development",
+      "label_desc": "Build or redesign your website or web application.",
+      "has-website": "Do you have an existing website or application?",
+      "needs-redesign": "Does it need a full redesign?",
+      "has-brand-identity": "Do you already have a logo and visual identity?",
+      "needs-cms": "Will you want to update your content yourself?",
+      "needs-new-features": "Do you need new features or functionality added?",
+      "needs-external-services": "Does it need to connect to external services?",
+      "needs-content-management": "Do you need someone to handle content and design updates for you?",
+      "is-platform": "Are you looking to build something more than a standard website — like a platform or a tool?",
+      "needs-auth": "Will users need to log in and have accounts?",
+      "needs-roles": "Do you need different access levels for different types of users?"
+    },
+    "hosting": {
+      "label": "Hosting & Maintenance",
+      "label_desc": "Get your hosting, maintenance, and support fully managed.",
+      "wants-managed-hosting": "Do you want your hosting and servers fully taken care of for you?",
+      "needs-content-updates": "Do you need someone to make content updates for you?",
+      "wants-bundle-plan": "Do you want all of that covered under a single monthly plan?",
+      "wants-security-monitoring": "Do you also want ongoing security and performance monitoring?",
+      "wants-monitoring": "Do you want ongoing security and performance monitoring?",
+      "wants-monthly-report": "Do you want a monthly report on uptime and performance?",
+      "needs-backup": "Do you need help with backups and recovery in case something goes wrong?"
+    },
+    "seo": {
+      "label": "SEO & Visibility",
+      "label_desc": "Grow your online visibility through SEO and social media.",
+      "wants-seo": "Do you want your website to show up higher in search results?",
+      "has-seo-review": "Has your site ever been reviewed for technical SEO issues?",
+      "wants-seo-reports": "Do you want ongoing monitoring and regular SEO reports?",
+      "needs-social-setup-seo": "Do you also need your social media profiles set up?",
+      "needs-social-profiles": "Do you need your social media profiles created or cleaned up?",
+      "should-match-brand": "Should they match an existing logo and visual identity?",
+      "wants-seo-with-social": "Do you also want help getting found on search engines?",
+      "wants-visibility": "Are you looking to get more visibility for your business online in general?",
+      "wants-seo-general": "Do you want help getting found on search engines?"
+    },
+    "form": {
+      "title": "Almost done!",
+      "subtitle": "Tell us a bit about yourself and we'll get back to you.",
+      "nameLabel": "Name",
+      "emailLabel": "Email",
+      "companyLabel": "Company or project name",
+      "commentsLabel": "Additional comments",
+      "send": "Send"
+    }
+  },
   "seo": {
     "description": "The best digital creative studio in the world!",
     "keywords": "web studio, creative, website"

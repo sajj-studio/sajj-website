@@ -43,6 +43,60 @@
   "footer": {
     "contactUs": "Nous contacter"
   },
+  "quiz": {
+    "selector": {
+      "title": "Qu'est-ce que vous recherchez?"
+    },
+    "yes": "Oui",
+    "no": "Non",
+    "web-design": {
+      "label": "Conception et développement web",
+      "label_desc": "Créez ou refaites votre site web ou votre application web.",
+      "has-website": "Avez-vous déjà un site web ou une application?",
+      "needs-redesign": "A-t-il besoin d'une refonte complète?",
+      "has-brand-identity": "Avez-vous déjà un logo et une identité visuelle?",
+      "needs-cms": "Souhaitez-vous pouvoir mettre à jour votre contenu vous-même?",
+      "needs-new-features": "Avez-vous besoin de nouvelles fonctionnalités?",
+      "needs-external-services": "Doit-il se connecter à des services externes?",
+      "needs-content-management": "Avez-vous besoin de quelqu'un pour gérer vos mises à jour de contenu et de design?",
+      "is-platform": "Cherchez-vous à créer quelque chose de plus qu'un site web standard — comme une plateforme ou un outil?",
+      "needs-auth": "Les utilisateurs devront-ils se connecter et avoir un compte?",
+      "needs-roles": "Avez-vous besoin de différents niveaux d'accès pour différents types d'utilisateurs?"
+    },
+    "hosting": {
+      "label": "Hébergement et maintenance",
+      "label_desc": "Confiez entièrement la gestion de votre hébergement, maintenance et support.",
+      "wants-managed-hosting": "Voulez-vous que votre hébergement et vos serveurs soient entièrement pris en charge?",
+      "needs-content-updates": "Avez-vous besoin que quelqu'un effectue des mises à jour de contenu pour vous?",
+      "wants-bundle-plan": "Souhaitez-vous tout regrouper sous un seul forfait mensuel?",
+      "wants-security-monitoring": "Souhaitez-vous également une surveillance continue de la sécurité et des performances?",
+      "wants-monitoring": "Souhaitez-vous une surveillance continue de la sécurité et des performances?",
+      "wants-monthly-report": "Voulez-vous un rapport mensuel sur la disponibilité et les performances?",
+      "needs-backup": "Avez-vous besoin d'aide pour les sauvegardes et la récupération en cas de problème?"
+    },
+    "seo": {
+      "label": "SEO et visibilité",
+      "label_desc": "Augmentez votre visibilité en ligne grâce au SEO et aux réseaux sociaux.",
+      "wants-seo": "Voulez-vous que votre site web apparaisse plus haut dans les résultats de recherche?",
+      "has-seo-review": "Votre site a-t-il déjà été analysé pour des problèmes de SEO technique?",
+      "wants-seo-reports": "Voulez-vous un suivi continu et des rapports SEO réguliers?",
+      "needs-social-setup-seo": "Avez-vous également besoin de configurer vos profils de réseaux sociaux?",
+      "needs-social-profiles": "Avez-vous besoin que vos profils de réseaux sociaux soient créés ou nettoyés?",
+      "should-match-brand": "Doivent-ils correspondre à un logo et une identité visuelle existants?",
+      "wants-seo-with-social": "Voulez-vous également de l'aide pour être trouvé sur les moteurs de recherche?",
+      "wants-visibility": "Cherchez-vous à augmenter la visibilité de votre entreprise en ligne en général?",
+      "wants-seo-general": "Voulez-vous de l'aide pour être trouvé sur les moteurs de recherche?"
+    },
+    "form": {
+      "title": "Presque terminé!",
+      "subtitle": "Parlez-nous un peu de vous et nous vous recontacterons.",
+      "nameLabel": "Nom",
+      "emailLabel": "Email",
+      "companyLabel": "Nom de l'entreprise ou du projet",
+      "commentsLabel": "Commentaires supplémentaires",
+      "send": "Envoyer"
+    }
+  },
   "seo": {
     "description": "Le meilleur studio de création numérique au monde!",
     "keywords": "studio web, créative, créatif, site internet"

@@ -1,21 +1,36 @@
 import { FC } from 'react'
 import styled, { css } from 'styled-components'
+import { theme } from './sc-theme'
 
 interface HamburgerProps {
   isOpen: boolean
   onClick: () => void
+  colorVariant?: 'standard' | 'grayscale' | 'mustard'
 }
 
 interface BunsProps {
   isOpen: boolean
 }
 
-export const Hamburger: FC<HamburgerProps> = ({ isOpen, onClick }) => (
+export const Hamburger: FC<HamburgerProps> = ({ isOpen, onClick, colorVariant }) => (
   <Buns onClick={onClick} isOpen={isOpen}>
-    <Line position="top" isOpen={isOpen} />
-    <Line position="bottom" isOpen={isOpen} />
+    <Line position="top" isOpen={isOpen} lineColor={getColor(colorVariant)} />
+    <Line position="bottom" isOpen={isOpen} lineColor={getColor(colorVariant)} />
   </Buns>
 )
+
+function getColor(
+  colorVariant: 'standard' | 'grayscale' | 'mustard' | undefined
+): string | undefined {
+  switch (colorVariant) {
+    case 'standard':
+      return theme.colors.white
+    case 'grayscale':
+      return theme.colors.gray
+    case 'mustard':
+      return theme.colors.darkBlue
+  }
+}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Buns = styled(({ isOpen, ...props }) => <div {...props} />)<BunsProps>`
@@ -40,9 +55,10 @@ const Buns = styled(({ isOpen, ...props }) => <div {...props} />)<BunsProps>`
 interface LineProps {
   position: 'top' | 'bottom'
   isOpen: boolean
+  lineColor?: string
 }
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const Line = styled(({ isOpen, position, ...props }) => (
+const Line = styled(({ isOpen, position, lineColor, ...props }) => (
   <div {...props} />
 ))<LineProps>`
   position: absolute;
@@ -53,7 +69,7 @@ const Line = styled(({ isOpen, position, ...props }) => (
   border-radius: 0.125rem;
   transition: 0.2s;
 
-  ${({ position, isOpen }) => {
+  ${({ position, isOpen, lineColor, theme }) => {
     switch (position) {
       case 'top':
         return isOpen
@@ -63,16 +79,19 @@ const Line = styled(({ isOpen, position, ...props }) => (
             `
           : css`
               top: 0;
+              background: ${lineColor};
             `
       case 'bottom':
         return css`
           width: 1.875rem;
+          background: ${lineColor};
 
           ${isOpen
             ? css`
                 transform: rotate(-45deg);
                 top: calc(50% - 0.2rem);
                 width: 100%;
+                background: ${theme.colors.white};
               `
             : css`
                 bottom: 0;

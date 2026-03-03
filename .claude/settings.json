@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls * /home/andrey/code/sajj-website/*)",
+      "Bash(grep *)",
+      "Bash(cat /home/andrey/code/sajj-website/*)",
+      "Bash(yarn tsc --noEmit)"
+    ]
+  }
+}

@@ -9,6 +9,10 @@ export const routing = defineRouting({
       en: '/contact',
       fr: '/nous-contacter',
     },
+    '/portfolio': {
+      en: '/portfolio',
+      fr: '/portfolio',
+    },
   },
 })
 

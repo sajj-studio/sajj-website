@@ -97,6 +97,11 @@
       "send": "Send"
     }
   },
+  "portfolio": {
+    "title": "Projects",
+    "seoTitle": "Portfolio",
+    "seoDescription": "A selection of our favourite client projects."
+  },
   "seo": {
     "description": "The best digital creative studio in the world!",
     "keywords": "web studio, creative, website"

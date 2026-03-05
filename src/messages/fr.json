@@ -97,6 +97,11 @@
       "send": "Envoyer"
     }
   },
+  "portfolio": {
+    "title": "Projets",
+    "seoTitle": "Portfolio",
+    "seoDescription": "Une sélection de nos projets clients préférés."
+  },
   "seo": {
     "description": "Le meilleur studio de création numérique au monde!",
     "keywords": "studio web, créative, créatif, site internet"

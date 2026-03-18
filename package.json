@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "dependencies": {
     "@react-spring/web": "^10.0.3",
+    "@sentry/nextjs": "^10",
     "@use-gesture/react": "^10.3.1",
     "babel-plugin-styled-components": "^2.1.4",
     "next": "^16.1.6",
@@ -45,5 +46,5 @@
     "src/**/*.{js,jsx,ts,tsx}": "eslint --max-warnings=0",
     "*.{js,jsx,ts,tsx,json,md}": "prettier --check"
   },
-  "packageManager": "yarn@4.12.0"
+  "packageManager": "yarn@4.13.0"
 }

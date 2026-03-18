@@ -39,7 +39,7 @@ export const Layout: FC<LayoutProps> = ({
             <div>{headerContent}</div>
           </HeaderContentContainer>
         )}
-        <FunkyBorder bottom height={funkyHeight} />
+        <FunkyBorder bottom height={funkyHeight} animated />
       </TopSection>
       <main>{children}</main>
       <Footer />

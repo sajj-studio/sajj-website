@@ -21,7 +21,7 @@ export default withSentryConfig(withNextIntl(config), {
 
   org: 'sajj-studio',
 
-  project: 'javascript-nextjs',
+  project: 'sajj-studio-website',
 
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,

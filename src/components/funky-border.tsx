@@ -57,10 +57,12 @@ export const Styles = styled(({ position, borderHeight, ...props }) => (
   ${({ position }) =>
     position === 'top'
       ? css`
-          top: 0;
+          top: -1px;
+          height: calc(100px + 1px);
         `
       : css`
-          bottom: 0;
+          bottom: -1px;
+          height: calc(100px + 1px);
         `}
 
   ${({ borderHeight }) => {

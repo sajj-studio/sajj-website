@@ -2,9 +2,6 @@
 import { FC } from 'react'
 import styled, { css } from 'styled-components'
 import { SajjLogo } from '../assets/images/sajj-logo'
-import { FacebookLogo } from '../assets/images/facebook-logo'
-import { InstagramLogo } from '../assets/images/instagram-logo'
-import { TwitterLogo } from '../assets/images/twitter-logo'
 import { LinkedinLogo } from '../assets/images/linkedin-logo'
 import { useTranslations } from 'next-intl'
 import { Typography } from './typography'
@@ -23,12 +20,7 @@ export const Footer: FC = () => {
             <SajjLogo color="orange" />
           </LogoContainer>
           <_VerticalAlign>
-            <Typography
-              as={Link}
-              href="/quiz"
-              color="orange"
-              variant="body"
-            >
+            <Typography as={Link} href="/quiz" color="orange" variant="body">
               {t('contactUs')}
             </Typography>
             <Typography
@@ -43,27 +35,6 @@ export const Footer: FC = () => {
         </_SectionWrapper>
         <_Line />
         <_SectionWrapper>
-          <ImageLink
-            href={contactInfo.facebookPage}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FacebookLogo color="orange" />
-          </ImageLink>
-          <ImageLink
-            href={contactInfo.instagramPage}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <InstagramLogo color="orange" />
-          </ImageLink>
-          <ImageLink
-            href={contactInfo.twitterPage}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <TwitterLogo color="orange" />
-          </ImageLink>
           <ImageLink
             href={contactInfo.linkedInPage}
             target="_blank"
@@ -120,10 +91,6 @@ const _SectionWrapper = styled.div`
   a {
     z-index: 5;
   }
-
-  :nth-child(1) {
-    padding: 0 2rem;
-  }
 `
 const _VerticalAlign = styled.div`
   display: flex;
@@ -156,5 +123,4 @@ const ImageLink = styled.a`
   display: inline-block;
   width: 1.823rem;
   height: 1.811rem;
-  margin: 0 1.4rem;
 `

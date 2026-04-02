@@ -90,10 +90,10 @@ const WhatWeDo_Item_Container = styled.div`
 
     & > div:first-child {
       /* 
-     * Gave this fixed width, yet one of them ends up being larger
-     * Jordan pls rescue us from this nightmare
-     */
-      width: 40%;
+       * Gave this fixed width, yet one of them ends up being larger
+       * Jordan pls rescue us from this nightmare
+       */
+      width: 25%;
 
       ${theme.media.desktop} {
         width: 40%;
@@ -101,7 +101,7 @@ const WhatWeDo_Item_Container = styled.div`
     }
 
     & > div:nth-child(2) {
-      width: 60%;
+      width: 75%;
       padding-left: 2.2rem;
 
       ${theme.media.desktop} {

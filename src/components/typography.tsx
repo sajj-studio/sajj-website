@@ -29,8 +29,8 @@ export const Typography = styled(({ color, variant, ...props }) => (
         case 'subtitle':
           return css`
             font-weight: 500;
-            font-size: 1.875rem;
-            line-height: 1.875rem;
+            font-size: 1.5rem;
+            line-height: 1.5rem;
           `
 
         case 'body':

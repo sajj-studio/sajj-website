@@ -28,6 +28,7 @@ export const Footer: FC = () => {
               href={`mailto:${contactInfo.email}`}
               color="orange"
               variant="body"
+              style={{ margin: 0 }}
             >
               {contactInfo.email}
             </Typography>

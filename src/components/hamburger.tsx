@@ -1,34 +1,40 @@
 import { FC } from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css, DefaultTheme } from 'styled-components'
 import { theme } from './sc-theme'
 
 interface HamburgerProps {
   isOpen: boolean
   onClick: () => void
-  colorVariant?: 'standard' | 'grayscale' | 'mustard'
+  colorVariant: 'standard' | keyof DefaultTheme['colors']
 }
 
 interface BunsProps {
   isOpen: boolean
 }
 
-export const Hamburger: FC<HamburgerProps> = ({ isOpen, onClick, colorVariant }) => (
+export const Hamburger: FC<HamburgerProps> = ({
+  isOpen,
+  onClick,
+  colorVariant,
+}) => (
   <Buns onClick={onClick} isOpen={isOpen}>
     <Line position="top" isOpen={isOpen} lineColor={getColor(colorVariant)} />
-    <Line position="bottom" isOpen={isOpen} lineColor={getColor(colorVariant)} />
+    <Line
+      position="bottom"
+      isOpen={isOpen}
+      lineColor={getColor(colorVariant)}
+    />
   </Buns>
 )
 
 function getColor(
-  colorVariant: 'standard' | 'grayscale' | 'mustard' | undefined
+  colorVariant: 'standard' | keyof DefaultTheme['colors'],
 ): string | undefined {
   switch (colorVariant) {
     case 'standard':
       return theme.colors.white
-    case 'grayscale':
-      return theme.colors.gray
-    case 'mustard':
-      return theme.colors.darkBlue
+    default:
+      return theme.colors[colorVariant]
   }
 }
 

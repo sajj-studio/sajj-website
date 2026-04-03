@@ -2,7 +2,7 @@
 import { FC } from 'react'
 import { Header } from './header'
 import { Footer } from './footer'
-import styled, { css } from 'styled-components'
+import styled, { css, DefaultTheme } from 'styled-components'
 import '../assets/fonts/fonts.css'
 import { Container } from './container'
 import { FunkyBorder, funkyBorderStyle } from './funky-border'
@@ -10,7 +10,7 @@ import { FunkyBorder, funkyBorderStyle } from './funky-border'
 interface LayoutProps {
   headerContent?: React.ReactNode
   children?: React.ReactNode
-  headerVariant?: 'standard' | 'grayscale' | 'mustard'
+  headerVariant: 'standard' | keyof DefaultTheme['colors']
   funkyHeight?: 'half' | 'quarter'
   standardDesktop?: boolean
 }
@@ -29,11 +29,7 @@ export const Layout: FC<LayoutProps> = ({
         borderHeight={funkyHeight}
         variantDesktop={standardDesktop}
       >
-        <Header
-          logoGradient={headerVariant}
-          variant={headerVariant}
-          variantDesktop={standardDesktop}
-        />
+        <Header color={headerVariant} variantDesktop={standardDesktop} />
         {headerContent && (
           <HeaderContentContainer>
             <div>{headerContent}</div>
@@ -48,7 +44,7 @@ export const Layout: FC<LayoutProps> = ({
 }
 
 interface TopSectionProps {
-  topSectionVariant?: 'standard' | 'grayscale' | 'mustard'
+  topSectionVariant?: 'standard' | keyof DefaultTheme['colors']
   borderHeight?: 'half' | 'quarter'
   variantDesktop?: boolean
 }
@@ -60,7 +56,7 @@ const TopSection = styled(
   ),
 )<TopSectionProps>`
   ${({ theme, topSectionVariant, borderHeight, variantDesktop }) => css`
-    ${topSectionVariant === 'grayscale'
+    ${topSectionVariant === 'gray'
       ? css`
           padding-bottom: 40px;
           background: linear-gradient(
@@ -87,7 +83,7 @@ const TopSection = styled(
             }
           `}
         `
-      : topSectionVariant === 'mustard'
+      : topSectionVariant === 'orange'
         ? css`
             padding-bottom: 40px;
             background: ${theme.colors.lightYellow};

@@ -42,7 +42,7 @@ export default async function HomePage({
   setRequestLocale(locale)
 
   return (
-    <Layout headerContent={<HomeHeaderContent />}>
+    <Layout headerVariant="standard" headerContent={<HomeHeaderContent />}>
       <HomePageContent />
     </Layout>
   )

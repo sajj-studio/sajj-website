@@ -16,7 +16,7 @@ export default async function QuizPage({
   setRequestLocale(locale)
 
   return (
-    <Layout headerVariant="grayscale" funkyHeight="half">
+    <Layout headerVariant="gray" funkyHeight="half">
       <SectionContainer>
         <Quiz />
       </SectionContainer>

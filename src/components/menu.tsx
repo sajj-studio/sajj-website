@@ -1,6 +1,6 @@
 'use client'
 import { FC } from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css, DefaultTheme } from 'styled-components'
 import { MenuItem } from './header'
 import { LanguageSwitcher } from './language-switcher'
 import { Link } from './link'
@@ -10,7 +10,7 @@ interface MenuProps {
   items: MenuItem[]
   isOpen: boolean
   handleClick: () => void
-  menuVariant?: 'standard' | 'grayscale' | 'mustard'
+  menuVariant: 'standard' | keyof DefaultTheme['colors']
   variantDesktop?: boolean
 }
 
@@ -42,14 +42,17 @@ export const Menu: FC<MenuProps> = ({
   </Container>
 )
 
-function getColor(menuVariant: string | undefined): string | undefined {
+function getColor(
+  menuVariant: 'standard' | keyof DefaultTheme['colors'],
+): string | undefined {
   switch (menuVariant) {
     case 'standard':
       return theme.colors.white
-    case 'grayscale':
+    case 'gray':
+    case 'orange':
       return theme.colors.darkBlue
-    case 'mustard':
-      return theme.colors.darkBlue
+    default:
+      return theme.colors[menuVariant]
   }
 }
 

@@ -1,11 +1,20 @@
 'use client'
-import { Layout } from '@/components/layout'
+import { JSX } from 'react'
+import { Layout } from '../../components/layout'
+import { Container } from '../../components/container'
+import { Typography } from '../../components/typography'
 
 export default function NotFound(): JSX.Element {
   return (
-    <Layout>
-      <h1>404: Not Found</h1>
-      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+    <Layout headerVariant="gray">
+      <Container>
+        <Typography variant="title" color="black">
+          404: Not Found
+        </Typography>
+        <Typography variant="body" color="black">
+          You just hit a route that doesn&#39;t exist... the sadness.
+        </Typography>
+      </Container>
     </Layout>
   )
 }

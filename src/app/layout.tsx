@@ -5,5 +5,9 @@ export default function RootLayout({
 }: {
   children: ReactNode
 }): ReactNode {
-  return children
+  return (
+    <html>
+      <body>{children}</body>
+    </html>
+  )
 }

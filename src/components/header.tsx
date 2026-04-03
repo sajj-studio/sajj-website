@@ -1,7 +1,7 @@
 'use client'
 import { Link } from './link'
 import { FC, useCallback, useState } from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css, DefaultTheme } from 'styled-components'
 import { SajjLogo } from '../assets/images/sajj-logo'
 import { Container } from './container'
 import { Hamburger } from './hamburger'
@@ -15,12 +15,26 @@ export interface MenuItem {
 }
 
 interface HeaderProps {
-  logoGradient?: 'standard' | 'grayscale' | 'mustard'
-  variant?: 'standard' | 'grayscale' | 'mustard'
+  color: 'standard' | keyof DefaultTheme['colors']
   variantDesktop?: boolean
 }
 
-export const Header: FC<HeaderProps> = ({ logoGradient, variant, variantDesktop }) => {
+const LogoColor: Record<
+  'standard' | keyof DefaultTheme['colors'],
+  keyof DefaultTheme['colors'] | 'gradient'
+> = {
+  black: 'white',
+  blue: 'white',
+  darkBlue: 'white',
+  gray: 'gradient',
+  lightYellow: 'white',
+  orange: 'white',
+  red: 'white',
+  standard: 'white',
+  white: 'gradient',
+}
+
+export const Header: FC<HeaderProps> = ({ color, variantDesktop }) => {
   const t = useTranslations('nav')
   const [isOpen, setIsOpen] = useState(false)
   const toggle = useCallback(() => {
@@ -36,16 +50,16 @@ export const Header: FC<HeaderProps> = ({ logoGradient, variant, variantDesktop 
   ]
 
   return (
-    <HeaderContainer height={variant} desktop={variantDesktop}>
+    <HeaderContainer height={color} desktop={variantDesktop}>
       <LogoContainer href="/">
-        <SajjLogo gradient={logoGradient} />
+        <SajjLogo color={LogoColor[color]} />
       </LogoContainer>
-      <Hamburger isOpen={isOpen} onClick={toggle} colorVariant={variant} />
+      <Hamburger isOpen={isOpen} onClick={toggle} colorVariant={color} />
       <Menu
         items={menuItems}
         isOpen={isOpen}
         handleClick={toggle}
-        menuVariant={variant}
+        menuVariant={color}
         variantDesktop={variantDesktop}
       />
     </HeaderContainer>
@@ -53,7 +67,7 @@ export const Header: FC<HeaderProps> = ({ logoGradient, variant, variantDesktop 
 }
 
 interface HeaderContainerProps {
-  height?: 'standard' | 'grayscale' | 'mustard'
+  height?: 'standard' | keyof DefaultTheme['colors']
   desktop?: boolean
 }
 
